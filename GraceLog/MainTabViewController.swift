@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainTabViewController.swift
 //  GraceLog
 //
 //  Created by 이상준 on 12/7/24.
@@ -7,13 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+final class MainTabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .blue
     }
-
-
 }
-
