@@ -10,14 +10,20 @@
 		1FF92BC6706B0E42B006A951 /* Pods_GraceLogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C92987C1F1070895365F17 /* Pods_GraceLogTests.framework */; };
 		75248638A478EB9521F76504 /* Pods_GraceLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */; };
 		A88BF65DF907D86788F86BF8 /* Pods_GraceLog_GraceLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */; };
+		DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */; };
+		DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD72D048B550076426D /* Coordinator.swift */; };
+		DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD92D059A3B0076426D /* HomeViewController.swift */; };
+		DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */; };
+		DE3BFCDE2D059D3D0076426D /* BibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCDD2D059D3D0076426D /* BibleViewController.swift */; };
+		DE3BFCE12D059DDC0076426D /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */; };
+		DE3BFCE42D059E970076426D /* BibleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE32D059E970076426D /* BibleCoordinator.swift */; };
+		DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */; };
 		DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB02D04284D008CADCD /* AppDelegate.swift */; };
 		DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB22D04284D008CADCD /* SceneDelegate.swift */; };
-		DE58FEBA2D04284D008CADCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE58FEB92D04284D008CADCD /* Assets.xcassets */; };
 		DE58FEBD2D04284D008CADCD /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE58FEBC2D04284D008CADCD /* Base */; };
 		DE58FEC82D04284E008CADCD /* GraceLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEC72D04284E008CADCD /* GraceLogTests.swift */; };
 		DE58FED22D04284E008CADCD /* GraceLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FED12D04284E008CADCD /* GraceLogUITests.swift */; };
 		DE58FED42D04284E008CADCD /* GraceLogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FED32D04284E008CADCD /* GraceLogUITestsLaunchTests.swift */; };
-		DE58FEE12D04344A008CADCD /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEE02D04344A008CADCD /* MainTabViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +50,18 @@
 		92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLog_GraceLogUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3D4E76539765E1009F5819 /* Pods-GraceLog-GraceLogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog-GraceLogUITests.release.xcconfig"; path = "Target Support Files/Pods-GraceLog-GraceLogUITests/Pods-GraceLog-GraceLogUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C2C92987C1F1070895365F17 /* Pods_GraceLogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE3BFCBB2D043C2F0076426D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogAppCoordinator.swift; sourceTree = "<group>"; };
+		DE3BFCD72D048B550076426D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DE3BFCD92D059A3B0076426D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		DE3BFCDD2D059D3D0076426D /* BibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleViewController.swift; sourceTree = "<group>"; };
+		DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		DE3BFCE32D059E970076426D /* BibleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleCoordinator.swift; sourceTree = "<group>"; };
+		DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoCoordinator.swift; sourceTree = "<group>"; };
 		DE58FEAD2D04284D008CADCD /* GraceLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraceLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE58FEB02D04284D008CADCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE58FEB22D04284D008CADCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DE58FEB92D04284D008CADCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE58FEBC2D04284D008CADCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE58FEBE2D04284D008CADCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE58FEC32D04284E008CADCD /* GraceLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraceLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +69,6 @@
 		DE58FECD2D04284E008CADCD /* GraceLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraceLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE58FED12D04284E008CADCD /* GraceLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUITests.swift; sourceTree = "<group>"; };
 		DE58FED32D04284E008CADCD /* GraceLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		DE58FEE02D04344A008CADCD /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		E2561CE1730A7CC76CC990A3 /* Pods-GraceLog-GraceLogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog-GraceLogUITests.debug.xcconfig"; path = "Target Support Files/Pods-GraceLog-GraceLogUITests/Pods-GraceLog-GraceLogUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE7CB138D1109187A996503 /* Pods-GraceLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog.debug.xcconfig"; path = "Target Support Files/Pods-GraceLog/Pods-GraceLog.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +125,241 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DE3BFCBA2D043BF40076426D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCBD2D043C6E0076426D /* Assets */,
+				DE58FEBE2D04284D008CADCD /* Info.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		DE3BFCBC2D043C4A0076426D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCBE2D043C920076426D /* Application */,
+				DE3BFCC22D043D200076426D /* Util */,
+				DE3BFCC12D043D0C0076426D /* Data */,
+				DE3BFCBF2D043CF70076426D /* Domain */,
+				DE3BFCC02D043D020076426D /* Presentation */,
+				DE58FEBB2D04284D008CADCD /* LaunchScreen.storyboard */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		DE3BFCBD2D043C6E0076426D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCBB2D043C2F0076426D /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		DE3BFCBE2D043C920076426D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				DE58FEB02D04284D008CADCD /* AppDelegate.swift */,
+				DE58FEB22D04284D008CADCD /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		DE3BFCBF2D043CF70076426D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		DE3BFCC02D043D020076426D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCC42D043D9E0076426D /* Common */,
+				DE3BFCC32D043D8B0076426D /* HomeScene */,
+				DE3BFCC62D043DB70076426D /* BibleScene */,
+				DE3BFCC52D043DA40076426D /* MyInfoScene */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DE3BFCC12D043D0C0076426D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		DE3BFCC22D043D200076426D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		DE3BFCC32D043D8B0076426D /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCDF2D059DD20076426D /* Coordinator */,
+				DE3BFCCB2D0489BD0076426D /* Reactor */,
+				DE3BFCCC2D0489C20076426D /* View */,
+				DE3BFCCD2D0489C70076426D /* ViewController */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		DE3BFCC42D043D9E0076426D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCD42D048AE50076426D /* Coordinator */,
+				DE3BFCC92D0489A00076426D /* Reactor */,
+				DE3BFCC82D0489980076426D /* View */,
+				DE3BFCC72D0489850076426D /* ViewController */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DE3BFCC52D043DA40076426D /* MyInfoScene */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCE52D05A1FD0076426D /* Coordinator */,
+				DE3BFCD12D0489FB0076426D /* Reactor */,
+				DE3BFCD22D048A010076426D /* View */,
+				DE3BFCD32D048A080076426D /* ViewController */,
+			);
+			path = MyInfoScene;
+			sourceTree = "<group>";
+		};
+		DE3BFCC62D043DB70076426D /* BibleScene */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCE22D059DEF0076426D /* Coordinator */,
+				DE3BFCCE2D0489DA0076426D /* Reactor */,
+				DE3BFCCF2D0489E40076426D /* View */,
+				DE3BFCD02D0489EE0076426D /* ViewController */,
+			);
+			path = BibleScene;
+			sourceTree = "<group>";
+		};
+		DE3BFCC72D0489850076426D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE3BFCC82D0489980076426D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE3BFCC92D0489A00076426D /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		DE3BFCCB2D0489BD0076426D /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		DE3BFCCC2D0489C20076426D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE3BFCCD2D0489C70076426D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCD92D059A3B0076426D /* HomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE3BFCCE2D0489DA0076426D /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		DE3BFCCF2D0489E40076426D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE3BFCD02D0489EE0076426D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCDD2D059D3D0076426D /* BibleViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE3BFCD12D0489FB0076426D /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		DE3BFCD22D048A010076426D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE3BFCD32D048A080076426D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE3BFCD42D048AE50076426D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCD72D048B550076426D /* Coordinator.swift */,
+				DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DE3BFCDF2D059DD20076426D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DE3BFCE22D059DEF0076426D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCE32D059E970076426D /* BibleCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DE3BFCE52D05A1FD0076426D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		DE58FEA42D04284D008CADCD = {
 			isa = PBXGroup;
 			children = (
@@ -137,12 +385,8 @@
 		DE58FEAF2D04284D008CADCD /* GraceLog */ = {
 			isa = PBXGroup;
 			children = (
-				DE58FEB02D04284D008CADCD /* AppDelegate.swift */,
-				DE58FEB22D04284D008CADCD /* SceneDelegate.swift */,
-				DE58FEE02D04344A008CADCD /* MainTabViewController.swift */,
-				DE58FEB92D04284D008CADCD /* Assets.xcassets */,
-				DE58FEBB2D04284D008CADCD /* LaunchScreen.storyboard */,
-				DE58FEBE2D04284D008CADCD /* Info.plist */,
+				DE3BFCBA2D043BF40076426D /* Resource */,
+				DE3BFCBC2D043C4A0076426D /* Source */,
 			);
 			path = GraceLog;
 			sourceTree = "<group>";
@@ -273,7 +517,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE58FEBA2D04284D008CADCD /* Assets.xcassets in Resources */,
 				DE58FEBD2D04284D008CADCD /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,9 +645,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */,
+				DE3BFCDE2D059D3D0076426D /* BibleViewController.swift in Sources */,
+				DE3BFCE12D059DDC0076426D /* HomeCoordinator.swift in Sources */,
 				DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */,
+				DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */,
+				DE3BFCE42D059E970076426D /* BibleCoordinator.swift in Sources */,
+				DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */,
 				DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */,
-				DE58FEE12D04344A008CADCD /* MainTabViewController.swift in Sources */,
+				DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */,
+				DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +754,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -561,7 +811,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -582,7 +832,7 @@
 				DEVELOPMENT_TEAM = BFTA9SX898;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GraceLog/Info.plist;
+				INFOPLIST_FILE = GraceLog/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -610,7 +860,7 @@
 				DEVELOPMENT_TEAM = BFTA9SX898;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GraceLog/Info.plist;
+				INFOPLIST_FILE = GraceLog/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
