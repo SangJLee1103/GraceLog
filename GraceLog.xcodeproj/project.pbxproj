@@ -18,6 +18,7 @@
 		DE3BFCE12D059DDC0076426D /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */; };
 		DE3BFCE42D059E970076426D /* BibleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE32D059E970076426D /* BibleCoordinator.swift */; };
 		DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */; };
+		DE3BFCEC2D0D3D390076426D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */; };
 		DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB02D04284D008CADCD /* AppDelegate.swift */; };
 		DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB22D04284D008CADCD /* SceneDelegate.swift */; };
 		DE58FEBD2D04284D008CADCD /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE58FEBC2D04284D008CADCD /* Base */; };
@@ -59,6 +60,7 @@
 		DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCE32D059E970076426D /* BibleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoCoordinator.swift; sourceTree = "<group>"; };
+		DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE58FEAD2D04284D008CADCD /* GraceLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraceLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE58FEB02D04284D008CADCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE58FEB22D04284D008CADCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		DE3BFCBA2D043BF40076426D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */,
 				DE3BFCBD2D043C6E0076426D /* Assets */,
 				DE58FEBE2D04284D008CADCD /* Info.plist */,
 			);
@@ -518,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE58FEBD2D04284D008CADCD /* Base in Resources */,
+				DE3BFCEC2D0D3D390076426D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
