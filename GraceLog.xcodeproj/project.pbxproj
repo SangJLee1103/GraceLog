@@ -10,6 +10,15 @@
 		1FF92BC6706B0E42B006A951 /* Pods_GraceLogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C92987C1F1070895365F17 /* Pods_GraceLogTests.framework */; };
 		75248638A478EB9521F76504 /* Pods_GraceLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */; };
 		A88BF65DF907D86788F86BF8 /* Pods_GraceLog_GraceLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */; };
+		DE27003B2D1EFB4E005C9DCF /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700322D1EFB4D005C9DCF /* Pretendard-Bold.otf */; };
+		DE27003C2D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700332D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf */; };
+		DE27003D2D1EFB4E005C9DCF /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700342D1EFB4E005C9DCF /* Pretendard-Light.otf */; };
+		DE27003E2D1EFB4E005C9DCF /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700352D1EFB4E005C9DCF /* Pretendard-Black.otf */; };
+		DE27003F2D1EFB4E005C9DCF /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700362D1EFB4E005C9DCF /* Pretendard-ExtraBold.otf */; };
+		DE2700402D1EFB4E005C9DCF /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700372D1EFB4E005C9DCF /* Pretendard-Thin.otf */; };
+		DE2700412D1EFB4E005C9DCF /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700382D1EFB4E005C9DCF /* Pretendard-Medium.otf */; };
+		DE2700422D1EFB4E005C9DCF /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700392D1EFB4E005C9DCF /* Pretendard-SemiBold.otf */; };
+		DE2700432D1EFB4E005C9DCF /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */; };
 		DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */; };
 		DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD72D048B550076426D /* Coordinator.swift */; };
 		DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD92D059A3B0076426D /* HomeViewController.swift */; };
@@ -51,6 +60,15 @@
 		92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLog_GraceLogUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3D4E76539765E1009F5819 /* Pods-GraceLog-GraceLogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog-GraceLogUITests.release.xcconfig"; path = "Target Support Files/Pods-GraceLog-GraceLogUITests/Pods-GraceLog-GraceLogUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C2C92987C1F1070895365F17 /* Pods_GraceLogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE2700322D1EFB4D005C9DCF /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		DE2700332D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		DE2700342D1EFB4E005C9DCF /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		DE2700352D1EFB4E005C9DCF /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		DE2700362D1EFB4E005C9DCF /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		DE2700372D1EFB4E005C9DCF /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		DE2700382D1EFB4E005C9DCF /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		DE2700392D1EFB4E005C9DCF /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		DE3BFCBB2D043C2F0076426D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogAppCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCD72D048B550076426D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -127,12 +145,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DE2700312D1EFAE0005C9DCF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700352D1EFB4E005C9DCF /* Pretendard-Black.otf */,
+				DE2700322D1EFB4D005C9DCF /* Pretendard-Bold.otf */,
+				DE2700362D1EFB4E005C9DCF /* Pretendard-ExtraBold.otf */,
+				DE2700332D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf */,
+				DE2700342D1EFB4E005C9DCF /* Pretendard-Light.otf */,
+				DE2700382D1EFB4E005C9DCF /* Pretendard-Medium.otf */,
+				DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */,
+				DE2700392D1EFB4E005C9DCF /* Pretendard-SemiBold.otf */,
+				DE2700372D1EFB4E005C9DCF /* Pretendard-Thin.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		DE3BFCBA2D043BF40076426D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */,
-				DE3BFCBD2D043C6E0076426D /* Assets */,
 				DE58FEBE2D04284D008CADCD /* Info.plist */,
+				DE3BFCBD2D043C6E0076426D /* Assets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -153,6 +187,7 @@
 		DE3BFCBD2D043C6E0076426D /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				DE2700312D1EFAE0005C9DCF /* Fonts */,
 				DE3BFCBB2D043C2F0076426D /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -521,7 +556,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE58FEBD2D04284D008CADCD /* Base in Resources */,
+				DE27003B2D1EFB4E005C9DCF /* Pretendard-Bold.otf in Resources */,
+				DE27003F2D1EFB4E005C9DCF /* Pretendard-ExtraBold.otf in Resources */,
+				DE2700402D1EFB4E005C9DCF /* Pretendard-Thin.otf in Resources */,
+				DE27003C2D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf in Resources */,
+				DE27003D2D1EFB4E005C9DCF /* Pretendard-Light.otf in Resources */,
+				DE27003E2D1EFB4E005C9DCF /* Pretendard-Black.otf in Resources */,
+				DE2700422D1EFB4E005C9DCF /* Pretendard-SemiBold.otf in Resources */,
+				DE2700432D1EFB4E005C9DCF /* Pretendard-Regular.otf in Resources */,
 				DE3BFCEC2D0D3D390076426D /* GoogleService-Info.plist in Resources */,
+				DE2700412D1EFB4E005C9DCF /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
