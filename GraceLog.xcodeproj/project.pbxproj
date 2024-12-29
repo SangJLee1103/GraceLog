@@ -19,6 +19,11 @@
 		DE2700412D1EFB4E005C9DCF /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700382D1EFB4E005C9DCF /* Pretendard-Medium.otf */; };
 		DE2700422D1EFB4E005C9DCF /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700392D1EFB4E005C9DCF /* Pretendard-SemiBold.otf */; };
 		DE2700432D1EFB4E005C9DCF /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */; };
+		DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700452D1EFD06005C9DCF /* LoginViewController.swift */; };
+		DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */; };
+		DE27004E2D1F9FC9005C9DCF /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27004D2D1F9FC9005C9DCF /* LoginButton.swift */; };
+		DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */; };
+		DE2700512D2106C2005C9DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3BFCBB2D043C2F0076426D /* Assets.xcassets */; };
 		DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */; };
 		DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD72D048B550076426D /* Coordinator.swift */; };
 		DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD92D059A3B0076426D /* HomeViewController.swift */; };
@@ -69,6 +74,10 @@
 		DE2700382D1EFB4E005C9DCF /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DE2700392D1EFB4E005C9DCF /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		DE2700452D1EFD06005C9DCF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
+		DE27004D2D1F9FC9005C9DCF /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		DE3BFCBB2D043C2F0076426D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogAppCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCD72D048B550076426D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -161,6 +170,48 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		DE2700442D1EFCF0005C9DCF /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				DE27004B2D1F9FB3005C9DCF /* View */,
+				DE27004A2D1F9FA8005C9DCF /* ViewController */,
+				DE27004C2D1F9FB8005C9DCF /* ViewModel */,
+			);
+			path = LoginScene;
+			sourceTree = "<group>";
+		};
+		DE2700472D1F9E56005C9DCF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */,
+				DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DE27004A2D1F9FA8005C9DCF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700452D1EFD06005C9DCF /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE27004B2D1F9FB3005C9DCF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE27004D2D1F9FC9005C9DCF /* LoginButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE27004C2D1F9FB8005C9DCF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		DE3BFCBA2D043BF40076426D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				DE3BFCC42D043D9E0076426D /* Common */,
+				DE2700442D1EFCF0005C9DCF /* LoginScene */,
 				DE3BFCC32D043D8B0076426D /* HomeScene */,
 				DE3BFCC62D043DB70076426D /* BibleScene */,
 				DE3BFCC52D043DA40076426D /* MyInfoScene */,
@@ -230,6 +282,7 @@
 		DE3BFCC22D043D200076426D /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DE2700472D1F9E56005C9DCF /* Extension */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -565,6 +618,7 @@
 				DE2700422D1EFB4E005C9DCF /* Pretendard-SemiBold.otf in Resources */,
 				DE2700432D1EFB4E005C9DCF /* Pretendard-Regular.otf in Resources */,
 				DE3BFCEC2D0D3D390076426D /* GoogleService-Info.plist in Resources */,
+				DE2700512D2106C2005C9DCF /* Assets.xcassets in Resources */,
 				DE2700412D1EFB4E005C9DCF /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -701,8 +755,12 @@
 				DE3BFCE42D059E970076426D /* BibleCoordinator.swift in Sources */,
 				DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */,
 				DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */,
+				DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */,
 				DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */,
 				DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */,
+				DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */,
+				DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */,
+				DE27004E2D1F9FC9005C9DCF /* LoginButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

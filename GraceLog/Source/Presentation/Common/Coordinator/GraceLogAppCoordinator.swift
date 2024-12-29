@@ -19,7 +19,8 @@ final class GraceLogAppCoordinator: Coordinator {
     
     func start() {
         let mainTabViewController = configureTabBarController()
-        self.window?.rootViewController = mainTabViewController
+//        self.window?.rootViewController = mainTabViewController
+        self.window?.rootViewController = LoginViewController()
     }
     
     func configureTabBarController() -> UITabBarController {
