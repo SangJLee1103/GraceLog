@@ -24,6 +24,15 @@
 		DE27004E2D1F9FC9005C9DCF /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27004D2D1F9FC9005C9DCF /* LoginButton.swift */; };
 		DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */; };
 		DE2700512D2106C2005C9DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3BFCBB2D043C2F0076426D /* Assets.xcassets */; };
+		DE2700532D2113F2005C9DCF /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700522D2113F2005C9DCF /* LoginReactor.swift */; };
+		DE27005A2D2125FF005C9DCF /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700592D2125FF005C9DCF /* LoginUseCase.swift */; };
+		DE27005C2D212609005C9DCF /* DefaultLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27005B2D212609005C9DCF /* DefaultLoginUseCase.swift */; };
+		DE27005F2D212770005C9DCF /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27005E2D212770005C9DCF /* FireStoreRepository.swift */; };
+		DE2700632D22D188005C9DCF /* DefaultFireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700622D22D188005C9DCF /* DefaultFireStoreRepository.swift */; };
+		DE2700662D22D43E005C9DCF /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700652D22D43E005C9DCF /* UserDTO.swift */; };
+		DE2700692D22D591005C9DCF /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700682D22D591005C9DCF /* Constant.swift */; };
+		DE27006C2D22DBAF005C9DCF /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27006B2D22DBAF005C9DCF /* AuthError.swift */; };
+		DE27006E2D22DD55005C9DCF /* FirestoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27006D2D22DD55005C9DCF /* FirestoreError.swift */; };
 		DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */; };
 		DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD72D048B550076426D /* Coordinator.swift */; };
 		DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD92D059A3B0076426D /* HomeViewController.swift */; };
@@ -78,6 +87,15 @@
 		DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
 		DE27004D2D1F9FC9005C9DCF /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		DE2700522D2113F2005C9DCF /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
+		DE2700592D2125FF005C9DCF /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		DE27005B2D212609005C9DCF /* DefaultLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginUseCase.swift; sourceTree = "<group>"; };
+		DE27005E2D212770005C9DCF /* FireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreRepository.swift; sourceTree = "<group>"; };
+		DE2700622D22D188005C9DCF /* DefaultFireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFireStoreRepository.swift; sourceTree = "<group>"; };
+		DE2700652D22D43E005C9DCF /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		DE2700682D22D591005C9DCF /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		DE27006B2D22DBAF005C9DCF /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		DE27006D2D22DD55005C9DCF /* FirestoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreError.swift; sourceTree = "<group>"; };
 		DE3BFCBB2D043C2F0076426D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogAppCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCD72D048B550076426D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -173,9 +191,10 @@
 		DE2700442D1EFCF0005C9DCF /* LoginScene */ = {
 			isa = PBXGroup;
 			children = (
+				DE2700542D211F0D005C9DCF /* Coordinator */,
 				DE27004B2D1F9FB3005C9DCF /* View */,
 				DE27004A2D1F9FA8005C9DCF /* ViewController */,
-				DE27004C2D1F9FB8005C9DCF /* ViewModel */,
+				DE27004C2D1F9FB8005C9DCF /* Reactor */,
 			);
 			path = LoginScene;
 			sourceTree = "<group>";
@@ -205,11 +224,100 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		DE27004C2D1F9FB8005C9DCF /* ViewModel */ = {
+		DE27004C2D1F9FB8005C9DCF /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700522D2113F2005C9DCF /* LoginReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		DE2700542D211F0D005C9DCF /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = ViewModel;
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DE2700552D211F3B005C9DCF /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		DE2700562D211F61005C9DCF /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700572D211F82005C9DCF /* Login */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		DE2700572D211F82005C9DCF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700582D211F94005C9DCF /* Protocol */,
+				DE27005B2D212609005C9DCF /* DefaultLoginUseCase.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DE2700582D211F94005C9DCF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700592D2125FF005C9DCF /* LoginUseCase.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DE27005D2D2126B1005C9DCF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DE27005E2D212770005C9DCF /* FireStoreRepository.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DE2700602D22D165005C9DCF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700642D22D40A005C9DCF /* DTO */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DE2700612D22D177005C9DCF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700622D22D188005C9DCF /* DefaultFireStoreRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		DE2700642D22D40A005C9DCF /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700652D22D43E005C9DCF /* UserDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		DE2700672D22D570005C9DCF /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700682D22D591005C9DCF /* Constant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		DE27006A2D22DA5B005C9DCF /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				DE27006B2D22DBAF005C9DCF /* AuthError.swift */,
+				DE27006D2D22DD55005C9DCF /* FirestoreError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		DE3BFCBA2D043BF40076426D /* Resource */ = {
@@ -256,6 +364,9 @@
 		DE3BFCBF2D043CF70076426D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				DE27005D2D2126B1005C9DCF /* Protocol */,
+				DE2700562D211F61005C9DCF /* Usecase */,
+				DE2700552D211F3B005C9DCF /* Entity */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -275,6 +386,8 @@
 		DE3BFCC12D043D0C0076426D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				DE2700602D22D165005C9DCF /* Network */,
+				DE2700612D22D177005C9DCF /* Repository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -282,6 +395,8 @@
 		DE3BFCC22D043D200076426D /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DE27006A2D22DA5B005C9DCF /* Error */,
+				DE2700672D22D570005C9DCF /* Constant */,
 				DE2700472D1F9E56005C9DCF /* Extension */,
 			);
 			path = Util;
@@ -755,12 +870,21 @@
 				DE3BFCE42D059E970076426D /* BibleCoordinator.swift in Sources */,
 				DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */,
 				DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */,
+				DE2700532D2113F2005C9DCF /* LoginReactor.swift in Sources */,
 				DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */,
+				DE2700632D22D188005C9DCF /* DefaultFireStoreRepository.swift in Sources */,
 				DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */,
 				DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */,
 				DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */,
+				DE2700692D22D591005C9DCF /* Constant.swift in Sources */,
+				DE27005C2D212609005C9DCF /* DefaultLoginUseCase.swift in Sources */,
+				DE27006C2D22DBAF005C9DCF /* AuthError.swift in Sources */,
+				DE27006E2D22DD55005C9DCF /* FirestoreError.swift in Sources */,
 				DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */,
 				DE27004E2D1F9FC9005C9DCF /* LoginButton.swift in Sources */,
+				DE27005A2D2125FF005C9DCF /* LoginUseCase.swift in Sources */,
+				DE2700662D22D43E005C9DCF /* UserDTO.swift in Sources */,
+				DE27005F2D212770005C9DCF /* FireStoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
