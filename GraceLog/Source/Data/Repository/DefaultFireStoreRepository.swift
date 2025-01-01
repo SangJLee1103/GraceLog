@@ -50,6 +50,4 @@ final class DefaultFireStoreRepository: FireStoreRepository {
             return Disposables.create()
         }
     }
-    
-    
 }
