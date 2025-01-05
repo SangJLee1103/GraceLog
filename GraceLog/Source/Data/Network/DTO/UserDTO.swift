@@ -15,3 +15,15 @@ struct UserDTO: Codable {
     let photoUrl: String
     let createdAt: Timestamp
 }
+
+extension UserDTO {
+    func toEntity() -> GraceLogUser {
+        return GraceLogUser(
+            uid: self.uid,
+            displayName: self.displayName,
+            email: self.email,
+            photoUrl: self.photoUrl,
+            createdAt: self.createdAt
+        )
+    }
+}

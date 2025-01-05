@@ -6,31 +6,80 @@
 //
 
 import XCTest
-@testable import GraceLog
+import RxSwift
+
 
 final class LoginUseCaseTests: XCTestCase {
-
+    private var disposeBag: DisposeBag!
+    private var repository: FireStoreRepository!
+    private var loginUseCase: LoginUseCase!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        self.disposeBag = DisposeBag()
+        self.repository = MockFireStoreRepository()
+        self.loginUseCase = DefaultLoginUseCase(firestoreRepository: self.repository)
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        self.disposeBag = nil
+        self.repository = nil
+        self.loginUseCase = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func test_isRegistration_WhenSuccessful_shouldEmitTrue() {
+        let expectation = XCTestExpectation()
+        var result: Bool?
+        
+        loginUseCase.isRegistered
+            .subscribe(onNext: { isRegistered in
+                result = isRegistered
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+        
+        loginUseCase.checkUserRegistration(uid: "Ymf08F27vRXcxuOI3sl6FAm07z22")
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertTrue(result == true)
+        
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func test_registerUser_WhenSuccessful_ShouldEmitTrue() {
+        // Given
+        let expectation = XCTestExpectation()
+        var result: Bool?
+        
+        // When
+        loginUseCase.isRegisterUser
+            .subscribe(onNext: { isRegistered in
+                result = isRegistered
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+        
+        // Then
+        loginUseCase.registerUser(email: "sangjlee1103@gmail.com", displayName: "이상준")
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertTrue(result == true)
     }
-
+    
+    func test_fetchUser_WhenSuccessful_ShouldEmitUser() {
+        // Given
+        let expectation = XCTestExpectation()
+        var resultUser: GraceLogUser?
+        
+        // When
+        loginUseCase.user
+            .subscribe(onNext: { user in
+                resultUser = user
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
+        
+        loginUseCase.fetchUser(uid: "Ymf08F27vRXcxuOI3sl6FAm07z22")
+        
+        // Then
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertNotNil(resultUser)
+        XCTAssertEqual(resultUser?.email, "sangjlee1103@gmail.com")
+    }
 }

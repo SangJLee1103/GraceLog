@@ -27,9 +27,11 @@ target 'GraceLog' do
 	pod 'RxDataSources'
 	pod 'ReactorKit'
 
-  target 'GraceLogTests' do
+  target 'GraceLogUseCaseTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'RxTest'
+    pod 'RxSwift'
+    pod 'RxRelay'
   end
 
   target 'GraceLogUITests' do

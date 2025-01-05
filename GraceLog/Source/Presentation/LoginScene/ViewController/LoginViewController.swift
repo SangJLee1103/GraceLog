@@ -8,12 +8,17 @@
 import UIKit
 import SnapKit
 import Then
+import ReactorKit
 
-import FirebaseAuth
+import Firebase
+import GoogleSignIn
 import RxSwift
 import RxCocoa
 
 final class LoginViewController: UIViewController {
+    typealias Reactor = LoginReactor
+    var disposeBag = DisposeBag()
+    
     private let sloganLabel = UILabel().then {
         $0.numberOfLines = 2
         $0.text = "우리의 감사로\n삶을 풍요롭게"
@@ -42,6 +47,7 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.reactor = Reactor(loginUseCase: DefaultLoginUseCase(firestoreRepository: DefaultFireStoreRepository()))
         configureUI()
     }
     
@@ -76,6 +82,53 @@ final class LoginViewController: UIViewController {
         loginStack.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(39)
             $0.top.equalTo(titleLabel.snp.bottom).offset(115)
+        }
+    }
+}
+
+extension LoginViewController: View {
+    func bind(reactor: LoginReactor) {
+        googleLoginButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.handleGoogleLogin()
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.user }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] user in
+                if let user = user {
+                    print("받은 유저 정보: \(user)")
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension LoginViewController {
+    private func handleGoogleLogin() {
+        guard let clientId = FirebaseApp.app()?.options.clientID else { return }
+        
+        let config = GIDConfiguration(clientID: clientId)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+            guard error == nil else {
+                return
+            }
+            
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken,
+                accessToken: user.accessToken.tokenString
+            )
+            
+            reactor?.action.onNext(.googleLogin(credential))
         }
     }
 }
