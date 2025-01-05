@@ -58,6 +58,7 @@
 		DEEFEACA2D29270500699692 /* GraceLogUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEFEAC92D29270500699692 /* GraceLogUser.swift */; };
 		DEEFEACC2D2A5E8200699692 /* GraceLogUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEFEAC92D29270500699692 /* GraceLogUser.swift */; };
 		DEEFEACD2D2A5E8400699692 /* GraceLogUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEFEAC92D29270500699692 /* GraceLogUser.swift */; };
+		DEEFEACF2D2A64CF00699692 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEFEACE2D2A64CF00699692 /* LoginCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		DE58FED12D04284E008CADCD /* GraceLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUITests.swift; sourceTree = "<group>"; };
 		DE58FED32D04284E008CADCD /* GraceLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DEEFEAC92D29270500699692 /* GraceLogUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUser.swift; sourceTree = "<group>"; };
+		DEEFEACE2D2A64CF00699692 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		E2561CE1730A7CC76CC990A3 /* Pods-GraceLog-GraceLogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog-GraceLogUITests.debug.xcconfig"; path = "Target Support Files/Pods-GraceLog-GraceLogUITests/Pods-GraceLog-GraceLogUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE7CB138D1109187A996503 /* Pods-GraceLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog.debug.xcconfig"; path = "Target Support Files/Pods-GraceLog/Pods-GraceLog.debug.xcconfig"; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 		DE2700542D211F0D005C9DCF /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				DEEFEACE2D2A64CF00699692 /* LoginCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */,
 				DE2700692D22D591005C9DCF /* Constant.swift in Sources */,
 				DE27005C2D212609005C9DCF /* DefaultLoginUseCase.swift in Sources */,
+				DEEFEACF2D2A64CF00699692 /* LoginCoordinator.swift in Sources */,
 				DE27006C2D22DBAF005C9DCF /* AuthError.swift in Sources */,
 				DE27006E2D22DD55005C9DCF /* FirestoreError.swift in Sources */,
 				DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */,

@@ -26,5 +26,4 @@ final class HomeCoordinator: Coordinator {
         navigationController.setViewControllers([homeVC], animated: false)
         return navigationController
     }
-    
 }

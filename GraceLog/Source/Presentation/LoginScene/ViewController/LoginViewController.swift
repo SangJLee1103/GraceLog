@@ -47,7 +47,6 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.reactor = Reactor(loginUseCase: DefaultLoginUseCase(firestoreRepository: DefaultFireStoreRepository()))
         configureUI()
     }
     

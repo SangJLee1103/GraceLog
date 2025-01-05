@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 
 final class GraceLogAppCoordinator: Coordinator {
@@ -19,8 +20,17 @@ final class GraceLogAppCoordinator: Coordinator {
     
     func start() {
         let mainTabViewController = configureTabBarController()
-//        self.window?.rootViewController = mainTabViewController
-        self.window?.rootViewController = LoginViewController()
+        self.window?.rootViewController = mainTabViewController
+        
+        if Auth.auth().currentUser == nil {
+            let loginCoordinator = LoginCoordinator()
+            loginCoordinator.parentCoordinator = self
+            childerCoordinators.append(loginCoordinator)
+            
+            let loginVC = loginCoordinator.createLoginViewController()
+            loginVC.modalPresentationStyle = .fullScreen
+            mainTabViewController.present(loginVC, animated: true)
+        }
     }
     
     func configureTabBarController() -> UITabBarController {
