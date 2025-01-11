@@ -23,13 +23,26 @@ final class GraceLogAppCoordinator: Coordinator {
         self.window?.rootViewController = mainTabViewController
         
         if Auth.auth().currentUser == nil {
-            let loginCoordinator = LoginCoordinator()
-            loginCoordinator.parentCoordinator = self
-            childerCoordinators.append(loginCoordinator)
-            
-            let loginVC = loginCoordinator.createLoginViewController()
-            loginVC.modalPresentationStyle = .fullScreen
-            mainTabViewController.present(loginVC, animated: true)
+            print("여기")
+            showLoginFlow()
+        }
+    }
+
+    private func showLoginFlow() {
+        guard let mainTabViewController = window?.rootViewController else { return }
+        
+        let loginCoordinator = LoginCoordinator()
+        loginCoordinator.parentCoordinator = self
+        childerCoordinators.append(loginCoordinator)
+        
+        let loginVC = loginCoordinator.createLoginViewController()
+        loginVC.modalPresentationStyle = .fullScreen
+        mainTabViewController.present(loginVC, animated: true)
+    }
+    
+    func removeChildCoordinator(_ coordinator: Coordinator) {
+        if let index = childerCoordinators.firstIndex(where: { $0 === coordinator }) {
+            childerCoordinators.remove(at: index)
         }
     }
     

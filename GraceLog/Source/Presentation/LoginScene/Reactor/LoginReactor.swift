@@ -13,6 +13,7 @@ import Firebase
 import GoogleSignIn
 
 final class LoginReactor: Reactor {
+    weak var coordinator: LoginCoordinator?
     private let loginUseCase: LoginUseCase
     private var isAgreed: Bool = false
     private let disposeBag = DisposeBag()
@@ -99,8 +100,10 @@ extension LoginReactor {
                 
                 self.loginUseCase.user
                     .take(1)
-                    .subscribe(onNext: { graceLogUser in
+                    .withUnretained(self)
+                    .subscribe(onNext: { owner, graceLogUser in
                         observer.onNext(.setLoginSuccess(graceLogUser))
+                        owner.coordinator?.didFinishLogin()
                         observer.onCompleted()
                     })
                     .disposed(by: self.disposeBag)

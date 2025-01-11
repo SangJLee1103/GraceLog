@@ -20,21 +20,13 @@ final class LoginViewController: UIViewController {
     var disposeBag = DisposeBag()
     
     private let sloganLabel = UILabel().then {
-        $0.numberOfLines = 2
-        $0.text = "우리의 감사로\n삶을 풍요롭게"
-        $0.textColor = .themeYellow
-        $0.font = UIFont(name: "Pretendard-Bold", size: 32)
+        $0.text = "감사가 채우는 하루"
+        $0.textColor = .themeColor
+        $0.font = UIFont(name: "Pretendard-Regular", size: 24)
     }
     
     private let logoImgView = UIImageView().then {
-        $0.backgroundColor = .themeYellow
-        $0.layer.cornerRadius = 25
-    }
-    
-    private let titleLabel = UILabel().then {
-        $0.text = "Grace Log"
-        $0.textColor = .themeYellow
-        $0.font = UIFont(name: "Pretendard-Bold", size: 24)
+        $0.image = UIImage(named: "logo")
     }
     
     private lazy var googleLoginButton = LoginButton().then {
@@ -58,29 +50,25 @@ final class LoginViewController: UIViewController {
         loginStack.distribution = .fillEqually
         loginStack.spacing = 8
         
-        [sloganLabel, logoImgView, titleLabel, loginStack].forEach {
+        [sloganLabel, logoImgView, loginStack].forEach {
             view.addSubview($0)
-        }
-        
-        titleLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
         }
         
         logoImgView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(titleLabel.snp.top).offset(-16)
-            $0.width.height.equalTo(84)
+            $0.centerY.equalToSuperview()
+            $0.width.equalTo(163)
+            $0.height.equalTo(142)
         }
         
         sloganLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(logoImgView.snp.top).offset(-33)
+            $0.bottom.equalTo(logoImgView.snp.top).offset(-27)
         }
         
         loginStack.snp.makeConstraints {
             $0.left.right.equalToSuperview().inset(39)
-            $0.top.equalTo(titleLabel.snp.bottom).offset(115)
+            $0.top.equalTo(logoImgView.snp.bottom).offset(41)
         }
     }
 }

@@ -17,7 +17,7 @@ extension UIColor {
         )
     }
     
-    static var themeYellow: UIColor {
-        return UIColor(hex: 0xFF9500)
+    static var themeColor: UIColor {
+        return UIColor(hex: 0xFE5F51)
     }
 }

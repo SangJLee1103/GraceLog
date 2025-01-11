@@ -27,7 +27,18 @@ final class LoginCoordinator: Coordinator {
                 firestoreRepository: DefaultFireStoreRepository()
             )
         )
+        reactor.coordinator = self
         loginVC.reactor = reactor
         return loginVC
+    }
+    
+    func didFinishLogin() {
+        if let appCoordinator = parentCoordinator as? GraceLogAppCoordinator {
+            appCoordinator.window?.rootViewController?.dismiss(animated: true) { [weak self] in
+                if let self = self {
+                    appCoordinator.removeChildCoordinator(self)
+                }
+            }
+        }
     }
 }
