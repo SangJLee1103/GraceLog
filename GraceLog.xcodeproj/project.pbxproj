@@ -23,7 +23,6 @@
 		DE2700432D1EFB4E005C9DCF /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */; };
 		DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700452D1EFD06005C9DCF /* LoginViewController.swift */; };
 		DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */; };
-		DE27004E2D1F9FC9005C9DCF /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27004D2D1F9FC9005C9DCF /* LoginButton.swift */; };
 		DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */; };
 		DE2700512D2106C2005C9DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3BFCBB2D043C2F0076426D /* Assets.xcassets */; };
 		DE2700532D2113F2005C9DCF /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700522D2113F2005C9DCF /* LoginReactor.swift */; };
@@ -100,7 +99,6 @@
 		DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		DE2700452D1EFD06005C9DCF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
-		DE27004D2D1F9FC9005C9DCF /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		DE2700522D2113F2005C9DCF /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
 		DE2700592D2125FF005C9DCF /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				DE2700542D211F0D005C9DCF /* Coordinator */,
-				DE27004B2D1F9FB3005C9DCF /* View */,
 				DE27004A2D1F9FA8005C9DCF /* ViewController */,
 				DE27004C2D1F9FB8005C9DCF /* Reactor */,
 			);
@@ -251,14 +248,6 @@
 				DE2700452D1EFD06005C9DCF /* LoginViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		DE27004B2D1F9FB3005C9DCF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				DE27004D2D1F9FC9005C9DCF /* LoginButton.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		DE27004C2D1F9FB8005C9DCF /* Reactor */ = {
@@ -954,7 +943,6 @@
 				DE27006C2D22DBAF005C9DCF /* AuthError.swift in Sources */,
 				DE27006E2D22DD55005C9DCF /* FirestoreError.swift in Sources */,
 				DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */,
-				DE27004E2D1F9FC9005C9DCF /* LoginButton.swift in Sources */,
 				DE27005A2D2125FF005C9DCF /* LoginUseCase.swift in Sources */,
 				DE2700662D22D43E005C9DCF /* UserDTO.swift in Sources */,
 				DE27005F2D212770005C9DCF /* FireStoreRepository.swift in Sources */,

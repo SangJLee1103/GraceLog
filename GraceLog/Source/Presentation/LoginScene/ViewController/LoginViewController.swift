@@ -29,12 +29,43 @@ final class LoginViewController: UIViewController {
         $0.image = UIImage(named: "logo")
     }
     
-    private lazy var googleLoginButton = LoginButton().then {
-        $0.setStyle(type: .google, title: "Google로 로그인")
+    private let startLabel = UILabel().then {
+        $0.text = "시작하기"
+        $0.textColor = .themeColor
+        $0.font = UIFont(name: "Pretendard-regular", size: 14)
+        $0.textAlignment = .center
+        $0.setDimensions(width: 74, height: 38)
     }
     
-    private lazy var appleLoginButton = LoginButton().then {
-        $0.setStyle(type: .apple, title: "Apple로 계속하기")
+    private let leftLine = UIView().then {
+        $0.backgroundColor = .themeColor
+        $0.setDimensions(width: 78, height: 1)
+    }
+
+    private let rightLine = UIView().then {
+        $0.backgroundColor = .themeColor
+        $0.setDimensions(width: 78, height: 1)
+    }
+    
+    private lazy var appleLoginButton = UIButton().then {
+        $0.setImage(UIImage(named: "apple"), for: .normal)
+        $0.setDimensions(width: 60, height: 60)
+    }
+    
+    private lazy var googleLoginButton = UIButton().then {
+        $0.setImage(UIImage(named: "google"), for: .normal)
+        $0.setDimensions(width: 60, height: 60)
+    }
+    
+    private lazy var facebookLoginButton = UIButton().then {
+        $0.setImage(UIImage(named: "facebook"), for: .normal)
+        $0.setDimensions(width: 60, height: 60)
+    }
+    
+    private let copyrightLabel = UILabel().then {
+        $0.text = "Copyright Ⓒ 에끌레시아 All Rights Reserved."
+        $0.textColor = .themeColor
+        $0.font = UIFont(name: "Pretendard-Regular", size: 12)
     }
     
     override func viewDidLoad() {
@@ -45,18 +76,20 @@ final class LoginViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .white
         
-        let loginStack = UIStackView(arrangedSubviews: [googleLoginButton, appleLoginButton])
-        loginStack.axis = .vertical
-        loginStack.distribution = .fillEqually
-        loginStack.spacing = 8
+        let safeArea = view.safeAreaLayoutGuide
         
-        [sloganLabel, logoImgView, loginStack].forEach {
+        let loginStack = UIStackView(arrangedSubviews: [appleLoginButton, googleLoginButton, facebookLoginButton])
+        loginStack.axis = .horizontal
+        loginStack.distribution = .fillEqually
+        loginStack.spacing = 27
+        
+        [sloganLabel, logoImgView, startLabel, leftLine, rightLine, loginStack, copyrightLabel].forEach {
             view.addSubview($0)
         }
         
         logoImgView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-30)
             $0.width.equalTo(163)
             $0.height.equalTo(142)
         }
@@ -66,9 +99,30 @@ final class LoginViewController: UIViewController {
             $0.bottom.equalTo(logoImgView.snp.top).offset(-27)
         }
         
+        startLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(logoImgView.snp.bottom).offset(50)
+        }
+        
+        leftLine.snp.makeConstraints {
+            $0.centerY.equalTo(startLabel)
+            $0.right.equalTo(startLabel.snp.left)
+        }
+        
+        rightLine.snp.makeConstraints {
+            $0.centerY.equalTo(startLabel)
+            $0.left.equalTo(startLabel.snp.right)
+        }
+
+        
         loginStack.snp.makeConstraints {
-            $0.left.right.equalToSuperview().inset(39)
-            $0.top.equalTo(logoImgView.snp.bottom).offset(41)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(startLabel.snp.bottom).offset(16)
+        }
+        
+        copyrightLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(safeArea).inset(20)
         }
     }
 }
