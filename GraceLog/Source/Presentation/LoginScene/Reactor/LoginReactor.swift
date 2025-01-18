@@ -24,7 +24,7 @@ final class LoginReactor: Reactor {
     
     enum Action {
         case googleLogin(AuthCredential)
-        case appleLogin
+        case appleLogin(AuthCredential)
         case toggleAgree
         case showTerms
     }
@@ -50,16 +50,9 @@ extension LoginReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .googleLogin(let credential):
-            return Observable.concat([
-                Observable.just(.setLoading(true)),
-                signInWithCredential(credential),
-                Observable.just(.setLoading(false))
-            ])
-        case .appleLogin:
-            return Observable.concat([
-                Observable.just(.setLoading(true)),
-                Observable.just(.setLoading(false))
-            ])
+            return signInWithCredential(credential)
+        case .appleLogin(let credential):
+            return signInWithCredential(credential)
         case .toggleAgree:
             isAgreed = !isAgreed
             return .just(.setAgree(isAgreed))

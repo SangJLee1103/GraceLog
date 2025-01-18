@@ -15,9 +15,13 @@ import GoogleSignIn
 import RxSwift
 import RxCocoa
 
+import CryptoKit
+import AuthenticationServices
+
 final class LoginViewController: UIViewController {
     typealias Reactor = LoginReactor
     var disposeBag = DisposeBag()
+    fileprivate var currentNonce: String?
     
     private let sloganLabel = UILabel().then {
         $0.text = "감사가 채우는 하루"
@@ -41,7 +45,7 @@ final class LoginViewController: UIViewController {
         $0.backgroundColor = .themeColor
         $0.setDimensions(width: 78, height: 1)
     }
-
+    
     private let rightLine = UIView().then {
         $0.backgroundColor = .themeColor
         $0.setDimensions(width: 78, height: 1)
@@ -71,6 +75,23 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        [startLabel, leftLine, rightLine, appleLoginButton, googleLoginButton, facebookLoginButton].forEach {
+            $0.alpha = 0
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(
+            withDuration: 1.0,
+            delay: 0.3,
+            options: .curveEaseIn
+        ) {
+            [self.startLabel, self.leftLine, self.rightLine,
+             self.appleLoginButton, self.googleLoginButton, self.facebookLoginButton].forEach {
+                $0.alpha = 1
+            }
+        }
     }
     
     private func configureUI() {
@@ -113,7 +134,7 @@ final class LoginViewController: UIViewController {
             $0.centerY.equalTo(startLabel)
             $0.left.equalTo(startLabel.snp.right)
         }
-
+        
         
         loginStack.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -133,6 +154,13 @@ extension LoginViewController: View {
             .withUnretained(self)
             .bind { owner, _ in
                 owner.handleGoogleLogin()
+            }
+            .disposed(by: disposeBag)
+        
+        appleLoginButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.handleAppleLogin()
             }
             .disposed(by: disposeBag)
         
@@ -171,5 +199,90 @@ extension LoginViewController {
             
             reactor?.action.onNext(.googleLogin(credential))
         }
+    }
+    
+    private func handleAppleLogin() {
+        startSignInWithAppleFlow()
+    }
+}
+
+extension LoginViewController {
+    func startSignInWithAppleFlow() {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        var randomBytes = [UInt8](repeating: 0, count: length)
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
+        if errorCode != errSecSuccess {
+            fatalError(
+                "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+            )
+        }
+        
+        let charset: [Character] =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        
+        let nonce = randomBytes.map { byte in
+            // Pick a random character from the set, wrapping around if needed.
+            charset[Int(byte) % charset.count]
+        }
+        
+        return String(nonce)
+    }
+    
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let nonce = currentNonce else { return }
+        
+        guard let appleIDToken = appleIDCredential.identityToken else {
+            print("Unable to fetch identity token")
+            return
+        }
+        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+            print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+            return
+        }
+        
+        let credential = OAuthProvider.appleCredential(
+            withIDToken: idTokenString,
+            rawNonce: nonce,
+            fullName: appleIDCredential.fullName
+        )
+        
+        reactor?.action.onNext(.appleLogin(credential))
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Apple Sign In failed: \(error.localizedDescription)")
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window ?? UIWindow()
     }
 }

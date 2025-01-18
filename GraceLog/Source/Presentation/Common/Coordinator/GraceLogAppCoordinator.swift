@@ -23,7 +23,6 @@ final class GraceLogAppCoordinator: Coordinator {
         self.window?.rootViewController = mainTabViewController
         
         if Auth.auth().currentUser == nil {
-            print("여기")
             showLoginFlow()
         }
     }
