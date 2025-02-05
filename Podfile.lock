@@ -1229,6 +1229,8 @@ PODS:
   - RxRelay (6.7.1):
     - RxSwift (= 6.7.1)
   - RxSwift (6.7.1)
+  - RxTest (6.7.1):
+    - RxSwift (= 6.7.1)
   - SDWebImage (4.4.8):
     - SDWebImage/Core (= 4.4.8)
   - SDWebImage/Core (4.4.8)
@@ -1256,7 +1258,9 @@ DEPENDENCIES:
   - RxCocoa
   - RxDataSources
   - RxGesture
+  - RxRelay
   - RxSwift
+  - RxTest
   - SDWebImage
   - SnapKit
   - Then
@@ -1306,6 +1310,7 @@ SPEC REPOS:
     - RxGesture
     - RxRelay
     - RxSwift
+    - RxTest
     - SDWebImage
     - SnapKit
     - SteviaLayout
@@ -1356,6 +1361,7 @@ SPEC CHECKSUMS:
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 4151ba01152436b08271e08410135e099880eae5
   RxSwift: b9a93a26031785159e11abd40d1a55bcb8057e52
+  RxTest: eec2bff159d799cdc02da2b40ef47e43dc17e688
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   SteviaLayout: 05424e528d643657d39ce72c786e4adf13cfc5f2
@@ -1364,6 +1370,6 @@ SPEC CHECKSUMS:
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
   YPImagePicker: afc81b3cffab05a6e7261c5daf80dc31b4e917b4
 
-PODFILE CHECKSUM: b2fbaf588450283c5f555314dd3fdc74d5b45741
+PODFILE CHECKSUM: 9ea968f243f1986dfe25461c75e6d8ddba4fae51
 
 COCOAPODS: 1.15.2

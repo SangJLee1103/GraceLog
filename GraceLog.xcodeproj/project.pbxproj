@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FF92BC6706B0E42B006A951 /* Pods_GraceLogTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C92987C1F1070895365F17 /* Pods_GraceLogTests.framework */; };
+		6D6D359847E48286C67E16F7 /* Pods_GraceLogUseCaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D415D287B3EAEECA4BE40BB /* Pods_GraceLogUseCaseTests.framework */; };
 		75248638A478EB9521F76504 /* Pods_GraceLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */; };
 		A88BF65DF907D86788F86BF8 /* Pods_GraceLog_GraceLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */; };
+		DE24DB6D2D26D34D00581621 /* LoginUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEC72D04284E008CADCD /* LoginUseCaseTests.swift */; };
+		DE24DB6E2D26D36100581621 /* MockFireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700732D257068005C9DCF /* MockFireStoreRepository.swift */; };
 		DE27003B2D1EFB4E005C9DCF /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700322D1EFB4D005C9DCF /* Pretendard-Bold.otf */; };
 		DE27003C2D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700332D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf */; };
 		DE27003D2D1EFB4E005C9DCF /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700342D1EFB4E005C9DCF /* Pretendard-Light.otf */; };
@@ -19,6 +21,19 @@
 		DE2700412D1EFB4E005C9DCF /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700382D1EFB4E005C9DCF /* Pretendard-Medium.otf */; };
 		DE2700422D1EFB4E005C9DCF /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700392D1EFB4E005C9DCF /* Pretendard-SemiBold.otf */; };
 		DE2700432D1EFB4E005C9DCF /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */; };
+		DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700452D1EFD06005C9DCF /* LoginViewController.swift */; };
+		DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */; };
+		DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */; };
+		DE2700512D2106C2005C9DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE3BFCBB2D043C2F0076426D /* Assets.xcassets */; };
+		DE2700532D2113F2005C9DCF /* LoginReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700522D2113F2005C9DCF /* LoginReactor.swift */; };
+		DE27005A2D2125FF005C9DCF /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700592D2125FF005C9DCF /* LoginUseCase.swift */; };
+		DE27005C2D212609005C9DCF /* DefaultLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27005B2D212609005C9DCF /* DefaultLoginUseCase.swift */; };
+		DE27005F2D212770005C9DCF /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27005E2D212770005C9DCF /* FireStoreRepository.swift */; };
+		DE2700632D22D188005C9DCF /* DefaultFireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700622D22D188005C9DCF /* DefaultFireStoreRepository.swift */; };
+		DE2700662D22D43E005C9DCF /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700652D22D43E005C9DCF /* UserDTO.swift */; };
+		DE2700692D22D591005C9DCF /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700682D22D591005C9DCF /* Constant.swift */; };
+		DE27006C2D22DBAF005C9DCF /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27006B2D22DBAF005C9DCF /* AuthError.swift */; };
+		DE27006E2D22DD55005C9DCF /* FirestoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27006D2D22DD55005C9DCF /* FirestoreError.swift */; };
 		DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */; };
 		DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD72D048B550076426D /* Coordinator.swift */; };
 		DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD92D059A3B0076426D /* HomeViewController.swift */; };
@@ -31,13 +46,22 @@
 		DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB02D04284D008CADCD /* AppDelegate.swift */; };
 		DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB22D04284D008CADCD /* SceneDelegate.swift */; };
 		DE58FEBD2D04284D008CADCD /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE58FEBC2D04284D008CADCD /* Base */; };
-		DE58FEC82D04284E008CADCD /* GraceLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEC72D04284E008CADCD /* GraceLogTests.swift */; };
 		DE58FED22D04284E008CADCD /* GraceLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FED12D04284E008CADCD /* GraceLogUITests.swift */; };
 		DE58FED42D04284E008CADCD /* GraceLogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FED32D04284E008CADCD /* GraceLogUITestsLaunchTests.swift */; };
+		DEEFEAC02D26D4B800699692 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700592D2125FF005C9DCF /* LoginUseCase.swift */; };
+		DEEFEAC12D26D4B800699692 /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700592D2125FF005C9DCF /* LoginUseCase.swift */; };
+		DEEFEAC22D26D4BC00699692 /* DefaultLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27005B2D212609005C9DCF /* DefaultLoginUseCase.swift */; };
+		DEEFEAC32D26D4CD00699692 /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27005E2D212770005C9DCF /* FireStoreRepository.swift */; };
+		DEEFEAC42D26D4CD00699692 /* FireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE27005E2D212770005C9DCF /* FireStoreRepository.swift */; };
+		DEEFEAC62D26D4F000699692 /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700652D22D43E005C9DCF /* UserDTO.swift */; };
+		DEEFEACA2D29270500699692 /* GraceLogUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEFEAC92D29270500699692 /* GraceLogUser.swift */; };
+		DEEFEACC2D2A5E8200699692 /* GraceLogUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEFEAC92D29270500699692 /* GraceLogUser.swift */; };
+		DEEFEACD2D2A5E8400699692 /* GraceLogUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEFEAC92D29270500699692 /* GraceLogUser.swift */; };
+		DEEFEACF2D2A64CF00699692 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEFEACE2D2A64CF00699692 /* LoginCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DE58FEC42D04284E008CADCD /* PBXContainerItemProxy */ = {
+		DE24DB672D26D32200581621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE58FEA52D04284D008CADCD /* Project object */;
 			proxyType = 1;
@@ -54,12 +78,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13CEE664F868FEB4EF0F50A2 /* Pods-GraceLogUseCaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLogUseCaseTests.release.xcconfig"; path = "Target Support Files/Pods-GraceLogUseCaseTests/Pods-GraceLogUseCaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		3772E15DC148101F5890C6F5 /* Pods-GraceLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog.release.xcconfig"; path = "Target Support Files/Pods-GraceLog/Pods-GraceLog.release.xcconfig"; sourceTree = "<group>"; };
 		45FB5606D88433D808BF0656 /* Pods-GraceLogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLogTests.debug.xcconfig"; path = "Target Support Files/Pods-GraceLogTests/Pods-GraceLogTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7D415D287B3EAEECA4BE40BB /* Pods_GraceLogUseCaseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLogUseCaseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E14D79ABA16C7A19244077 /* Pods-GraceLogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLogTests.release.xcconfig"; path = "Target Support Files/Pods-GraceLogTests/Pods-GraceLogTests.release.xcconfig"; sourceTree = "<group>"; };
+		8BC9F644955C12A97595F5EF /* Pods-GraceLogUseCaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLogUseCaseTests.debug.xcconfig"; path = "Target Support Files/Pods-GraceLogUseCaseTests/Pods-GraceLogUseCaseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLog_GraceLogUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3D4E76539765E1009F5819 /* Pods-GraceLog-GraceLogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog-GraceLogUITests.release.xcconfig"; path = "Target Support Files/Pods-GraceLog-GraceLogUITests/Pods-GraceLog-GraceLogUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C2C92987C1F1070895365F17 /* Pods_GraceLogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE24DB632D26D32200581621 /* GraceLogUseCaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraceLogUseCaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2700322D1EFB4D005C9DCF /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DE2700332D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
 		DE2700342D1EFB4E005C9DCF /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
@@ -69,6 +97,19 @@
 		DE2700382D1EFB4E005C9DCF /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		DE2700392D1EFB4E005C9DCF /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		DE27003A2D1EFB4E005C9DCF /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		DE2700452D1EFD06005C9DCF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColor.swift"; sourceTree = "<group>"; };
+		DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		DE2700522D2113F2005C9DCF /* LoginReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginReactor.swift; sourceTree = "<group>"; };
+		DE2700592D2125FF005C9DCF /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		DE27005B2D212609005C9DCF /* DefaultLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLoginUseCase.swift; sourceTree = "<group>"; };
+		DE27005E2D212770005C9DCF /* FireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreRepository.swift; sourceTree = "<group>"; };
+		DE2700622D22D188005C9DCF /* DefaultFireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFireStoreRepository.swift; sourceTree = "<group>"; };
+		DE2700652D22D43E005C9DCF /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		DE2700682D22D591005C9DCF /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		DE27006B2D22DBAF005C9DCF /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		DE27006D2D22DD55005C9DCF /* FirestoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreError.swift; sourceTree = "<group>"; };
+		DE2700732D257068005C9DCF /* MockFireStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFireStoreRepository.swift; sourceTree = "<group>"; };
 		DE3BFCBB2D043C2F0076426D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogAppCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCD72D048B550076426D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -84,30 +125,31 @@
 		DE58FEB22D04284D008CADCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DE58FEBC2D04284D008CADCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE58FEBE2D04284D008CADCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE58FEC32D04284E008CADCD /* GraceLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraceLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE58FEC72D04284E008CADCD /* GraceLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogTests.swift; sourceTree = "<group>"; };
+		DE58FEC72D04284E008CADCD /* LoginUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginUseCaseTests.swift; path = ../../UseCaseTests/LoginScene/LoginUseCaseTests.swift; sourceTree = "<group>"; };
 		DE58FECD2D04284E008CADCD /* GraceLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraceLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE58FED12D04284E008CADCD /* GraceLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUITests.swift; sourceTree = "<group>"; };
 		DE58FED32D04284E008CADCD /* GraceLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DEEFEAC92D29270500699692 /* GraceLogUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUser.swift; sourceTree = "<group>"; };
+		DEEFEACE2D2A64CF00699692 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		E2561CE1730A7CC76CC990A3 /* Pods-GraceLog-GraceLogUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog-GraceLogUITests.debug.xcconfig"; path = "Target Support Files/Pods-GraceLog-GraceLogUITests/Pods-GraceLog-GraceLogUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE7CB138D1109187A996503 /* Pods-GraceLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog.debug.xcconfig"; path = "Target Support Files/Pods-GraceLog/Pods-GraceLog.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DE24DB602D26D32200581621 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D6D359847E48286C67E16F7 /* Pods_GraceLogUseCaseTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE58FEAA2D04284D008CADCD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				75248638A478EB9521F76504 /* Pods_GraceLog.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DE58FEC02D04284E008CADCD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1FF92BC6706B0E42B006A951 /* Pods_GraceLogTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +173,8 @@
 				BD3D4E76539765E1009F5819 /* Pods-GraceLog-GraceLogUITests.release.xcconfig */,
 				45FB5606D88433D808BF0656 /* Pods-GraceLogTests.debug.xcconfig */,
 				87E14D79ABA16C7A19244077 /* Pods-GraceLogTests.release.xcconfig */,
+				8BC9F644955C12A97595F5EF /* Pods-GraceLogUseCaseTests.debug.xcconfig */,
+				13CEE664F868FEB4EF0F50A2 /* Pods-GraceLogUseCaseTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -141,8 +185,26 @@
 				EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */,
 				92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */,
 				C2C92987C1F1070895365F17 /* Pods_GraceLogTests.framework */,
+				7D415D287B3EAEECA4BE40BB /* Pods_GraceLogUseCaseTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE24DB642D26D32200581621 /* GraceLogUseCaseTests */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700712D257019005C9DCF /* Mock */,
+				DE24DB6C2D26D33000581621 /* LoginScene */,
+			);
+			path = GraceLogUseCaseTests;
+			sourceTree = "<group>";
+		};
+		DE24DB6C2D26D33000581621 /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				DE58FEC72D04284E008CADCD /* LoginUseCaseTests.swift */,
+			);
+			path = LoginScene;
 			sourceTree = "<group>";
 		};
 		DE2700312D1EFAE0005C9DCF /* Fonts */ = {
@@ -159,6 +221,139 @@
 				DE2700372D1EFB4E005C9DCF /* Pretendard-Thin.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		DE2700442D1EFCF0005C9DCF /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700542D211F0D005C9DCF /* Coordinator */,
+				DE27004A2D1F9FA8005C9DCF /* ViewController */,
+				DE27004C2D1F9FB8005C9DCF /* Reactor */,
+			);
+			path = LoginScene;
+			sourceTree = "<group>";
+		};
+		DE2700472D1F9E56005C9DCF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700482D1F9E6B005C9DCF /* UIColor+CustomColor.swift */,
+				DE27004F2D1FA03B005C9DCF /* UIView+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DE27004A2D1F9FA8005C9DCF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700452D1EFD06005C9DCF /* LoginViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DE27004C2D1F9FB8005C9DCF /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700522D2113F2005C9DCF /* LoginReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		DE2700542D211F0D005C9DCF /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DEEFEACE2D2A64CF00699692 /* LoginCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DE2700552D211F3B005C9DCF /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				DEEFEAC92D29270500699692 /* GraceLogUser.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		DE2700562D211F61005C9DCF /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700572D211F82005C9DCF /* Login */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		DE2700572D211F82005C9DCF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700582D211F94005C9DCF /* Protocol */,
+				DE27005B2D212609005C9DCF /* DefaultLoginUseCase.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DE2700582D211F94005C9DCF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700592D2125FF005C9DCF /* LoginUseCase.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DE27005D2D2126B1005C9DCF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DE27005E2D212770005C9DCF /* FireStoreRepository.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DE2700602D22D165005C9DCF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700642D22D40A005C9DCF /* DTO */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DE2700612D22D177005C9DCF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700622D22D188005C9DCF /* DefaultFireStoreRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		DE2700642D22D40A005C9DCF /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700652D22D43E005C9DCF /* UserDTO.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		DE2700672D22D570005C9DCF /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700682D22D591005C9DCF /* Constant.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		DE27006A2D22DA5B005C9DCF /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				DE27006B2D22DBAF005C9DCF /* AuthError.swift */,
+				DE27006D2D22DD55005C9DCF /* FirestoreError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		DE2700712D257019005C9DCF /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				DE2700732D257068005C9DCF /* MockFireStoreRepository.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		DE3BFCBA2D043BF40076426D /* Resource */ = {
@@ -205,6 +400,9 @@
 		DE3BFCBF2D043CF70076426D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				DE27005D2D2126B1005C9DCF /* Protocol */,
+				DE2700562D211F61005C9DCF /* Usecase */,
+				DE2700552D211F3B005C9DCF /* Entity */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -213,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				DE3BFCC42D043D9E0076426D /* Common */,
+				DE2700442D1EFCF0005C9DCF /* LoginScene */,
 				DE3BFCC32D043D8B0076426D /* HomeScene */,
 				DE3BFCC62D043DB70076426D /* BibleScene */,
 				DE3BFCC52D043DA40076426D /* MyInfoScene */,
@@ -223,6 +422,8 @@
 		DE3BFCC12D043D0C0076426D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				DE2700602D22D165005C9DCF /* Network */,
+				DE2700612D22D177005C9DCF /* Repository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -230,6 +431,9 @@
 		DE3BFCC22D043D200076426D /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				DE27006A2D22DA5B005C9DCF /* Error */,
+				DE2700672D22D570005C9DCF /* Constant */,
+				DE2700472D1F9E56005C9DCF /* Extension */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -402,8 +606,8 @@
 			isa = PBXGroup;
 			children = (
 				DE58FEAF2D04284D008CADCD /* GraceLog */,
-				DE58FEC62D04284E008CADCD /* GraceLogTests */,
 				DE58FED02D04284E008CADCD /* GraceLogUITests */,
+				DE24DB642D26D32200581621 /* GraceLogUseCaseTests */,
 				DE58FEAE2D04284D008CADCD /* Products */,
 				2EA2272B8D90352B60124564 /* Pods */,
 				5220B6260B4015DECE44E88F /* Frameworks */,
@@ -414,8 +618,8 @@
 			isa = PBXGroup;
 			children = (
 				DE58FEAD2D04284D008CADCD /* GraceLog.app */,
-				DE58FEC32D04284E008CADCD /* GraceLogTests.xctest */,
 				DE58FECD2D04284E008CADCD /* GraceLogUITests.xctest */,
+				DE24DB632D26D32200581621 /* GraceLogUseCaseTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -427,14 +631,6 @@
 				DE3BFCBC2D043C4A0076426D /* Source */,
 			);
 			path = GraceLog;
-			sourceTree = "<group>";
-		};
-		DE58FEC62D04284E008CADCD /* GraceLogTests */ = {
-			isa = PBXGroup;
-			children = (
-				DE58FEC72D04284E008CADCD /* GraceLogTests.swift */,
-			);
-			path = GraceLogTests;
 			sourceTree = "<group>";
 		};
 		DE58FED02D04284E008CADCD /* GraceLogUITests */ = {
@@ -449,6 +645,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DE24DB622D26D32200581621 /* GraceLogUseCaseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE24DB692D26D32200581621 /* Build configuration list for PBXNativeTarget "GraceLogUseCaseTests" */;
+			buildPhases = (
+				55A70F314490E256E54AF258 /* [CP] Check Pods Manifest.lock */,
+				DE24DB5F2D26D32200581621 /* Sources */,
+				DE24DB602D26D32200581621 /* Frameworks */,
+				DE24DB612D26D32200581621 /* Resources */,
+				7521E5AD04FD281E520CC86F /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE24DB682D26D32200581621 /* PBXTargetDependency */,
+			);
+			name = GraceLogUseCaseTests;
+			productName = GraceLogUseCaseTests;
+			productReference = DE24DB632D26D32200581621 /* GraceLogUseCaseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DE58FEAC2D04284D008CADCD /* GraceLog */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE58FED72D04284E008CADCD /* Build configuration list for PBXNativeTarget "GraceLog" */;
@@ -467,25 +683,6 @@
 			productName = GraceLog;
 			productReference = DE58FEAD2D04284D008CADCD /* GraceLog.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DE58FEC22D04284E008CADCD /* GraceLogTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DE58FEDA2D04284E008CADCD /* Build configuration list for PBXNativeTarget "GraceLogTests" */;
-			buildPhases = (
-				8E181F329C3156E9354B8722 /* [CP] Check Pods Manifest.lock */,
-				DE58FEBF2D04284E008CADCD /* Sources */,
-				DE58FEC02D04284E008CADCD /* Frameworks */,
-				DE58FEC12D04284E008CADCD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DE58FEC52D04284E008CADCD /* PBXTargetDependency */,
-			);
-			name = GraceLogTests;
-			productName = GraceLogTests;
-			productReference = DE58FEC32D04284E008CADCD /* GraceLogTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		DE58FECC2D04284E008CADCD /* GraceLogUITests */ = {
 			isa = PBXNativeTarget;
@@ -517,12 +714,12 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					DE58FEAC2D04284D008CADCD = {
-						CreatedOnToolsVersion = 15.4;
-					};
-					DE58FEC22D04284E008CADCD = {
+					DE24DB622D26D32200581621 = {
 						CreatedOnToolsVersion = 15.4;
 						TestTargetID = DE58FEAC2D04284D008CADCD;
+					};
+					DE58FEAC2D04284D008CADCD = {
+						CreatedOnToolsVersion = 15.4;
 					};
 					DE58FECC2D04284E008CADCD = {
 						CreatedOnToolsVersion = 15.4;
@@ -544,13 +741,20 @@
 			projectRoot = "";
 			targets = (
 				DE58FEAC2D04284D008CADCD /* GraceLog */,
-				DE58FEC22D04284E008CADCD /* GraceLogTests */,
 				DE58FECC2D04284E008CADCD /* GraceLogUITests */,
+				DE24DB622D26D32200581621 /* GraceLogUseCaseTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DE24DB612D26D32200581621 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE58FEAB2D04284D008CADCD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -565,14 +769,8 @@
 				DE2700422D1EFB4E005C9DCF /* Pretendard-SemiBold.otf in Resources */,
 				DE2700432D1EFB4E005C9DCF /* Pretendard-Regular.otf in Resources */,
 				DE3BFCEC2D0D3D390076426D /* GoogleService-Info.plist in Resources */,
+				DE2700512D2106C2005C9DCF /* Assets.xcassets in Resources */,
 				DE2700412D1EFB4E005C9DCF /* Pretendard-Medium.otf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DE58FEC12D04284E008CADCD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +784,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		55A70F314490E256E54AF258 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GraceLogUseCaseTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		583AF8AD94B7807E5B441B5B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -625,26 +845,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GraceLog-GraceLogUITests/Pods-GraceLog-GraceLogUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8E181F329C3156E9354B8722 /* [CP] Check Pods Manifest.lock */ = {
+		7521E5AD04FD281E520CC86F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GraceLogUseCaseTests/Pods-GraceLogUseCaseTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GraceLogTests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-GraceLogUseCaseTests/Pods-GraceLogUseCaseTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GraceLogUseCaseTests/Pods-GraceLogUseCaseTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A6721BFEAB1CDEB55CA9A1D9 /* [CP] Check Pods Manifest.lock */ = {
@@ -689,6 +904,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DE24DB5F2D26D32200581621 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEEFEAC62D26D4F000699692 /* UserDTO.swift in Sources */,
+				DE24DB6D2D26D34D00581621 /* LoginUseCaseTests.swift in Sources */,
+				DE24DB6E2D26D36100581621 /* MockFireStoreRepository.swift in Sources */,
+				DEEFEACC2D2A5E8200699692 /* GraceLogUser.swift in Sources */,
+				DEEFEAC12D26D4B800699692 /* LoginUseCase.swift in Sources */,
+				DEEFEAC22D26D4BC00699692 /* DefaultLoginUseCase.swift in Sources */,
+				DEEFEAC42D26D4CD00699692 /* FireStoreRepository.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DE58FEA92D04284D008CADCD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -701,16 +930,22 @@
 				DE3BFCE42D059E970076426D /* BibleCoordinator.swift in Sources */,
 				DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */,
 				DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */,
+				DEEFEACA2D29270500699692 /* GraceLogUser.swift in Sources */,
+				DE2700532D2113F2005C9DCF /* LoginReactor.swift in Sources */,
+				DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */,
+				DE2700632D22D188005C9DCF /* DefaultFireStoreRepository.swift in Sources */,
 				DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */,
 				DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DE58FEBF2D04284E008CADCD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DE58FEC82D04284E008CADCD /* GraceLogTests.swift in Sources */,
+				DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */,
+				DE2700692D22D591005C9DCF /* Constant.swift in Sources */,
+				DE27005C2D212609005C9DCF /* DefaultLoginUseCase.swift in Sources */,
+				DEEFEACF2D2A64CF00699692 /* LoginCoordinator.swift in Sources */,
+				DE27006C2D22DBAF005C9DCF /* AuthError.swift in Sources */,
+				DE27006E2D22DD55005C9DCF /* FirestoreError.swift in Sources */,
+				DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */,
+				DE27005A2D2125FF005C9DCF /* LoginUseCase.swift in Sources */,
+				DE2700662D22D43E005C9DCF /* UserDTO.swift in Sources */,
+				DE27005F2D212770005C9DCF /* FireStoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,16 +955,19 @@
 			files = (
 				DE58FED42D04284E008CADCD /* GraceLogUITestsLaunchTests.swift in Sources */,
 				DE58FED22D04284E008CADCD /* GraceLogUITests.swift in Sources */,
+				DEEFEACD2D2A5E8400699692 /* GraceLogUser.swift in Sources */,
+				DEEFEAC02D26D4B800699692 /* LoginUseCase.swift in Sources */,
+				DEEFEAC32D26D4CD00699692 /* FireStoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DE58FEC52D04284E008CADCD /* PBXTargetDependency */ = {
+		DE24DB682D26D32200581621 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DE58FEAC2D04284D008CADCD /* GraceLog */;
-			targetProxy = DE58FEC42D04284E008CADCD /* PBXContainerItemProxy */;
+			targetProxy = DE24DB672D26D32200581621 /* PBXContainerItemProxy */;
 		};
 		DE58FECF2D04284E008CADCD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -750,6 +988,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DE24DB6A2D26D32200581621 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BC9F644955C12A97595F5EF /* Pods-GraceLogUseCaseTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BFTA9SX898;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLogUseCaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraceLog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GraceLog";
+			};
+			name = Debug;
+		};
+		DE24DB6B2D26D32200581621 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13CEE664F868FEB4EF0F50A2 /* Pods-GraceLogUseCaseTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BFTA9SX898;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLogUseCaseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraceLog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GraceLog";
+			};
+			name = Release;
+		};
 		DE58FED52D04284E008CADCD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -925,48 +1211,6 @@
 			};
 			name = Release;
 		};
-		DE58FEDB2D04284E008CADCD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45FB5606D88433D808BF0656 /* Pods-GraceLogTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BFTA9SX898;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLogTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraceLog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GraceLog";
-			};
-			name = Debug;
-		};
-		DE58FEDC2D04284E008CADCD /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87E14D79ABA16C7A19244077 /* Pods-GraceLogTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BFTA9SX898;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLogTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GraceLog.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GraceLog";
-			};
-			name = Release;
-		};
 		DE58FEDE2D04284E008CADCD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E2561CE1730A7CC76CC990A3 /* Pods-GraceLog-GraceLogUITests.debug.xcconfig */;
@@ -975,6 +1219,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BFTA9SX898;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLogUITests;
@@ -994,6 +1239,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BFTA9SX898;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLogUITests;
@@ -1008,6 +1254,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DE24DB692D26D32200581621 /* Build configuration list for PBXNativeTarget "GraceLogUseCaseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE24DB6A2D26D32200581621 /* Debug */,
+				DE24DB6B2D26D32200581621 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DE58FEA82D04284D008CADCD /* Build configuration list for PBXProject "GraceLog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1022,15 +1277,6 @@
 			buildConfigurations = (
 				DE58FED82D04284E008CADCD /* Debug */,
 				DE58FED92D04284E008CADCD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DE58FEDA2D04284E008CADCD /* Build configuration list for PBXNativeTarget "GraceLogTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DE58FEDB2D04284E008CADCD /* Debug */,
-				DE58FEDC2D04284E008CADCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
