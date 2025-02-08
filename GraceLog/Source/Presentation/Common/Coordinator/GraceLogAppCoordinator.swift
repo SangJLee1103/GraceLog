@@ -26,7 +26,7 @@ final class GraceLogAppCoordinator: Coordinator {
             showLoginFlow()
         }
     }
-
+    
     private func showLoginFlow() {
         guard let mainTabViewController = window?.rootViewController else { return }
         
@@ -49,16 +49,38 @@ final class GraceLogAppCoordinator: Coordinator {
         let tabBarController = UITabBarController()
         tabBarController.tabBar.tintColor = .black
         
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .white
+        appearance.shadowColor = UIColor(hex: 0x8C8C8C)
+        appearance.shadowImage = UIImage()
+        
+        let itemAppearance = UITabBarItemAppearance()
+        itemAppearance.normal.titleTextAttributes = [
+            .font: UIFont(name: "Pretendard-Medium", size: 10) ?? .systemFont(ofSize: 10)
+        ]
+        itemAppearance.selected.titleTextAttributes = [
+            .font: UIFont(name: "Pretendard-Medium", size: 10) ?? .systemFont(ofSize: 10)
+        ]
+        appearance.stackedLayoutAppearance = itemAppearance
+        
+        tabBarController.tabBar.standardAppearance = appearance
+        tabBarController.tabBar.scrollEdgeAppearance = appearance
+        
         let homeItem = UITabBarItem(title: "홈",
-                                    image: UIImage(systemName: "house"),
+                                    image: UIImage(named: "tab_home"),
                                     selectedImage: UIImage(systemName: "house.fill"))
         
-        let bibleItem = UITabBarItem(title: "성경",
-                                     image: UIImage(systemName: "book"),
-                                     selectedImage: UIImage(systemName: "book.fill"))
+        let diaryItem = UITabBarItem(title: "일기작성",
+                                     image: UIImage(named: "tab_edit"),
+                                     selectedImage: UIImage(systemName: "house.fill"))
         
-        let myInfoItem = UITabBarItem(title: "내정보",
-                                      image: UIImage(systemName: "person"),
+        let searchItem = UITabBarItem(title: "찾기",
+                                      image: UIImage(named: "tab_search"),
+                                      selectedImage: UIImage(systemName: "book.fill"))
+        
+        let myInfoItem = UITabBarItem(title: "계정",
+                                      image: UIImage(named: "tab_user"),
                                       selectedImage: UIImage(systemName: "person.fill"))
         
         let homeCoordinator = HomeCoordinator()
@@ -68,13 +90,19 @@ final class GraceLogAppCoordinator: Coordinator {
         let homeVC = homeCoordinator.startPush()
         homeVC.tabBarItem = homeItem
         
+        let diaryCoordinator = DiaryCoordinator()
+        diaryCoordinator.parentCoordinator = self
+        childerCoordinators.append(diaryCoordinator)
         
-        let bibleCoordinator = BibleCoordinator()
-        bibleCoordinator.parentCoordinator = self
-        childerCoordinators.append(bibleCoordinator)
+        let diaryVC = diaryCoordinator.startPush()
+        diaryVC.tabBarItem = diaryItem
         
-        let bibleVC = bibleCoordinator.startPush()
-        bibleVC.tabBarItem = bibleItem
+        let searchCoordinator = SearchCoordinator()
+        searchCoordinator.parentCoordinator = self
+        childerCoordinators.append(searchCoordinator)
+        
+        let searchVC = searchCoordinator.startPush()
+        searchVC.tabBarItem = searchItem
         
         
         let myInfoCoordinator = MyInfoCoordinator()
@@ -84,7 +112,7 @@ final class GraceLogAppCoordinator: Coordinator {
         let myInfoVC = myInfoCoordinator.startPush()
         myInfoVC.tabBarItem = myInfoItem
         
-        tabBarController.viewControllers = [homeVC, bibleVC, myInfoVC]
+        tabBarController.viewControllers = [homeVC, diaryVC, searchVC, myInfoVC]
         return tabBarController
     }
 }

@@ -20,4 +20,8 @@ extension UIColor {
     static var themeColor: UIColor {
         return UIColor(hex: 0xFE5F51)
     }
+    
+    static var graceGray: UIColor {
+        return UIColor(hex: 0x414141)
+    }
 }

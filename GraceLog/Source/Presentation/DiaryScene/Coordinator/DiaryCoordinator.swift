@@ -1,13 +1,13 @@
 //
-//  HomeCoordinator.swift
+//  DiaryCoordinator.swift
 //  GraceLog
 //
-//  Created by 이상준 on 12/8/24.
+//  Created by 이상준 on 2/5/25.
 //
 
 import UIKit
 
-final class HomeCoordinator: Coordinator {
+final class DiaryCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     var childerCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -21,9 +21,9 @@ final class HomeCoordinator: Coordinator {
     }
     
     func startPush() -> UINavigationController {
-        let homeVC = HomeViewController()
-        homeVC.view.backgroundColor = UIColor(hex: 0xF4F4F4)
-        navigationController.setViewControllers([homeVC], animated: false)
+        let diaryVC = DiaryViewController()
+        diaryVC.view.backgroundColor = .white
+        navigationController.setViewControllers([diaryVC], animated: false)
         return navigationController
     }
 }

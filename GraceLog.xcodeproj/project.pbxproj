@@ -10,6 +10,13 @@
 		6D6D359847E48286C67E16F7 /* Pods_GraceLogUseCaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D415D287B3EAEECA4BE40BB /* Pods_GraceLogUseCaseTests.framework */; };
 		75248638A478EB9521F76504 /* Pods_GraceLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */; };
 		A88BF65DF907D86788F86BF8 /* Pods_GraceLog_GraceLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */; };
+		DE069B982D53A855007C2066 /* DiaryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE069B972D53A855007C2066 /* DiaryCoordinator.swift */; };
+		DE069B9A2D53A884007C2066 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE069B992D53A884007C2066 /* DiaryViewController.swift */; };
+		DE069B9C2D5711D3007C2066 /* HomeNextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE069B9B2D5711D3007C2066 /* HomeNextViewController.swift */; };
+		DE069B9E2D57144A007C2066 /* HomeDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE069B9D2D57144A007C2066 /* HomeDiaryTableViewCell.swift */; };
+		DE069BA02D571472007C2066 /* HomeNavBarTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE069B9F2D571472007C2066 /* HomeNavBarTableViewHeader.swift */; };
+		DE069BA22D571485007C2066 /* HomeRecommendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE069BA12D571485007C2066 /* HomeRecommendTableViewCell.swift */; };
+		DE069BA42D571499007C2066 /* HomeTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE069BA32D571499007C2066 /* HomeTableViewHeader.swift */; };
 		DE24DB6D2D26D34D00581621 /* LoginUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEC72D04284E008CADCD /* LoginUseCaseTests.swift */; };
 		DE24DB6E2D26D36100581621 /* MockFireStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2700732D257068005C9DCF /* MockFireStoreRepository.swift */; };
 		DE27003B2D1EFB4E005C9DCF /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE2700322D1EFB4D005C9DCF /* Pretendard-Bold.otf */; };
@@ -38,9 +45,9 @@
 		DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD72D048B550076426D /* Coordinator.swift */; };
 		DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD92D059A3B0076426D /* HomeViewController.swift */; };
 		DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */; };
-		DE3BFCDE2D059D3D0076426D /* BibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCDD2D059D3D0076426D /* BibleViewController.swift */; };
+		DE3BFCDE2D059D3D0076426D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCDD2D059D3D0076426D /* SearchViewController.swift */; };
 		DE3BFCE12D059DDC0076426D /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */; };
-		DE3BFCE42D059E970076426D /* BibleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE32D059E970076426D /* BibleCoordinator.swift */; };
+		DE3BFCE42D059E970076426D /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE32D059E970076426D /* SearchCoordinator.swift */; };
 		DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */; };
 		DE3BFCEC2D0D3D390076426D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */; };
 		DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB02D04284D008CADCD /* AppDelegate.swift */; };
@@ -87,6 +94,13 @@
 		92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLog_GraceLogUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3D4E76539765E1009F5819 /* Pods-GraceLog-GraceLogUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog-GraceLogUITests.release.xcconfig"; path = "Target Support Files/Pods-GraceLog-GraceLogUITests/Pods-GraceLog-GraceLogUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C2C92987C1F1070895365F17 /* Pods_GraceLogTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GraceLogTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE069B972D53A855007C2066 /* DiaryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCoordinator.swift; sourceTree = "<group>"; };
+		DE069B992D53A884007C2066 /* DiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
+		DE069B9B2D5711D3007C2066 /* HomeNextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNextViewController.swift; sourceTree = "<group>"; };
+		DE069B9D2D57144A007C2066 /* HomeDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDiaryTableViewCell.swift; sourceTree = "<group>"; };
+		DE069B9F2D571472007C2066 /* HomeNavBarTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavBarTableViewHeader.swift; sourceTree = "<group>"; };
+		DE069BA12D571485007C2066 /* HomeRecommendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendTableViewCell.swift; sourceTree = "<group>"; };
+		DE069BA32D571499007C2066 /* HomeTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewHeader.swift; sourceTree = "<group>"; };
 		DE24DB632D26D32200581621 /* GraceLogUseCaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraceLogUseCaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE2700322D1EFB4D005C9DCF /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		DE2700332D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
@@ -115,9 +129,9 @@
 		DE3BFCD72D048B550076426D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DE3BFCD92D059A3B0076426D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
-		DE3BFCDD2D059D3D0076426D /* BibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleViewController.swift; sourceTree = "<group>"; };
+		DE3BFCDD2D059D3D0076426D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
-		DE3BFCE32D059E970076426D /* BibleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleCoordinator.swift; sourceTree = "<group>"; };
+		DE3BFCE32D059E970076426D /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE58FEAD2D04284D008CADCD /* GraceLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraceLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +202,47 @@
 				7D415D287B3EAEECA4BE40BB /* Pods_GraceLogUseCaseTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE069B922D53A708007C2066 /* DiaryScene */ = {
+			isa = PBXGroup;
+			children = (
+				DE069B932D53A818007C2066 /* Coordinator */,
+				DE069B942D53A81F007C2066 /* Reactor */,
+				DE069B952D53A826007C2066 /* View */,
+				DE069B962D53A82B007C2066 /* ViewController */,
+			);
+			path = DiaryScene;
+			sourceTree = "<group>";
+		};
+		DE069B932D53A818007C2066 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				DE069B972D53A855007C2066 /* DiaryCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		DE069B942D53A81F007C2066 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		DE069B952D53A826007C2066 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DE069B962D53A82B007C2066 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE069B992D53A884007C2066 /* DiaryViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		DE24DB642D26D32200581621 /* GraceLogUseCaseTests */ = {
@@ -413,7 +468,8 @@
 				DE3BFCC42D043D9E0076426D /* Common */,
 				DE2700442D1EFCF0005C9DCF /* LoginScene */,
 				DE3BFCC32D043D8B0076426D /* HomeScene */,
-				DE3BFCC62D043DB70076426D /* BibleScene */,
+				DE069B922D53A708007C2066 /* DiaryScene */,
+				DE3BFCC62D043DB70076426D /* SearchScene */,
 				DE3BFCC52D043DA40076426D /* MyInfoScene */,
 			);
 			path = Presentation;
@@ -471,7 +527,7 @@
 			path = MyInfoScene;
 			sourceTree = "<group>";
 		};
-		DE3BFCC62D043DB70076426D /* BibleScene */ = {
+		DE3BFCC62D043DB70076426D /* SearchScene */ = {
 			isa = PBXGroup;
 			children = (
 				DE3BFCE22D059DEF0076426D /* Coordinator */,
@@ -479,7 +535,7 @@
 				DE3BFCCF2D0489E40076426D /* View */,
 				DE3BFCD02D0489EE0076426D /* ViewController */,
 			);
-			path = BibleScene;
+			path = SearchScene;
 			sourceTree = "<group>";
 		};
 		DE3BFCC72D0489850076426D /* ViewController */ = {
@@ -513,6 +569,10 @@
 		DE3BFCCC2D0489C20076426D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DE069B9F2D571472007C2066 /* HomeNavBarTableViewHeader.swift */,
+				DE069B9D2D57144A007C2066 /* HomeDiaryTableViewCell.swift */,
+				DE069BA12D571485007C2066 /* HomeRecommendTableViewCell.swift */,
+				DE069BA32D571499007C2066 /* HomeTableViewHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -521,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				DE3BFCD92D059A3B0076426D /* HomeViewController.swift */,
+				DE069B9B2D5711D3007C2066 /* HomeNextViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -542,7 +603,7 @@
 		DE3BFCD02D0489EE0076426D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DE3BFCDD2D059D3D0076426D /* BibleViewController.swift */,
+				DE3BFCDD2D059D3D0076426D /* SearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -589,7 +650,7 @@
 		DE3BFCE22D059DEF0076426D /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				DE3BFCE32D059E970076426D /* BibleCoordinator.swift */,
+				DE3BFCE32D059E970076426D /* SearchCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -923,11 +984,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */,
-				DE3BFCDE2D059D3D0076426D /* BibleViewController.swift in Sources */,
+				DE3BFCDE2D059D3D0076426D /* SearchViewController.swift in Sources */,
+				DE069BA42D571499007C2066 /* HomeTableViewHeader.swift in Sources */,
 				DE3BFCE12D059DDC0076426D /* HomeCoordinator.swift in Sources */,
 				DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */,
 				DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */,
-				DE3BFCE42D059E970076426D /* BibleCoordinator.swift in Sources */,
+				DE3BFCE42D059E970076426D /* SearchCoordinator.swift in Sources */,
 				DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */,
 				DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */,
 				DEEFEACA2D29270500699692 /* GraceLogUser.swift in Sources */,
@@ -936,13 +998,19 @@
 				DE2700632D22D188005C9DCF /* DefaultFireStoreRepository.swift in Sources */,
 				DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */,
 				DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */,
+				DE069B9C2D5711D3007C2066 /* HomeNextViewController.swift in Sources */,
 				DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */,
 				DE2700692D22D591005C9DCF /* Constant.swift in Sources */,
+				DE069B982D53A855007C2066 /* DiaryCoordinator.swift in Sources */,
+				DE069BA02D571472007C2066 /* HomeNavBarTableViewHeader.swift in Sources */,
 				DE27005C2D212609005C9DCF /* DefaultLoginUseCase.swift in Sources */,
 				DEEFEACF2D2A64CF00699692 /* LoginCoordinator.swift in Sources */,
 				DE27006C2D22DBAF005C9DCF /* AuthError.swift in Sources */,
 				DE27006E2D22DD55005C9DCF /* FirestoreError.swift in Sources */,
 				DE2700462D1EFD06005C9DCF /* LoginViewController.swift in Sources */,
+				DE069B9A2D53A884007C2066 /* DiaryViewController.swift in Sources */,
+				DE069B9E2D57144A007C2066 /* HomeDiaryTableViewCell.swift in Sources */,
+				DE069BA22D571485007C2066 /* HomeRecommendTableViewCell.swift in Sources */,
 				DE27005A2D2125FF005C9DCF /* LoginUseCase.swift in Sources */,
 				DE2700662D22D43E005C9DCF /* UserDTO.swift in Sources */,
 				DE27005F2D212770005C9DCF /* FireStoreRepository.swift in Sources */,
