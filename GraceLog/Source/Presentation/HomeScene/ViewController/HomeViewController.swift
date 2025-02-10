@@ -60,6 +60,7 @@ final class HomeViewController: UIViewController {
     
     private func configureTableView() {
         tableView.register(HomeTableViewHeader.self, forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
+        tableView.register(HomeDiaryTableViewCell.self, forCellReuseIdentifier: HomeDiaryTableViewCell.identifier)
         tableView.register(HomeRecommendTableViewCell.self, forCellReuseIdentifier: HomeRecommendTableViewCell.identifier)
     }
     
@@ -88,7 +89,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
            
         switch section {
         case .diary:
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeDiaryTableViewCell.identifier, for: indexPath) as! HomeDiaryTableViewCell
+            cell.selectionStyle = .none
+            return cell
             
         case .contentList:
             let cell = tableView.dequeueReusableCell(withIdentifier: HomeRecommendTableViewCell.identifier, for: indexPath) as! HomeRecommendTableViewCell
@@ -112,11 +115,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTableViewHeader.identifier) as! HomeTableViewHeader
             header.configure(
                 title: "오늘의 말씀",
-                desc: "순종이 제사보다 낫고 듣는 것이 숫양의 기름보다 나으니")
+                desc: "순종이 제사보다 낫고 듣는 것이 숫양의 기름보다 나으니",
+                paragraph: "사무엘상 5:22"
+            )
             return header
         case .contentList:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeTableViewHeader.identifier) as! HomeTableViewHeader
-            header.configure(title: "추천영상", desc: "#순종 #도전")
+            header.configure(title: "추천영상", desc: "#순종 #도전", paragraph: nil)
             return header
         }
     }
@@ -126,7 +131,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch section {
         case .diary:
-            return 120
+            return 130
         case .contentList:
             return 80
         }

@@ -47,7 +47,7 @@ final class GraceLogAppCoordinator: Coordinator {
     
     func configureTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
-        tabBarController.tabBar.tintColor = .black
+        tabBarController.tabBar.tintColor = .themeColor
         
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -62,6 +62,7 @@ final class GraceLogAppCoordinator: Coordinator {
         itemAppearance.selected.titleTextAttributes = [
             .font: UIFont(name: "Pretendard-Medium", size: 10) ?? .systemFont(ofSize: 10)
         ]
+        
         appearance.stackedLayoutAppearance = itemAppearance
         
         tabBarController.tabBar.standardAppearance = appearance
@@ -69,19 +70,19 @@ final class GraceLogAppCoordinator: Coordinator {
         
         let homeItem = UITabBarItem(title: "홈",
                                     image: UIImage(named: "tab_home"),
-                                    selectedImage: UIImage(systemName: "house.fill"))
+                                    selectedImage: UIImage(named: "tab_home_selected"))
         
         let diaryItem = UITabBarItem(title: "일기작성",
                                      image: UIImage(named: "tab_edit"),
-                                     selectedImage: UIImage(systemName: "house.fill"))
+                                     selectedImage: UIImage(named: "tab_home_edit"))
         
         let searchItem = UITabBarItem(title: "찾기",
                                       image: UIImage(named: "tab_search"),
-                                      selectedImage: UIImage(systemName: "book.fill"))
+                                      selectedImage: UIImage(named: "tab_search_selected"))
         
         let myInfoItem = UITabBarItem(title: "계정",
                                       image: UIImage(named: "tab_user"),
-                                      selectedImage: UIImage(systemName: "person.fill"))
+                                      selectedImage: UIImage(named: "tab_user_selected"))
         
         let homeCoordinator = HomeCoordinator()
         homeCoordinator.parentCoordinator = self

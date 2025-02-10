@@ -24,7 +24,14 @@ final class HomeTableViewHeader: UITableViewHeaderFooterView {
     }
     
     private let paragraphLabel = UILabel().then {
+        $0.textColor = .graceGray
         $0.font = UIFont(name: "Pretendard-Regular", size: 14)
+    }
+    
+    private let stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 6
+        $0.alignment = .leading
     }
     
     override init(reuseIdentifier: String?) {
@@ -37,25 +44,26 @@ final class HomeTableViewHeader: UITableViewHeaderFooterView {
     }
     
     private func configureUI() {
-        backgroundColor = UIColor(hex: 0xF4F4F4) 
+        backgroundColor = UIColor(hex: 0xF4F4F4)
         
-        [titleLabel, descLabel, paragraphLabel].forEach { addSubview($0) }
+        addSubview(stackView)
+        [titleLabel, descLabel, paragraphLabel].forEach { stackView.addArrangedSubview($0) }
         
-        titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(14)
-            $0.leading.trailing.equalToSuperview().inset(30)
-        }
-        
-        descLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(6)
-            $0.leading.trailing.equalToSuperview().inset(30)
-            $0.bottom.equalToSuperview().inset(14)
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 14, left: 30, bottom: 8, right: 30))
         }
     }
     
-    func configure(title: String, desc: String) {
+    func configure(title: String, desc: String, paragraph: String?) {
         titleLabel.text = title
         descLabel.text = desc
+        
+        if let paragraph = paragraph {
+            paragraphLabel.text = paragraph
+            paragraphLabel.isHidden = false
+        } else {
+            paragraphLabel.isHidden = true
+        }
     }
 }
 
