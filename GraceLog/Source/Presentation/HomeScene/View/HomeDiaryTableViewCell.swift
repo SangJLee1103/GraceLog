@@ -75,6 +75,10 @@ final class HomeDiaryTableViewCell: UITableViewCell {
         configure(with: items)
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func configureUI() {
         backgroundColor = UIColor(hex: 0xF4F4F4)
         
@@ -160,9 +164,5 @@ final class HomeDiaryTableViewCell: UITableViewCell {
             $0.top.equalTo(previousLabel.snp.bottom).offset(6)
             $0.bottom.equalTo(currentlabel.snp.top).offset(-6)
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

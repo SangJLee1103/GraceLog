@@ -57,7 +57,10 @@ final class DiaryCardView: UIView {
         super.init(frame: .zero)
         
         configureUI()
-        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func configureUI() {
@@ -184,9 +187,5 @@ final class DiaryCardView: UIView {
             $0.leading.trailing.equalTo(contentView).inset(25)
             $0.bottom.lessThanOrEqualTo(contentView).offset(-21)
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

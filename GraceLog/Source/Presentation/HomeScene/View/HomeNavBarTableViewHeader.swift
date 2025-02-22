@@ -77,7 +77,7 @@ final class HomeNavBarTableViewHeader: UIView {
         let rightStack = UIStackView().then {
             $0.axis = .horizontal
             $0.spacing = 10
-            $0.setHeight(32)
+            $0.alignment = .center
         }
         rightStack.addArrangedSubview(bellButton)
         rightStack.addArrangedSubview(profileButton)
