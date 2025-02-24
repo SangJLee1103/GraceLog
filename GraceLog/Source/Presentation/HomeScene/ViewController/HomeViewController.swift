@@ -18,6 +18,7 @@ enum HomeSection: Int, CaseIterable {
 final class HomeViewController: UIViewController {
     weak var coordinator: Coordinator?
     private let disposeBag = DisposeBag()
+    private let reactor = HomeViewReactor()
     
     private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.backgroundColor = UIColor(hex: 0xF4F4F4) 
@@ -59,9 +60,17 @@ final class HomeViewController: UIViewController {
     
     
     private func configureTableView() {
+        // User DataSource
         tableView.register(HomeTableViewHeader.self, forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
         tableView.register(HomeDiaryTableViewCell.self, forCellReuseIdentifier: HomeDiaryTableViewCell.identifier)
         tableView.register(HomeRecommendTableViewCell.self, forCellReuseIdentifier: HomeRecommendTableViewCell.identifier)
+        tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
+        
+        // Community DataSource
+        tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
+        tableView.register(HomeCommunityDateHeaderView.self, forCellReuseIdentifier: HomeCommunityDateHeaderView.identifier)
+        tableView.register(HomeCommunityUserTableViewCell.self, forCellReuseIdentifier: HomeCommunityUserTableViewCell.identifier)
+        tableView.register(HomeCommunityMyTableViewCell.self, forCellReuseIdentifier: HomeCommunityMyTableViewCell.identifier)
     }
     
     private func bind() {

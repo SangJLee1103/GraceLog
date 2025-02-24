@@ -8,8 +8,12 @@
 import UIKit
 import Then
 import SnapKit
+import RxSwift
 
 final class HomeNavBarTableViewHeader: UIView {
+    let segmentTapped = PublishSubject<Bool>()
+    private let disposeBag = DisposeBag()
+    
     private let userButton = UIButton().then {
         $0.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 18)
         $0.setTitle("승렬", for: .normal)
@@ -58,36 +62,28 @@ final class HomeNavBarTableViewHeader: UIView {
     private func configureUI() {
         backgroundColor = UIColor(hex: 0xF4F4F4)
         
-        let userButtonStack = UIStackView().then {
+        let userButtonStack = UIStackView(arrangedSubviews: [userButton, userLineView]).then {
             $0.axis = .vertical
             $0.spacing = 8
             $0.alignment = .center
         }
-        userButtonStack.addArrangedSubview(userButton)
-        userButtonStack.addArrangedSubview(userLineView)
         
-        let groupButtonStack = UIStackView().then {
+        let groupButtonStack = UIStackView(arrangedSubviews: [groupButton, groupLineView]).then {
             $0.axis = .vertical
             $0.spacing = 8
             $0.alignment = .center
         }
-        groupButtonStack.addArrangedSubview(groupButton)
-        groupButtonStack.addArrangedSubview(groupLineView)
         
-        let rightStack = UIStackView().then {
+        let rightStack = UIStackView(arrangedSubviews: [bellButton, profileButton]).then {
             $0.axis = .horizontal
             $0.spacing = 10
             $0.alignment = .center
         }
-        rightStack.addArrangedSubview(bellButton)
-        rightStack.addArrangedSubview(profileButton)
         
-        let mainStack = UIStackView().then {
+        let mainStack = UIStackView(arrangedSubviews: [userButtonStack, groupButtonStack]).then {
             $0.axis = .horizontal
             $0.spacing = 30
         }
-        mainStack.addArrangedSubview(userButtonStack)
-        mainStack.addArrangedSubview(groupButtonStack)
         
         addSubview(mainStack)
         addSubview(rightStack)
@@ -118,7 +114,25 @@ final class HomeNavBarTableViewHeader: UIView {
         }
     }
     
-    func toggleLines(isUserSelected: Bool) {
+    private func bind() {
+        userButton.rx.tap
+            .map { true }
+            .bind(to: segmentTapped)
+            .disposed(by: disposeBag)
+        
+        groupButton.rx.tap
+            .map { false }
+            .bind(to: segmentTapped)
+            .disposed(by: disposeBag)
+        
+        segmentTapped
+            .subscribe(onNext: { [weak self] isUserSelected in
+                self?.updateUI(isUserSelected: isUserSelected)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func updateUI(isUserSelected: Bool) {
         userLineView.backgroundColor = isUserSelected ? .themeColor : .clear
         groupLineView.backgroundColor = isUserSelected ? .clear : .themeColor
         
