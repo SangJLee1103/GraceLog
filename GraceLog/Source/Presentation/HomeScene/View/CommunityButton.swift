@@ -36,25 +36,29 @@ final class CommunityButton: UIView {
     }
     
     private func configureUI() {
-        let stackView = UIStackView(arrangedSubviews: [imageContainer, imageView])
+        imageContainer.addSubview(imageView)
+        
+        let stackView = UIStackView(arrangedSubviews: [imageContainer, titleLabel])
         stackView.axis = .vertical
-        stackView.spacing = 4
+        stackView.spacing = 10
         stackView.alignment = .center
         
         addSubview(stackView)
-        
-        imageContainer.addSubview(imageView)
         
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
         imageContainer.snp.makeConstraints {
-            $0.size.equalTo(75)
+            $0.size.equalTo(70)
         }
         
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.width.equalTo(imageContainer) // titleLabel 너비 설정
         }
     }
     

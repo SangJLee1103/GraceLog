@@ -49,18 +49,36 @@ final class HomeCommunityUserTableViewCell: UITableViewCell {
         $0.textColor = .white
     }
     
-    private let likeButton = UIButton().then {
-        $0.setImage(UIImage(named: "heart"), for: .normal)
-        $0.setTitle("4", for: .normal)
-        $0.setTitleColor(.gray, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 14)
+    private lazy var likeButton = UIButton().then {
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(named: "heart")
+        config.title = "4"
+        config.imagePadding = 4
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont(name: "Pretendard-Bold", size: 14)
+            outgoing.foregroundColor = .gray100
+            return outgoing
+        }
+        config.baseForegroundColor = .gray100
+        $0.configuration = config
     }
     
-    private let commentButton = UIButton().then {
-        $0.setImage(UIImage(named: "comment"), for: .normal)
-        $0.setTitle("4", for: .normal)
-        $0.setTitleColor(.gray, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 14)
+    private lazy var commentButton = UIButton().then {
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(named: "comment")
+        config.title = "4"
+        config.imagePadding = 4
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont(name: "Pretendard-Bold", size: 14)
+            outgoing.foregroundColor = .gray
+            return outgoing
+        }
+        config.baseForegroundColor = .gray100
+        $0.configuration = config
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -73,6 +91,8 @@ final class HomeCommunityUserTableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
+        backgroundColor = UIColor(hex: 0xF4F4F4)
+        
         let userStack = UIStackView(arrangedSubviews: [profileImgView, usernameLabel])
         userStack.axis = .vertical
         userStack.spacing = 4
@@ -104,9 +124,10 @@ final class HomeCommunityUserTableViewCell: UITableViewCell {
         }
         
         diaryCardView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(10)
             $0.leading.equalTo(userStack.snp.trailing).offset(12)
             $0.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(diaryCardView.snp.width).multipliedBy(110/300)
+            $0.height.equalTo(diaryCardView.snp.width).multipliedBy(110.0/300.0)
         }
         
         cardImageView.snp.makeConstraints {
@@ -120,7 +141,7 @@ final class HomeCommunityUserTableViewCell: UITableViewCell {
         contentStack.snp.makeConstraints {
             $0.top.equalToSuperview().inset(37)
             $0.leading.trailing.equalToSuperview().inset(25)
-            $0.bottom.equalTo(29)
+            $0.bottom.equalToSuperview().inset(29)
         }
         
         interactionStack.snp.makeConstraints {
@@ -128,5 +149,16 @@ final class HomeCommunityUserTableViewCell: UITableViewCell {
             $0.leading.equalTo(diaryCardView.snp.leading).offset(23)
             $0.bottom.equalToSuperview().inset(10)
         }
+    }
+    
+    func configure(username: String, title: String, subtitle: String, likes: Int, comments: Int) {
+        usernameLabel.text = username
+        titleLabel.text = title
+        hashtagsLabel.text = subtitle
+        likeButton.setTitle("\(likes)", for: .normal)
+        commentButton.setTitle("\(comments)", for: .normal)
+        
+        cardImageView.image = UIImage(named: "diary2")
+        profileImgView.image = UIImage(named: "home_profile")
     }
 }

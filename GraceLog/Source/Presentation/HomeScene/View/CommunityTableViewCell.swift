@@ -21,14 +21,10 @@ final class CommunityTableViewCell: UITableViewCell {
         $0.axis = .horizontal
         $0.spacing = 20
         $0.alignment = .center
-        $0.distribution = .equalSpacing
+        $0.distribution = .fillEqually
     }
     
-    private lazy var communityButtons: [CommunityButton] = [
-        createCommunityButton(image: UIImage(named: "community1"), title: "홀리바이블"),
-        createCommunityButton(image: UIImage(named: "community2"), title: "새문교회"),
-        createCommunityButton(image: UIImage(named: "community3"), title: "스튜디오306")
-    ]
+    private lazy var communityButtons: [CommunityButton] = []
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,17 +41,16 @@ final class CommunityTableViewCell: UITableViewCell {
         contentView.addSubview(scrollView)
         scrollView.addSubview(stackView)
         
-        communityButtons.forEach {
-            stackView.addArrangedSubview($0)
-        }
-        
         scrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.height.equalTo(140)
         }
         
         stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(20)
-            $0.height.equalTo(130)
+            $0.top.equalToSuperview().offset(29)
+            $0.leading.equalToSuperview().inset(17)
+            $0.trailing.equalToSuperview().inset(17)
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
     
@@ -63,5 +58,18 @@ final class CommunityTableViewCell: UITableViewCell {
         let button = CommunityButton()
         button.configure(image: image, title: title)
         return button
+    }
+    
+    func configure(with buttons: [CommunityButtonModel]) {
+        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        communityButtons.removeAll()
+        
+        buttons.forEach { buttonModel in
+            print(buttonModel)
+            let buttonView = createCommunityButton(image: UIImage(named: buttonModel.imageName),
+                                                   title: buttonModel.title)
+            communityButtons.append(buttonView)
+            stackView.addArrangedSubview(buttonView)
+        }
     }
 }

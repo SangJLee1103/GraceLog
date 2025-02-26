@@ -53,6 +53,7 @@ final class HomeNavBarTableViewHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -60,7 +61,7 @@ final class HomeNavBarTableViewHeader: UIView {
     }
     
     private func configureUI() {
-        backgroundColor = UIColor(hex: 0xF4F4F4)
+        backgroundColor = .white
         
         let userButtonStack = UIStackView(arrangedSubviews: [userButton, userLineView]).then {
             $0.axis = .vertical
@@ -89,7 +90,8 @@ final class HomeNavBarTableViewHeader: UIView {
         addSubview(rightStack)
         
         mainStack.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview().inset(14)
+            $0.top.equalToSuperview().inset(14)
+            $0.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
             $0.centerY.equalToSuperview()
         }
