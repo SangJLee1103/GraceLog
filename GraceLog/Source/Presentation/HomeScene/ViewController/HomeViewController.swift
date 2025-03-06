@@ -12,15 +12,6 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-enum HomeSection: Int, CaseIterable {
-    case diary
-    case contentList
-}
-
-enum CommunitySection: Int, CaseIterable {
-    case community
-}
-
 final class HomeViewController: UIViewController, View {
     weak var coordinator: Coordinator?
     var disposeBag = DisposeBag()
@@ -99,6 +90,16 @@ final class HomeViewController: UIViewController, View {
                 owner.tableView.reloadData()
             })
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.selectedCommunity }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind(onNext: { owner, selectedCommunity in
+                if reactor.currentState.currentSegment == .group {
+                    
+                }
+            })
     }
 }
 
