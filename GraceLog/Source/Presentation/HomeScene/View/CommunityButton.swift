@@ -10,19 +10,24 @@ import Then
 import SnapKit
 
 final class CommunityButton: UIView {
+    var model: CommunityItem?
+    
     private let imageContainer = UIView().then {
-        $0.layer.cornerRadius = 25
-        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 32
+        $0.layer.borderWidth = 2
+        $0.layer.borderColor = UIColor.graceLightGray.cgColor
+        $0.backgroundColor = .clear
     }
     
     private let imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
+        $0.layer.cornerRadius = 28
     }
     
     private let titleLabel = UILabel().then {
+        $0.font = UIFont(name: "Pretendard-Regular", size: 11)
         $0.textAlignment = .center
-        $0.font = UIFont(name: "Pretendard-Regular", size: 12)
         $0.textColor = .graceGray
     }
     
@@ -40,7 +45,7 @@ final class CommunityButton: UIView {
         
         let stackView = UIStackView(arrangedSubviews: [imageContainer, titleLabel])
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 7
         stackView.alignment = .center
         
         addSubview(stackView)
@@ -50,21 +55,24 @@ final class CommunityButton: UIView {
         }
         
         imageContainer.snp.makeConstraints {
-            $0.size.equalTo(70)
+            $0.size.equalTo(64)
         }
         
         imageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalToSuperview().inset(4)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.width.equalTo(imageContainer) // titleLabel 너비 설정
+            $0.width.equalTo(imageContainer)
         }
     }
     
-    func configure(image: UIImage?, title: String, backgroundColor: UIColor = .clear) {
+    func configure(image: UIImage?, title: String) {
         imageView.image = image
         titleLabel.text = title
-        imageContainer.backgroundColor = backgroundColor
+    }
+    
+    func setSelected(_ selected: Bool) {
+        imageContainer.layer.borderColor = selected ? UIColor.themeColor.cgColor : UIColor.graceLightGray.cgColor
     }
 }

@@ -8,18 +8,23 @@
 import UIKit
 import Then
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class CommunityTableViewCell: UITableViewCell {
     static let identifier = "CommunityTableViewCell"
     
+    let communitySelected = PublishRelay<CommunityItem>()
+    
     private let scrollView = UIScrollView().then {
         $0.showsHorizontalScrollIndicator = false
-        $0.alwaysBounceHorizontal = true
+        $0.showsVerticalScrollIndicator = false
+        $0.bounces = false
     }
     
     private let stackView = UIStackView().then {
         $0.axis = .horizontal
-        $0.spacing = 20
+        $0.spacing = 7
         $0.alignment = .center
         $0.distribution = .fillEqually
     }
@@ -54,22 +59,40 @@ final class CommunityTableViewCell: UITableViewCell {
         }
     }
     
-    private func createCommunityButton(image: UIImage?, title: String) -> CommunityButton {
+    private func createCommunityButton(image: UIImage?, title: String, model: CommunityItem) -> CommunityButton {
         let button = CommunityButton()
         button.configure(image: image, title: title)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(communityButtonTapped))
+        button.tag = communityButtons.count
+        button.addGestureRecognizer(tapGesture)
+        button.isUserInteractionEnabled = true
+        button.model = model
+        
         return button
     }
     
-    func configure(with buttons: [CommunityButtonModel]) {
+    @objc private func communityButtonTapped(_ sender: UITapGestureRecognizer) {
+        if let button = sender.view as? CommunityButton, let model = button.model {
+            communitySelected.accept(model)
+        }
+    }
+    
+    func configure(with buttons: [CommunityItem]) {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         communityButtons.removeAll()
         
         buttons.forEach { buttonModel in
-            print(buttonModel)
             let buttonView = createCommunityButton(image: UIImage(named: buttonModel.imageName),
-                                                   title: buttonModel.title)
+                                                   title: buttonModel.title, model: buttonModel)
             communityButtons.append(buttonView)
             stackView.addArrangedSubview(buttonView)
+        }
+    }
+    
+    func updateSelectionState(selectedModel: CommunityItem) {
+        for button in communityButtons {
+            button.setSelected(button.model?.title == selectedModel.title)
         }
     }
 }
