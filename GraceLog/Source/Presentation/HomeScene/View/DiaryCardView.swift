@@ -14,7 +14,7 @@ final class DiaryCardView: UIView {
     }
     
     private let style: Style
-    private let item: DiaryItem
+    private let item: MyDiaryItem
     
     private let contentView = UIView().then {
         $0.backgroundColor = .white
@@ -51,7 +51,7 @@ final class DiaryCardView: UIView {
         $0.spacing = 8
     }
     
-    init(style: Style, item: DiaryItem) {
+    init(style: Style, item: MyDiaryItem) {
         self.style = style
         self.item = item
         super.init(frame: .zero)

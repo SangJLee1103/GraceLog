@@ -9,20 +9,11 @@ import UIKit
 import Then
 import SnapKit
 
-struct DiaryItem {
-    let date: String
-    let dateDesc: String
-    let title: String
-    let subtitle: String
-    let tags: [String]
-    let image: UIImage?
-}
-
 final class HomeDiaryTableViewCell: UITableViewCell {
     static let identifier = "HomeDiaryTableViewCell"
     
     let items = [
-        DiaryItem(
+        MyDiaryItem(
             date: "오늘\n2/14",
             dateDesc: "오늘의 감사일기",
             title: "스터디 카페에 새로운 손님이?",
@@ -30,7 +21,7 @@ final class HomeDiaryTableViewCell: UITableViewCell {
             tags: ["#순종", "#도전", "#새해", "#스터디카페"],
             image: UIImage(named: "diary1")
         ),
-        DiaryItem(
+        MyDiaryItem(
             date: "지난주\n2/7",
             dateDesc: "지난주 이시간",
             title: "어쩌다 보니 창업...",
@@ -38,7 +29,7 @@ final class HomeDiaryTableViewCell: UITableViewCell {
             tags: [],
             image: UIImage(named: "diary2")
         ),
-        DiaryItem(
+        MyDiaryItem(
             date: "작년\n12/1",
             dateDesc: "작년 12월",
             title: "그럼에도 불구하고",
@@ -101,7 +92,7 @@ final class HomeDiaryTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with items: [DiaryItem]) {
+    func configure(with items: [MyDiaryItem]) {
         cleanupViews()
         setupDiaryItems(items)
     }
@@ -114,7 +105,7 @@ final class HomeDiaryTableViewCell: UITableViewCell {
         dateLabels.removeAll()
     }
     
-    private func setupDiaryItems(_ items: [DiaryItem]) {
+    private func setupDiaryItems(_ items: [MyDiaryItem]) {
         var previousDateLabel: UILabel?
         
         items.enumerated().forEach { index, item in
@@ -129,14 +120,14 @@ final class HomeDiaryTableViewCell: UITableViewCell {
         }
     }
     
-    private func createCardView(item: DiaryItem, index: Int) -> DiaryCardView {
+    private func createCardView(item: MyDiaryItem, index: Int) -> DiaryCardView {
         let style: DiaryCardView.Style = index == 0 ? .latest : .past
         let cardView = DiaryCardView(style: style, item: item)
         diaryStackView.addArrangedSubview(cardView)
         return cardView
     }
     
-    private func createDateLabel(item: DiaryItem, alignedTo cardView: DiaryCardView) -> UILabel {
+    private func createDateLabel(item: MyDiaryItem, alignedTo cardView: DiaryCardView) -> UILabel {
         let dateLabel = UILabel()
         dateLabel.attributedText = item.date.toDiaryDateAttributedString()
         dateLabel.numberOfLines = 2
