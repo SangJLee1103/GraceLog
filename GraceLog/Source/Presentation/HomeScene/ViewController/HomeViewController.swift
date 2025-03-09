@@ -10,6 +10,7 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
+import RxDataSources
 import ReactorKit
 
 final class HomeViewController: UIViewController, View {
@@ -19,11 +20,60 @@ final class HomeViewController: UIViewController, View {
     private let headerView = HomeNavBarTableViewHeader()
     private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
         $0.backgroundColor = UIColor(hex: 0xF4F4F4)
-        $0.delegate = self
-        $0.dataSource = self
         $0.separatorStyle = .none
         $0.sectionHeaderTopPadding = 0
     }
+    
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<HomeSectionModel>(
+        configureCell: { [weak self] dataSource, tableView, indexPath, item in
+            switch dataSource[indexPath.section] {
+            case .diary:
+                let cell = tableView.dequeueReusableCell(withIdentifier: HomeDiaryTableViewCell.identifier, for: indexPath) as! HomeDiaryTableViewCell
+                cell.selectionStyle = .none
+                
+                if let diaryItem = item as? [MyDiaryItem] {
+                    cell.configure(with: diaryItem)
+                }
+                return cell
+                
+            case .contentList:
+                let cell = tableView.dequeueReusableCell(withIdentifier: HomeRecommendTableViewCell.identifier, for: indexPath) as! HomeRecommendTableViewCell
+                cell.selectionStyle = .none
+                
+                if let videoItem = item as? HomeVideoItem {
+                    let image = UIImage(named: videoItem.imageName) ?? UIImage()
+                    cell.configure(title: videoItem.title, image: image)
+                }
+                return cell
+                
+            case .communityButtons:
+                let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTableViewCell.identifier, for: indexPath) as! CommunityTableViewCell
+                cell.selectionStyle = .none
+                
+                if let communityItem = item as? [CommunityItem] {
+                    cell.configure(with: communityItem)
+                    return cell
+                }
+                return cell
+                
+            case .communityPosts:
+                let diaryItem = item as! CommunityDiaryItem
+                switch diaryItem.type {
+                case .my:
+                    let cell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityMyTableViewCell.identifier, for: indexPath) as! HomeCommunityMyTableViewCell
+                    cell.selectionStyle = .none
+                    cell.configure(title: diaryItem.title, subtitle: diaryItem.subtitle, likes: diaryItem.likes, comments: diaryItem.comments)
+                    return cell
+                    
+                case .regular:
+                    let cell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityUserTableViewCell.identifier, for: indexPath) as! HomeCommunityUserTableViewCell
+                    cell.selectionStyle = .none
+                    cell.configure(username: diaryItem.username, title: diaryItem.title, subtitle: diaryItem.subtitle, likes: diaryItem.likes, comments: diaryItem.comments)
+                    return cell
+                }
+            }
+        }
+    )
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,7 +82,7 @@ final class HomeViewController: UIViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.reactor = HomeViewReactor()
+        self.reactor = HomeViewReactor(homeUsecase: DefaultHomeUseCase(repository: DefaultHomeRepository()))
         configureUI()
         configureTableView()
     }
@@ -92,18 +142,24 @@ final class HomeViewController: UIViewController, View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map { $0.selectedCommunity }
-            .distinctUntilChanged()
-            .withUnretained(self)
-            .bind(onNext: { owner, selectedCommunity in
-                if reactor.currentState.currentSegment == .group {
-                    
+            .map { $0.sections }
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(Any.self)
+            .subscribe(onNext: { item in
+                if let communityItem = item as? CommunityItem {
+                    reactor.action.onNext(.selectCommunity(item: communityItem))
                 }
             })
+            .disposed(by: disposeBag)
     }
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         guard let reactor = reactor else { return 0 }
         
@@ -132,62 +188,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 return 1
             } else {
                 return reactor.currentState.communitySections[section - 1].items.count
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let reactor = reactor else { return UITableViewCell() }
-        
-        switch reactor.currentState.currentSegment {
-        case .user:
-            guard let section = HomeSection(rawValue: indexPath.section) else { return UITableViewCell() }
-            
-            switch section {
-            case .diary:
-                let cell = tableView.dequeueReusableCell(withIdentifier: HomeDiaryTableViewCell.identifier, for: indexPath) as! HomeDiaryTableViewCell
-                cell.selectionStyle = .none
-                return cell
-                
-            case .contentList:
-                let cell = tableView.dequeueReusableCell(withIdentifier: HomeRecommendTableViewCell.identifier, for: indexPath) as! HomeRecommendTableViewCell
-                cell.selectionStyle = .none
-                
-                if indexPath.row == 0 {
-                    cell.configure(title: "말씀노트", image: UIImage(named: "content1") ?? UIImage())
-                } else {
-                    cell.configure(title: "더메세지 랩The Message LAB", image: UIImage(named: "content2") ?? UIImage())
-                }
-                
-                return cell
-            }
-        case .group:
-            if indexPath.section == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTableViewCell.identifier, for: indexPath) as! CommunityTableViewCell
-                cell.selectionStyle = .none
-                cell.configure(with: reactor.currentState.communityButtons)
-                return cell
-            } else {
-                let item = reactor.currentState.communitySections[indexPath.section - 1].items[indexPath.row]
-                
-                switch item.type {
-                case .my:
-                    let cell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityMyTableViewCell.identifier, for: indexPath) as! HomeCommunityMyTableViewCell
-                    cell.selectionStyle = .none
-                    
-                    if let title = item.title, let subtitle = item.subtitle, let likes = item.likes, let comments = item.comments {
-                        cell.configure(title: title, subtitle: subtitle, likes: likes, comments: comments)
-                    }
-                    return cell
-                case .regular:
-                    let cell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityUserTableViewCell.identifier, for: indexPath) as! HomeCommunityUserTableViewCell
-                    cell.selectionStyle = .none
-                    
-                    if let username = item.username, let title = item.title, let subtitle = item.subtitle, let likes = item.likes, let comments = item.comments {
-                        cell.configure(username: username, title: title, subtitle: subtitle, likes: likes, comments: comments)
-                    }
-                    return cell
-                }
             }
         }
     }

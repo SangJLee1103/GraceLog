@@ -12,33 +12,6 @@ import SnapKit
 final class HomeDiaryTableViewCell: UITableViewCell {
     static let identifier = "HomeDiaryTableViewCell"
     
-    let items = [
-        MyDiaryItem(
-            date: "오늘\n2/14",
-            dateDesc: "오늘의 감사일기",
-            title: "스터디 카페에 새로운 손님이?",
-            subtitle: "나는 느꼈다,\n하나님께서 하심을",
-            tags: ["#순종", "#도전", "#새해", "#스터디카페"],
-            image: UIImage(named: "diary1")
-        ),
-        MyDiaryItem(
-            date: "지난주\n2/7",
-            dateDesc: "지난주 이시간",
-            title: "어쩌다 보니 창업...",
-            subtitle: "",
-            tags: [],
-            image: UIImage(named: "diary2")
-        ),
-        MyDiaryItem(
-            date: "작년\n12/1",
-            dateDesc: "작년 12월",
-            title: "그럼에도 불구하고",
-            subtitle: "",
-            tags: [],
-            image: UIImage(named: "diary3")
-        )
-    ]
-    
     private let imgView = UIImageView().then {
         $0.image = UIImage(named: "compass")
         $0.setDimensions(width: 20, height: 20)
@@ -63,7 +36,6 @@ final class HomeDiaryTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
-        configure(with: items)
     }
     
     required init?(coder: NSCoder) {

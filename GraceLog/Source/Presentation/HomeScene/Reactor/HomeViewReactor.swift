@@ -9,12 +9,21 @@ import Foundation
 import ReactorKit
 import RxDataSources
 
-enum CommunityItemType: String {
-    case regular
-    case my
-}
-
 final class HomeViewReactor: Reactor {
+    private let homeUsecase: HomeUseCase
+    private let disposeBag = DisposeBag()
+    
+    init(homeUsecase: HomeUseCase) {
+        self.homeUsecase = homeUsecase
+        
+        loadData()
+    }
+    
+    private func loadData() {
+        homeUsecase.fetchHomeMyContent()
+        homeUsecase.fetchHomeCommunityContent()
+    }
+    
     enum Action {
         case userButtonTapped
         case groupButtonTapped
@@ -24,6 +33,9 @@ final class HomeViewReactor: Reactor {
     enum Mutation {
         case setSegment(State.HomeModeSegment)
         case setCommunityIndex(CommunityItem)
+        case setHomeMyData(HomeContent)
+        case setHomeCommunityData(HomeCommunityContent)
+        case setError(Error)
     }
     
     struct State {
@@ -33,93 +45,90 @@ final class HomeViewReactor: Reactor {
         }
         
         var currentSegment: HomeModeSegment = .user
-        
-        let myResponse: HomeContent = HomeContent(
-            diaryList: [
-                MyDiaryItem(
-                    date: "오늘\n2/14",
-                    dateDesc: "오늘의 감사일기",
-                    title: "스터디 카페에 새로운 손님이?",
-                    subtitle: "나는 느꼈다,\n하나님께서 하심을",
-                    tags: ["#순종", "#도전", "#새해", "#스터디카페"],
-                    image: UIImage(named: "diary1")
-                ),
-                MyDiaryItem(
-                    date: "지난주\n2/7",
-                    dateDesc: "지난주 이시간",
-                    title: "어쩌다 보니 창업...",
-                    subtitle: "",
-                    tags: [],
-                    image: UIImage(named: "diary2")
-                ),
-                MyDiaryItem(
-                    date: "작년\n12/1",
-                    dateDesc: "작년 12월",
-                    title: "그럼에도 불구하고",
-                    subtitle: "",
-                    tags: [],
-                    image: UIImage(named: "diary3")
-                )
-            ],
-            contentList: [
-                HomeContentItem(title: "말씀노트", image: UIImage(named: "content1") ?? UIImage()),
-                HomeContentItem(title: "더메세지 랩The Message LAB", image: UIImage(named: "content2") ?? UIImage())
-            ]
-        )
-        
-        let communityResponse: Community = Community(
-            communityList: [
-                CommunityItem(imageName: "community1", title: "홀리바이블"),
-                CommunityItem(imageName: "community2", title: "새롬교회"),
-                CommunityItem(imageName: "community3", title: "스튜디오306"),
-                CommunityItem(imageName: "community4", title: "스터디카페"),
-                CommunityItem(imageName: "community1", title: "홀리바이블1"),
-                CommunityItem(imageName: "community1", title: "홀리바이블2"),
-                CommunityItem(imageName: "community1", title: "홀리바이블3"),
-            ],
-            diary: [
-                CommunityDiary(
-                    date: "2025년 2월 18일",
-                    items: [
-                        CommunityDiaryItem(type: .regular, username: "상준", title: "회사에서 함께하신 주님", subtitle: "#식당 #부엌 #땀 #코드", likes: 1, comments: 2),
-                        CommunityDiaryItem(type: .my, username: "승렬", title: "나는 느꼈다, 하나님께서...", subtitle: "#은혜 #코드 #사랑의 #스타디카페", likes: 4, comments: 4),
-                        CommunityDiaryItem(type: .regular, username: "범철", title: "회사에서 함께하신 주님", subtitle: "#식당 #부엌 #땀 #코드", likes: 2, comments: 3),
-                        CommunityDiaryItem(type: .regular, username: "은재", title: "회사에서 함께하신 주님", subtitle: "#식당 #부엌 #땀 #코드", likes: 3, comments: 3)
-                    ]
-                ),
-                CommunityDiary(
-                    date: "2025년 2월 17일",
-                    items: [
-                        CommunityDiaryItem(type: .my, username: "승렬", title: "회사에서 함께하신 주님", subtitle: "#은혜 #코드 #사랑의 #스타디카페", likes: 3, comments: 2),
-                        CommunityDiaryItem(type: .regular, username: "상준", title: "회사에서 함께하신 주님", subtitle: "#식당 #부엌 #땀 #코드", likes: 4, comments: 1),
-                        CommunityDiaryItem(type: .regular, username: "범철", title: "회사에서 함께하신 주님", subtitle: "#식당 #부엌 #땀 #코드", likes: 3, comments: 5),
-                        CommunityDiaryItem(type: .regular, username: "은재", title: "회사에서 함께하신 주님", subtitle: "#식당 #부엌 #땀 #코드", likes: 5, comments: 4),
-                        CommunityDiaryItem(type: .my, username: "승렬", title: "나는 느꼈다, 하나님께서...", subtitle: "#은혜 #코드 #사랑의 #스타디카페", likes: 4, comments: 4)
-                    ]
-                )
-            ]
-        )
-        
-        var communitySections: [CommunityDiary] {
-            return communityResponse.diary
-        }
-        
-        var communityButtons: [CommunityItem] {
-            return communityResponse.communityList
-        }
-        
         var selectedCommunity: CommunityItem?
+        var homeMyData: HomeContent?
+        var homeCommunityData: HomeCommunityContent?
+        var communitySections: [(date: String, items: [CommunityDiaryItem])] = []
+        var communityButtons: [String] = []
+        var error: Error?
         
-        init() {
-            currentSegment = .user
-            
-            if !communityResponse.communityList.isEmpty {
-                selectedCommunity = communityResponse.communityList[0]
+        var sections: [HomeSectionModel] {
+            switch currentSegment {
+            case .user:
+                guard let myData = homeMyData else {
+                    return []
+                }
+                
+                let diaryItems = myData.diaryList.map { item in
+                    return MyDiaryItem(
+                        date: item.date,
+                        dateDesc: item.dateDesc,
+                        title: item.title,
+                        subtitle: item.subtitle,
+                        tags: item.tags,
+                        image: item.image
+                    )
+                }
+                
+                let contentItems = myData.videoList.map { item in
+                    return HomeVideoItem(
+                        title: item.title,
+                        imageName: item.imageName
+                    )
+                }
+                
+                return [
+                    .diary(diaryItems),
+                    .contentList(contentItems)
+                ]
+                
+            case .group:
+                guard let communityData = homeCommunityData else {
+                    return []
+                }
+                
+                let buttonItems = communityData.communityList.map { item in
+                    return CommunityItem(
+                        imageName: item.imageName, title: item.title
+                    )
+                }
+                
+                var sections: [HomeSectionModel] = [
+                    .communityButtons(buttonItems)
+                ]
+                
+                for section in communitySections {
+                    sections.append(.communityPosts(section.date, section.items))
+                }
+                
+                return sections
             }
         }
+        
     }
     
     let initialState: State = State()
+    
+    func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        let myDataMutation = homeUsecase.homeMyData
+            .compactMap { $0 }
+            .map { Mutation.setHomeMyData($0) }
+        
+        let communityDataMutation = homeUsecase.homeCommunityData
+            .do { print($0) }
+            .compactMap { $0 }
+            .map { Mutation.setHomeCommunityData($0) }
+        
+        let errorMutation = homeUsecase.error
+            .map { Mutation.setError($0) }
+        
+        return Observable.merge(
+            mutation,
+            myDataMutation,
+            communityDataMutation,
+            errorMutation
+        )
+    }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
@@ -140,8 +149,14 @@ final class HomeViewReactor: Reactor {
             newState.currentSegment = segment
         case .setCommunityIndex(let model):
             newState.selectedCommunity = model
+        case .setHomeMyData(let data):
+            newState.homeMyData = data
+        case .setHomeCommunityData(let data):
+            newState.homeCommunityData = data
+        case .setError(let error):
+            newState.error = error
         }
-        
         return newState
     }
 }
+
