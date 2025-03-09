@@ -10,10 +10,10 @@ import UIKit
 
 struct HomeContent {
     let diaryList: [MyDiaryItem]
-    let contentList: [HomeContentItem]
+    let videoList: [HomeVideoItem]
 }
 
-struct HomeContentItem {
+struct HomeVideoItem {
     let title: String
-    let image: UIImage?
+    let imageName: String
 }

@@ -14,9 +14,9 @@ struct CommunityDiary {
 
 struct CommunityDiaryItem {
     let type: CommunityItemType
-    let username: String?
-    let title: String?
-    let subtitle: String?
-    let likes: Int?
-    let comments: Int?
+    let username: String
+    let title: String
+    let subtitle: String
+    let likes: Int
+    let comments: Int
 }
