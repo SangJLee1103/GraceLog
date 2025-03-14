@@ -15,7 +15,6 @@ final class HomeViewReactor: Reactor {
     
     init(homeUsecase: HomeUseCase) {
         self.homeUsecase = homeUsecase
-        
         loadData()
     }
     
@@ -97,14 +96,24 @@ final class HomeViewReactor: Reactor {
                     .communityButtons(buttonItems)
                 ]
                 
-                for section in communitySections {
-                    sections.append(.communityPosts(section.date, section.items))
+                for sectionData in communityData.diaryList {
+                    let items = sectionData.items.map { item in
+                        return CommunityDiaryItem(
+                            type: item.type,
+                            username: item.username,
+                            title: item.title,
+                            subtitle: item.subtitle,
+                            likes: item.likes,
+                            comments: item.comments
+                        )
+                    }
+                    
+                    sections.append(.communityPosts(sectionData.date, items))
                 }
                 
                 return sections
             }
         }
-        
     }
     
     let initialState: State = State()
@@ -115,7 +124,6 @@ final class HomeViewReactor: Reactor {
             .map { Mutation.setHomeMyData($0) }
         
         let communityDataMutation = homeUsecase.homeCommunityData
-            .do { print($0) }
             .compactMap { $0 }
             .map { Mutation.setHomeCommunityData($0) }
         
@@ -159,4 +167,3 @@ final class HomeViewReactor: Reactor {
         return newState
     }
 }
-

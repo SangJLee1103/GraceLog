@@ -22,6 +22,7 @@ final class HomeViewController: UIViewController, View {
         $0.backgroundColor = UIColor(hex: 0xF4F4F4)
         $0.separatorStyle = .none
         $0.sectionHeaderTopPadding = 0
+        $0.sectionFooterHeight = 0
     }
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<HomeSectionModel>(
@@ -160,38 +161,6 @@ final class HomeViewController: UIViewController, View {
 }
 
 extension HomeViewController: UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        guard let reactor = reactor else { return 0 }
-        
-        switch reactor.currentState.currentSegment {
-        case .user:
-            return HomeSection.allCases.count
-        case .group:
-            return reactor.currentState.communitySections.count + 1
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let reactor = reactor else { return 0 }
-        
-        switch reactor.currentState.currentSegment {
-        case .user:
-            guard let homeSection = HomeSection(rawValue: section) else { return 0 }
-            switch homeSection {
-            case .diary:
-                return 1
-            case .contentList:
-                return 2
-            }
-        case .group:
-            if section == 0 {
-                return 1
-            } else {
-                return reactor.currentState.communitySections[section - 1].items.count
-            }
-        }
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let reactor = reactor else { return nil }
         
@@ -218,13 +187,18 @@ extension HomeViewController: UITableViewDelegate {
             if section == 0 {
                 return nil
             } else {
-                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeCommunityDateHeaderView.identifier) as! HomeCommunityDateHeaderView
-                header.configure(date: reactor.currentState.communitySections[section - 1].date)
-                return header
+                let sectionModel = reactor.currentState.sections[section]
+                
+                if case let .communityPosts(date, _) = sectionModel {
+                    let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HomeCommunityDateHeaderView.identifier) as! HomeCommunityDateHeaderView
+                    header.configure(date: date)
+                    return header
+                }
+                
+                return nil
             }
         }
     }
-    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard let reactor = reactor else { return 0 }
@@ -246,9 +220,5 @@ extension HomeViewController: UITableViewDelegate {
                 return 50
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return CGFloat.leastNonzeroMagnitude
     }
 }
