@@ -27,7 +27,6 @@ final class CommunityTableViewCell: UITableViewCell {
         $0.axis = .horizontal
         $0.spacing = 7
         $0.alignment = .center
-        $0.distribution = .fillEqually
     }
     
     private lazy var communityButtons: [CommunityButton] = []

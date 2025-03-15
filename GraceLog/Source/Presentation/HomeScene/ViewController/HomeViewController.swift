@@ -23,6 +23,8 @@ final class HomeViewController: UIViewController, View {
         $0.separatorStyle = .none
         $0.sectionHeaderTopPadding = 0
         $0.sectionFooterHeight = 0
+        $0.estimatedSectionHeaderHeight = 100
+        $0.sectionHeaderHeight = UITableView.automaticDimension
     }
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<HomeSectionModel>(

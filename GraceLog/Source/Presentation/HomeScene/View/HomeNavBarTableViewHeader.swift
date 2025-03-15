@@ -93,7 +93,6 @@ final class HomeNavBarTableViewHeader: UIView {
             $0.top.equalToSuperview().inset(14)
             $0.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
-            $0.centerY.equalToSuperview()
         }
         
         userLineView.snp.makeConstraints {
