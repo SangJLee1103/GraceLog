@@ -1,0 +1,116 @@
+{
+    "communityList": [
+        {
+            "imageName": "community1",
+            "title": "홀리바이블"
+        },
+        {
+            "imageName": "community2",
+            "title": "새롬교회"
+        },
+        {
+            "imageName": "community3",
+            "title": "스튜디오306"
+        },
+        {
+            "imageName": "community4",
+            "title": "스터디카페"
+        },
+        {
+            "imageName": "community1",
+            "title": "홀리바이블1"
+        },
+        {
+            "imageName": "community1",
+            "title": "홀리바이블2"
+        },
+        {
+            "imageName": "community1",
+            "title": "홀리바이블3"
+        }
+    ],
+    "diaryList": [
+        {
+            "date": "2025년 2월 18일",
+            "items": [
+                {
+                    "type": "regular",
+                    "username": "상준",
+                    "title": "회사에서 함께하신 주님",
+                    "subtitle": "#식당 #부엌 #땀 #코드",
+                    "likes": 1,
+                    "comments": 2
+                },
+                {
+                    "type": "my",
+                    "username": "승렬",
+                    "title": "나는 느꼈다, 하나님께서...",
+                    "subtitle": "#은혜 #코드 #사랑의 #스타디카페",
+                    "likes": 4,
+                    "comments": 4
+                },
+                {
+                    "type": "regular",
+                    "username": "범철",
+                    "title": "회사에서 함께하신 주님",
+                    "subtitle": "#식당 #부엌 #땀 #코드",
+                    "likes": 2,
+                    "comments": 3
+                },
+                {
+                    "type": "regular",
+                    "username": "은재",
+                    "title": "회사에서 함께하신 주님",
+                    "subtitle": "#식당 #부엌 #땀 #코드",
+                    "likes": 3,
+                    "comments": 3
+                }
+            ]
+        },
+        {
+            "date": "2025년 2월 17일",
+            "items": [
+                {
+                    "type": "my",
+                    "username": "승렬",
+                    "title": "회사에서 함께하신 주님",
+                    "subtitle": "#은혜 #코드 #사랑의 #스타디카페",
+                    "likes": 3,
+                    "comments": 2
+                },
+                {
+                    "type": "regular",
+                    "username": "상준",
+                    "title": "회사에서 함께하신 주님",
+                    "subtitle": "#식당 #부엌 #땀 #코드",
+                    "likes": 4,
+                    "comments": 1
+                },
+                {
+                    "type": "regular",
+                    "username": "범철",
+                    "title": "회사에서 함께하신 주님",
+                    "subtitle": "#식당 #부엌 #땀 #코드",
+                    "likes": 3,
+                    "comments": 5
+                },
+                {
+                    "type": "regular",
+                    "username": "은재",
+                    "title": "회사에서 함께하신 주님",
+                    "subtitle": "#식당 #부엌 #땀 #코드",
+                    "likes": 5,
+                    "comments": 4
+                },
+                {
+                    "type": "my",
+                    "username": "승렬",
+                    "title": "나는 느꼈다, 하나님께서...",
+                    "subtitle": "#은혜 #코드 #사랑의 #스타디카페",
+                    "likes": 4,
+                    "comments": 4
+                }
+            ]
+        }
+    ]
+}

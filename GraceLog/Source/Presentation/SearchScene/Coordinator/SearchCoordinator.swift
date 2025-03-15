@@ -1,5 +1,5 @@
 //
-//  BibleCoordinator.swift
+//  SearchCoordinator.swift
 //  GraceLog
 //
 //  Created by 이상준 on 12/8/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BibleCoordinator: Coordinator {
+final class SearchCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     var childerCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -21,9 +21,9 @@ final class BibleCoordinator: Coordinator {
     }
     
     func startPush() -> UINavigationController {
-        let bibleVC = BibleViewController()
-        bibleVC.view.backgroundColor = .white
-        navigationController.setViewControllers([bibleVC], animated: false)
+        let searchVC = SearchViewController()
+        searchVC.view.backgroundColor = .white
+        navigationController.setViewControllers([searchVC], animated: false)
         return navigationController
     }
 }
