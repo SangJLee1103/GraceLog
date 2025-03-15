@@ -107,13 +107,13 @@ final class HomeViewController: UIViewController, View {
     
     
     private func configureTableView() {
-        // User DataSource
+        // User
         tableView.register(HomeTableViewHeader.self, forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
         tableView.register(HomeDiaryTableViewCell.self, forCellReuseIdentifier: HomeDiaryTableViewCell.identifier)
         tableView.register(HomeRecommendTableViewCell.self, forCellReuseIdentifier: HomeRecommendTableViewCell.identifier)
         tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
         
-        // Community DataSource
+        // Community
         tableView.register(CommunityTableViewCell.self, forCellReuseIdentifier: CommunityTableViewCell.identifier)
         tableView.register(HomeCommunityDateHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeCommunityDateHeaderView.identifier)
         tableView.register(HomeCommunityUserTableViewCell.self, forCellReuseIdentifier: HomeCommunityUserTableViewCell.identifier)
@@ -121,13 +121,9 @@ final class HomeViewController: UIViewController, View {
     }
     
     func bind(reactor: HomeViewReactor) {
-        headerView.segmentTapped
-            .map { isUserSelected in
-                return isUserSelected ?
-                HomeViewReactor.Action.userButtonTapped :
-                HomeViewReactor.Action.groupButtonTapped
-            }
-            .bind(to: reactor.action)
+        reactor.state
+            .map { $0.sections }
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         reactor.state
@@ -143,8 +139,23 @@ final class HomeViewController: UIViewController, View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map { $0.sections }
-            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .map { $0.selectedCommunity }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                DispatchQueue.main.async {
+                    owner.tableView.reloadData()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        headerView.segmentTapped
+            .map { isUserSelected in
+                return isUserSelected ?
+                HomeViewReactor.Action.userButtonTapped :
+                HomeViewReactor.Action.groupButtonTapped
+            }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         tableView.rx.setDelegate(self)
@@ -154,6 +165,20 @@ final class HomeViewController: UIViewController, View {
             .subscribe(onNext: { item in
                 if let communityItem = item as? CommunityItem {
                     reactor.action.onNext(.selectCommunity(item: communityItem))
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        tableView.rx.willDisplayCell
+            .subscribe(onNext: { [weak self] cell, indexPath in
+                guard let self = self, let reactor = self.reactor else { return }
+                
+                if let communityCell = cell as? CommunityTableViewCell {
+                    communityCell.communityButtonTapped
+                        .take(1)
+                        .map { HomeViewReactor.Action.selectCommunity(item: $0) }
+                        .bind(to: reactor.action)
+                        .disposed(by: self.disposeBag)
                 }
             })
             .disposed(by: disposeBag)
@@ -205,19 +230,12 @@ extension HomeViewController: UITableViewDelegate {
         
         switch reactor.currentState.currentSegment {
         case .user:
-            guard let homeSection = HomeSection(rawValue: section) else { return 0 }
-            
-            switch homeSection {
-            case .diary:
-                return 130
-            case .contentList:
-                return 80
-            }
+            return UITableView.automaticDimension
         case .group:
             if section == 0 {
                 return .leastNonzeroMagnitude
             } else {
-                return 50
+                return UITableView.automaticDimension
             }
         }
     }

@@ -88,7 +88,7 @@ final class HomeViewReactor: Reactor {
                 
                 let buttonItems = communityData.communityList.map { item in
                     return CommunityItem(
-                        imageName: item.imageName, title: item.title
+                        imageName: item.imageName, title: item.title, isSelected: item.isSelected
                     )
                 }
                 
@@ -107,17 +107,18 @@ final class HomeViewReactor: Reactor {
                             comments: item.comments
                         )
                     }
-                    
                     sections.append(.communityPosts(sectionData.date, items))
                 }
-                
                 return sections
             }
         }
     }
     
     let initialState: State = State()
-    
+}
+
+
+extension HomeViewReactor {
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
         let myDataMutation = homeUsecase.homeMyData
             .compactMap { $0 }
@@ -155,14 +156,31 @@ final class HomeViewReactor: Reactor {
         switch mutation {
         case .setSegment(let segment):
             newState.currentSegment = segment
-        case .setCommunityIndex(let model):
-            newState.selectedCommunity = model
+        case .setCommunityIndex(let selectedModel):
+            newState.selectedCommunity = selectedModel
+            newState = updateCommunitySelectionState(in: newState, with: selectedModel)
         case .setHomeMyData(let data):
             newState.homeMyData = data
         case .setHomeCommunityData(let data):
             newState.homeCommunityData = data
         case .setError(let error):
             newState.error = error
+        }
+        return newState
+    }
+     
+    private func updateCommunitySelectionState(in state: State, with selectedModel: CommunityItem) -> State {
+        var newState = state
+        
+        if var communityData = newState.homeCommunityData {
+            let updatedList = communityData.communityList.map { item -> CommunityItem in
+                var updatedItem = item
+                updatedItem.isSelected = (item.title == selectedModel.title)
+                return updatedItem
+            }
+            
+            communityData.communityList = updatedList
+            newState.homeCommunityData = communityData
         }
         return newState
     }

@@ -8,9 +8,13 @@
 import UIKit
 import Then
 import SnapKit
+import RxSwift
 
 final class CommunityButton: UIView {
     var model: CommunityItem?
+    
+    let tapEvent = PublishSubject<CommunityItem>()
+    private let disposeBag = DisposeBag()
     
     private let imageContainer = UIView().then {
         $0.layer.cornerRadius = 32
@@ -34,6 +38,7 @@ final class CommunityButton: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -67,12 +72,28 @@ final class CommunityButton: UIView {
         }
     }
     
-    func configure(image: UIImage?, title: String) {
+    func configure(model: CommunityItem, image: UIImage?, title: String) {
+        self.model = model
         imageView.image = image
         titleLabel.text = title
+        setSelected(model.isSelected)
     }
     
     func setSelected(_ selected: Bool) {
         imageContainer.layer.borderColor = selected ? UIColor.themeColor.cgColor : UIColor.graceLightGray.cgColor
+    }
+    
+    private func bind() {
+        let tapGesture = UITapGestureRecognizer()
+        self.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx.event
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                if let model = owner.model {
+                    owner.tapEvent.onNext(model)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }

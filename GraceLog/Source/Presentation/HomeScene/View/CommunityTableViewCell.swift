@@ -14,7 +14,8 @@ import RxCocoa
 final class CommunityTableViewCell: UITableViewCell {
     static let identifier = "CommunityTableViewCell"
     
-    let communitySelected = PublishRelay<CommunityItem>()
+    let communityButtonTapped = PublishSubject<CommunityItem>()
+    private var disposeBag = DisposeBag()
     
     private let scrollView = UIScrollView().then {
         $0.showsHorizontalScrollIndicator = false
@@ -40,6 +41,11 @@ final class CommunityTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     private func configureUI() {
         contentView.backgroundColor = .white
         
@@ -61,21 +67,13 @@ final class CommunityTableViewCell: UITableViewCell {
     
     private func createCommunityButton(image: UIImage?, title: String, model: CommunityItem) -> CommunityButton {
         let button = CommunityButton()
-        button.configure(image: image, title: title)
+        button.configure(model: model, image: image, title: title)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(communityButtonTapped))
-        button.tag = communityButtons.count
-        button.addGestureRecognizer(tapGesture)
-        button.isUserInteractionEnabled = true
-        button.model = model
+        button.tapEvent
+            .bind(to: communityButtonTapped)
+            .disposed(by: disposeBag)
         
         return button
-    }
-    
-    @objc private func communityButtonTapped(_ sender: UITapGestureRecognizer) {
-        if let button = sender.view as? CommunityButton, let model = button.model {
-            communitySelected.accept(model)
-        }
     }
     
     func configure(with buttons: [CommunityItem]) {
@@ -87,12 +85,6 @@ final class CommunityTableViewCell: UITableViewCell {
                                                    title: buttonModel.title, model: buttonModel)
             communityButtons.append(buttonView)
             stackView.addArrangedSubview(buttonView)
-        }
-    }
-    
-    func updateSelectionState(selectedModel: CommunityItem) {
-        for button in communityButtons {
-            button.setSelected(button.model?.title == selectedModel.title)
         }
     }
 }

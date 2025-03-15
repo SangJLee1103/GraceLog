@@ -50,7 +50,7 @@ final class HomeTableViewHeader: UITableViewHeaderFooterView {
         [titleLabel, descLabel, paragraphLabel].forEach { stackView.addArrangedSubview($0) }
         
         stackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 14, left: 30, bottom: 8, right: 30))
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 26, left: 30, bottom: 8, right: 30))
         }
     }
     
