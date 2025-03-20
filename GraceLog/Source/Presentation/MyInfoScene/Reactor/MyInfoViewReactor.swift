@@ -36,7 +36,12 @@ extension MyInfoViewReactor {
             return .just(.setSections(sections))
         case .itemSelected(let indexPath):
             let item = currentState.sections[indexPath.section].items[indexPath.row]
-            return .just(.selectItem(item.type))
+            
+            if let myInfoItem = item as? MyInfoItem {
+                return .just(.selectItem(myInfoItem.type))
+            }
+            
+            return .empty()
         }
     }
     
@@ -54,6 +59,10 @@ extension MyInfoViewReactor {
     }
     
     private func createSections() -> [MyInfoSection] {
+        let profileItems = [
+            ProfileItem(imageUrl: "profile_image", name: "윤승렬", email: "dbs3153@naver.com")
+        ]
+        
         let myInfoItems = [
             MyInfoItem(icon: "user", title: "프로필 조회 및 수정", type: .myProfile),
             MyInfoItem(icon: "coffee", title: "나의 감사일기", type: .myCalendar),
@@ -82,6 +91,7 @@ extension MyInfoViewReactor {
         ]
         
         return [
+            .profile(items: profileItems),
             .myInfo(title: "승렬님의 Grace Log", items: myInfoItems),
             .community(title: "공동체 및 친구관리", items: communityItems),
             .notification(title: "푸시 알림 설정", items: notificationItems),

@@ -51,10 +51,11 @@
 		DE3BFCE42D059E970076426D /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE32D059E970076426D /* SearchCoordinator.swift */; };
 		DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */; };
 		DE3BFCEC2D0D3D390076426D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */; };
-		DE4D8B782D85646500533276 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B772D85646500533276 /* ProfileHeaderView.swift */; };
+		DE4D8B782D85646500533276 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */; };
 		DE4D8B7A2D856A4A00533276 /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */; };
 		DE4D8B7E2D857B5300533276 /* MyInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B7D2D857B5300533276 /* MyInfoViewReactor.swift */; };
 		DE4D8B812D85812300533276 /* MyInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B802D85812300533276 /* MyInfoDataSource.swift */; };
+		DE4D8B832D8C419700533276 /* MyInfoSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */; };
 		DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB02D04284D008CADCD /* AppDelegate.swift */; };
 		DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB22D04284D008CADCD /* SceneDelegate.swift */; };
 		DE58FEBD2D04284D008CADCD /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE58FEBC2D04284D008CADCD /* Base */; };
@@ -163,10 +164,11 @@
 		DE3BFCE32D059E970076426D /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DE4D8B772D85646500533276 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
 		DE4D8B7D2D857B5300533276 /* MyInfoViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewReactor.swift; sourceTree = "<group>"; };
 		DE4D8B802D85812300533276 /* MyInfoDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDataSource.swift; sourceTree = "<group>"; };
+		DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSectionHeaderView.swift; sourceTree = "<group>"; };
 		DE58FEAD2D04284D008CADCD /* GraceLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraceLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE58FEB02D04284D008CADCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE58FEB22D04284D008CADCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -698,8 +700,9 @@
 		DE3BFCD22D048A010076426D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DE4D8B772D85646500533276 /* ProfileHeaderView.swift */,
+				DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */,
 				DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */,
+				DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1128,6 +1131,7 @@
 				DE4D8B7E2D857B5300533276 /* MyInfoViewReactor.swift in Sources */,
 				DE9A1FF22D7C065C0044F655 /* HomeContentDTO.swift in Sources */,
 				DE2700532D2113F2005C9DCF /* LoginReactor.swift in Sources */,
+				DE4D8B832D8C419700533276 /* MyInfoSectionHeaderView.swift in Sources */,
 				DE9A1FD52D79AA780044F655 /* CommunityDiary.swift in Sources */,
 				DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */,
 				DE9A1FDC2D79AFFA0044F655 /* MyDiaryItem.swift in Sources */,
@@ -1161,7 +1165,7 @@
 				DE9A1FFC2D7C0B680044F655 /* DefaultHomeRepository.swift in Sources */,
 				DE9A1FF62D7C07FE0044F655 /* HomeUseCase.swift in Sources */,
 				DE9A1FC82D69DA2A0044F655 /* CommunityButton.swift in Sources */,
-				DE4D8B782D85646500533276 /* ProfileHeaderView.swift in Sources */,
+				DE4D8B782D85646500533276 /* ProfileTableViewCell.swift in Sources */,
 				DE27005A2D2125FF005C9DCF /* LoginUseCase.swift in Sources */,
 				DE9A1FCC2D6C7D890044F655 /* HomeCommunityMyTableViewCell.swift in Sources */,
 				DE2700662D22D43E005C9DCF /* UserDTO.swift in Sources */,

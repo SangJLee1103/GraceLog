@@ -7,6 +7,13 @@
 
 import Foundation
 import RxDataSources
+import UIKit
+
+struct ProfileItem {
+    let imageUrl: String?
+    let name: String
+    let email: String
+}
 
 struct MyInfoItem {
     let icon: String
@@ -29,8 +36,12 @@ enum MyInfoItemType {
     case withdrawal
 }
 
+protocol SectionItem {}
+extension ProfileItem: SectionItem {}
+extension MyInfoItem: SectionItem {}
 
 enum MyInfoSection {
+    case profile(items: [ProfileItem])
     case myInfo(title: String, items: [MyInfoItem])
     case community(title: String, items: [MyInfoItem])
     case notification(title: String, items: [MyInfoItem])
@@ -39,10 +50,12 @@ enum MyInfoSection {
 }
 
 extension MyInfoSection: SectionModelType {
-    typealias Item = MyInfoItem
+    typealias Item = SectionItem
     
-    var items: [MyInfoItem] {
+    var items: [SectionItem] {
         switch self {
+        case .profile(let items):
+            return items
         case .myInfo(_, let items),
                 .community(_, let items),
                 .notification(_, let items),
@@ -52,8 +65,10 @@ extension MyInfoSection: SectionModelType {
         }
     }
     
-    var title: String {
+    var title: String? {
         switch self {
+        case .profile:
+            return nil
         case .myInfo(let title, _),
                 .community(let title, _),
                 .notification(let title, _),
@@ -63,18 +78,20 @@ extension MyInfoSection: SectionModelType {
         }
     }
     
-    init(original: MyInfoSection, items: [MyInfoItem]) {
+    init(original: MyInfoSection, items: [SectionItem]) {
         switch original {
+        case .profile:
+            self = .profile(items: items as! [ProfileItem])
         case .myInfo(let title, _):
-            self = .myInfo(title: title, items: items)
+            self = .myInfo(title: title, items: items as! [MyInfoItem])
         case .community(let title, _):
-            self = .community(title: title, items: items)
+            self = .community(title: title, items: items as! [MyInfoItem])
         case .notification(let title, _):
-            self = .notification(title: title, items: items)
+            self = .notification(title: title, items: items as! [MyInfoItem])
         case .customerService(let title, _):
-            self = .customerService(title: title, items: items)
+            self = .customerService(title: title, items: items as! [MyInfoItem])
         case .account(let title, _):
-            self = .account(title: title, items: items)
+            self = .account(title: title, items: items as! [MyInfoItem])
         }
     }
 }

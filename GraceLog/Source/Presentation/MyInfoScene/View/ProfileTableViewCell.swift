@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 import Then
 
-final class ProfileHeaderView: UITableViewHeaderFooterView {
-    static let identifier = "ProfileHeaderView"
+final class ProfileTableViewCell: UITableViewCell {
+    static let identifier = "ProfileTableViewCell"
     
     private let profileImgView = UIImageView().then {
         $0.setDimensions(width: 112, height: 112)
@@ -32,8 +32,9 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         $0.text = "dbs3153@naver.com"
     }
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureUI()
     }
     
@@ -42,6 +43,8 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     private func configureUI() {
+        backgroundColor = UIColor(hex: 0xF4F4F4)
+        
         [profileImgView, nameLabel, emailLabel].forEach {
             addSubview($0)
         }
@@ -59,7 +62,7 @@ final class ProfileHeaderView: UITableViewHeaderFooterView {
         emailLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(2)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(12)
+            $0.bottom.equalToSuperview().offset(-12)
         }
     }
 }
