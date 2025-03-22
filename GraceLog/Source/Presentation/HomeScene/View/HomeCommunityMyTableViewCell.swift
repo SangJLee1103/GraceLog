@@ -51,7 +51,7 @@ final class HomeCommunityMyTableViewCell: UITableViewCell {
     
     private lazy var likeButton = UIButton().then {
         var config = UIButton.Configuration.plain()
-        config.image = UIImage(named: "heart")
+        config.image = UIImage(named: "home_heart")
         config.title = "4"
         config.imagePadding = 4
         config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
