@@ -18,19 +18,34 @@ final class MyInfoViewController: UIViewController, View {
     
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.backgroundColor = UIColor(hex: 0xF4F4F4)
+        $0.layoutMargins = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
     }
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<MyInfoSection>(
         configureCell: { [weak self] dataSource, tableView, indexPath, item in
             if let profileItem = item as? ProfileItem {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as! ProfileTableViewCell
+                cell.selectionStyle = .none
                 //                cell.configure(image: profileItem.imageUrl, name: profileItem.name, email: profileItem.email)
                 return cell
             } else if let myInfoItem = item as? MyInfoItem {
-                let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoTableViewCell.identifier, for: indexPath) as! MyInfoTableViewCell
-                cell.selectionStyle = .none
-                cell.setData(imgName: myInfoItem.icon, title: myInfoItem.title)
-                return cell
+                let section = dataSource[indexPath.section]
+                
+                if case .logout = section, let myInfoItem = item as? MyInfoItem {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoButtonTableViewCell.identifier, for: indexPath) as! MyInfoButtonTableViewCell
+                    cell.updateUI(title: myInfoItem.title, textColor: .black)
+                    return cell
+                } else if case .withdrawal = section, let myInfoItem = item as? MyInfoItem {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoButtonTableViewCell.identifier, for: indexPath) as! MyInfoButtonTableViewCell
+                    cell.updateUI(title: myInfoItem.title, textColor: .themeColor)
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: MyInfoTableViewCell.identifier, for: indexPath) as! MyInfoTableViewCell
+                    cell.selectionStyle = .none
+                    cell.separatorInset = .init(top: 0, left: 61, bottom: 0, right: 0)
+                    cell.updateUI(imgName: myInfoItem.icon, title: myInfoItem.title)
+                    return cell
+                }
             }
             return UITableViewCell()
         }
@@ -59,6 +74,7 @@ final class MyInfoViewController: UIViewController, View {
         tableView.register(MyInfoSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: MyInfoSectionHeaderView.identifier)
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.identifier)
+        tableView.register(MyInfoButtonTableViewCell.self, forCellReuseIdentifier: MyInfoButtonTableViewCell.identifier)
         
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
@@ -87,6 +103,24 @@ extension MyInfoViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return dataSource[section].title != nil ? 40 : 0
+        let sectionModel = dataSource[section]
+        
+        switch sectionModel {
+        case .profile, .withdrawal:
+            return .leastNonzeroMagnitude
+        default:
+            return 40
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let sectionModel = dataSource[indexPath.section]
+        
+        switch sectionModel {
+        case .profile:
+            return UITableView.automaticDimension
+        default:
+            return 40
+        }   
     }
 }

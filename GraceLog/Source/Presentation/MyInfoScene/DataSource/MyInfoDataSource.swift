@@ -46,7 +46,8 @@ enum MyInfoSection {
     case community(title: String, items: [MyInfoItem])
     case notification(title: String, items: [MyInfoItem])
     case customerService(title: String, items: [MyInfoItem])
-    case account(title: String, items: [MyInfoItem])
+    case logout(title: String, items: [MyInfoItem])
+    case withdrawal(title: String, items: [MyInfoItem])
 }
 
 extension MyInfoSection: SectionModelType {
@@ -60,7 +61,8 @@ extension MyInfoSection: SectionModelType {
                 .community(_, let items),
                 .notification(_, let items),
                 .customerService(_, let items),
-                .account(_, let items):
+                .logout(_, let items),
+                .withdrawal(_, let items):
             return items
         }
     }
@@ -73,7 +75,8 @@ extension MyInfoSection: SectionModelType {
                 .community(let title, _),
                 .notification(let title, _),
                 .customerService(let title, _),
-                .account(let title, _):
+                .logout(let title, _),
+                .withdrawal(let title, items: _):
             return title
         }
     }
@@ -90,8 +93,10 @@ extension MyInfoSection: SectionModelType {
             self = .notification(title: title, items: items as! [MyInfoItem])
         case .customerService(let title, _):
             self = .customerService(title: title, items: items as! [MyInfoItem])
-        case .account(let title, _):
-            self = .account(title: title, items: items as! [MyInfoItem])
+        case .logout(let title, _):
+            self = .logout(title: title, items: items as! [MyInfoItem])
+        case .withdrawal(let title, _):
+            self = .withdrawal(title: title, items: items as! [MyInfoItem])
         }
     }
 }

@@ -26,9 +26,7 @@ final class MyInfoSectionHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureUI() {
-        backgroundColor = UIColor(hex: 0xF4F4F4)
-        
+    private func configureUI() {        
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(10)

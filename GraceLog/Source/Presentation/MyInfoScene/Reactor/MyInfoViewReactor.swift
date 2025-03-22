@@ -85,8 +85,11 @@ extension MyInfoViewReactor {
             MyInfoItem(icon: "message", title: "문의하기", type: .inquiry)
         ]
         
-        let accountItems = [
+        let logoutItems = [
             MyInfoItem(icon: "", title: "로그아웃", type: .logout),
+        ]
+        
+        let withdrawalItem = [
             MyInfoItem(icon: "", title: "탈퇴하기", type: .withdrawal)
         ]
         
@@ -96,7 +99,8 @@ extension MyInfoViewReactor {
             .community(title: "공동체 및 친구관리", items: communityItems),
             .notification(title: "푸시 알림 설정", items: notificationItems),
             .customerService(title: "고객센터", items: customerServiceItems),
-            .account(title: "계정 설정", items: accountItems)
+            .logout(title: "계정 설정", items: logoutItems),
+            .withdrawal(title: "", items: withdrawalItem)
         ]
     }
 }

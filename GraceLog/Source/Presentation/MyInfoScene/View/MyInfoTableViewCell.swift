@@ -39,7 +39,7 @@ final class MyInfoTableViewCell: UITableViewCell {
         backgroundColor = .white
         
         [imgView, titleLabel, disclosureView].forEach {
-            addSubview($0)
+            contentView.addSubview($0)
         }
         
         imgView.snp.makeConstraints {
@@ -50,7 +50,6 @@ final class MyInfoTableViewCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(10)
             $0.leading.equalTo(imgView.snp.trailing).offset(21)
-            $0.width.equalTo(183)
         }
         
         disclosureView.snp.makeConstraints {
@@ -59,7 +58,7 @@ final class MyInfoTableViewCell: UITableViewCell {
         }
     }
     
-    func setData(imgName: String, title: String) {
+    func updateUI(imgName: String, title: String) {
         imgView.image = UIImage(named: imgName)
         titleLabel.text = title
     }
