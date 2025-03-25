@@ -62,7 +62,7 @@ final class ProfileTableViewCell: UITableViewCell {
         emailLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(2)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-12)
+            $0.bottom.equalToSuperview().inset(2)
         }
     }
 }

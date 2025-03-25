@@ -81,6 +81,7 @@ final class CommunityButton: UIView {
     
     func setSelected(_ selected: Bool) {
         imageContainer.layer.borderColor = selected ? UIColor.themeColor.cgColor : UIColor.graceLightGray.cgColor
+        titleLabel.textColor = selected ? UIColor.themeColor : UIColor.graceGray
     }
     
     private func bind() {
