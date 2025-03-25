@@ -70,7 +70,6 @@ final class MyInfoViewController: UIViewController, View {
     }
     
     private func configureTableView() {
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 28 , bottom: 0, right: 25)
         tableView.register(MyInfoSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: MyInfoSectionHeaderView.identifier)
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.identifier)

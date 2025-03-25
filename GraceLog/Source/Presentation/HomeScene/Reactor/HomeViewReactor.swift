@@ -163,6 +163,11 @@ extension HomeViewReactor {
             newState.homeMyData = data
         case .setHomeCommunityData(let data):
             newState.homeCommunityData = data
+            
+            if let firstCommunity = data.communityList.first {
+                newState.selectedCommunity = firstCommunity
+                newState = updateCommunitySelectionState(in: newState, with: firstCommunity)
+            }
         case .setError(let error):
             newState.error = error
         }
