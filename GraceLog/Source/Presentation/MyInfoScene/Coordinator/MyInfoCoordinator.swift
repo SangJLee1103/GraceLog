@@ -39,6 +39,7 @@ final class MyInfoCoordinator: Coordinator {
     func startPush() -> UINavigationController {
         let myInfoVC = MyInfoViewController()
         myInfoVC.view.backgroundColor = UIColor(hex: 0xF4F4F4)
+        myInfoVC.title = "내 계정"
         navigationController.setViewControllers([myInfoVC], animated: false)
         return navigationController
     }

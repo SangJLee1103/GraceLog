@@ -1238,6 +1238,7 @@ PODS:
   - SteviaLayout (5.1.2)
   - Then (3.0.0)
   - Toast-Swift (5.1.1)
+  - "UITextView+Placeholder (1.4.0)"
   - WeakMapTable (1.2.0)
   - YPImagePicker (5.2.2):
     - PryntTrimmerView (= 4.0.2)
@@ -1265,6 +1266,7 @@ DEPENDENCIES:
   - SnapKit
   - Then
   - Toast-Swift (~> 5.1.1)
+  - "UITextView+Placeholder"
   - YPImagePicker
 
 SPEC REPOS:
@@ -1316,6 +1318,7 @@ SPEC REPOS:
     - SteviaLayout
     - Then
     - Toast-Swift
+    - "UITextView+Placeholder"
     - WeakMapTable
     - YPImagePicker
 
@@ -1367,9 +1370,10 @@ SPEC CHECKSUMS:
   SteviaLayout: 05424e528d643657d39ce72c786e4adf13cfc5f2
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
   YPImagePicker: afc81b3cffab05a6e7261c5daf80dc31b4e917b4
 
-PODFILE CHECKSUM: 9ea968f243f1986dfe25461c75e6d8ddba4fae51
+PODFILE CHECKSUM: efdcea5169b8a39dec0e59e42985d4679bbffa88
 
 COCOAPODS: 1.15.2

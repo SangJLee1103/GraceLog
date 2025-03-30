@@ -58,9 +58,7 @@ final class MyInfoViewController: UIViewController, View {
         configureTableView()
     }
     
-    private func configureUI() {
-        title = "내 계정"
-        
+    private func configureUI() { 
         let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(tableView)
@@ -70,7 +68,7 @@ final class MyInfoViewController: UIViewController, View {
     }
     
     private func configureTableView() {
-        tableView.register(MyInfoSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: MyInfoSectionHeaderView.identifier)
+        tableView.register(CommonSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: CommonSectionHeaderView.identifier)
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: ProfileTableViewCell.identifier)
         tableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.identifier)
         tableView.register(MyInfoButtonTableViewCell.self, forCellReuseIdentifier: MyInfoButtonTableViewCell.identifier)
@@ -94,7 +92,7 @@ final class MyInfoViewController: UIViewController, View {
 extension MyInfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let title = dataSource[section].title {
-            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyInfoSectionHeaderView.identifier) as? MyInfoSectionHeaderView
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommonSectionHeaderView.identifier) as? CommonSectionHeaderView
             headerView?.setTitle(title)
             return headerView
         }
