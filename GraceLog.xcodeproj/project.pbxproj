@@ -55,13 +55,20 @@
 		DE4D8B7A2D856A4A00533276 /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */; };
 		DE4D8B7E2D857B5300533276 /* MyInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B7D2D857B5300533276 /* MyInfoViewReactor.swift */; };
 		DE4D8B812D85812300533276 /* MyInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B802D85812300533276 /* MyInfoDataSource.swift */; };
-		DE4D8B832D8C419700533276 /* CommonSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B822D8C419700533276 /* CommonSectionHeaderView.swift */; };
+		DE4D8B832D8C419700533276 /* MyInfoSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */; };
 		DE4D8B852D8D6ED100533276 /* MyInfoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */; };
+		DE5638472D99785D00A12192 /* DiaryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5638462D99785D00A12192 /* DiaryUseCase.swift */; };
+		DE5638492D9DFD2E00A12192 /* DiaryCommunityData.json in Resources */ = {isa = PBXBuildFile; fileRef = DE5638482D9DFD2E00A12192 /* DiaryCommunityData.json */; };
+		DE56384C2D9DFDDF00A12192 /* CommunityDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56384B2D9DFDDF00A12192 /* CommunityDTO.swift */; };
+		DE56384F2D9E01D100A12192 /* DiaryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56384E2D9E01D100A12192 /* DiaryDataSource.swift */; };
+		DE5638512DA147EA00A12192 /* CommonSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5638502DA147EA00A12192 /* CommonSectionHeaderView.swift */; };
+		DE5638532DA1726700A12192 /* CommonButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5638522DA1726700A12192 /* CommonButtonTableViewCell.swift */; };
 		DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB02D04284D008CADCD /* AppDelegate.swift */; };
 		DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FEB22D04284D008CADCD /* SceneDelegate.swift */; };
 		DE58FEBD2D04284D008CADCD /* Base in Resources */ = {isa = PBXBuildFile; fileRef = DE58FEBC2D04284D008CADCD /* Base */; };
 		DE58FED22D04284E008CADCD /* GraceLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FED12D04284E008CADCD /* GraceLogUITests.swift */; };
 		DE58FED42D04284E008CADCD /* GraceLogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58FED32D04284E008CADCD /* GraceLogUITestsLaunchTests.swift */; };
+		DE655B1F2DA1758F0073B4F7 /* CommonDivideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE655B1E2DA1758F0073B4F7 /* CommonDivideTableViewCell.swift */; };
 		DE66C2F32D941AF5009A983F /* DiarySwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66C2F22D941AF5009A983F /* DiarySwitchTableViewCell.swift */; };
 		DE66C2F52D96B0E4009A983F /* DiaryViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66C2F42D96B0E4009A983F /* DiaryViewReactor.swift */; };
 		DE66C2F72D96B26F009A983F /* DiaryImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE66C2F62D96B26F009A983F /* DiaryImageTableViewCell.swift */; };
@@ -177,8 +184,14 @@
 		DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
 		DE4D8B7D2D857B5300533276 /* MyInfoViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewReactor.swift; sourceTree = "<group>"; };
 		DE4D8B802D85812300533276 /* MyInfoDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDataSource.swift; sourceTree = "<group>"; };
-		DE4D8B822D8C419700533276 /* CommonSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSectionHeaderView.swift; sourceTree = "<group>"; };
+		DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSectionHeaderView.swift; sourceTree = "<group>"; };
 		DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonTableViewCell.swift; sourceTree = "<group>"; };
+		DE5638462D99785D00A12192 /* DiaryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryUseCase.swift; sourceTree = "<group>"; };
+		DE5638482D9DFD2E00A12192 /* DiaryCommunityData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DiaryCommunityData.json; sourceTree = "<group>"; };
+		DE56384B2D9DFDDF00A12192 /* CommunityDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDTO.swift; sourceTree = "<group>"; };
+		DE56384E2D9E01D100A12192 /* DiaryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDataSource.swift; sourceTree = "<group>"; };
+		DE5638502DA147EA00A12192 /* CommonSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSectionHeaderView.swift; sourceTree = "<group>"; };
+		DE5638522DA1726700A12192 /* CommonButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButtonTableViewCell.swift; sourceTree = "<group>"; };
 		DE58FEAD2D04284D008CADCD /* GraceLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraceLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE58FEB02D04284D008CADCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE58FEB22D04284D008CADCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +201,7 @@
 		DE58FECD2D04284E008CADCD /* GraceLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraceLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE58FED12D04284E008CADCD /* GraceLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUITests.swift; sourceTree = "<group>"; };
 		DE58FED32D04284E008CADCD /* GraceLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DE655B1E2DA1758F0073B4F7 /* CommonDivideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDivideTableViewCell.swift; sourceTree = "<group>"; };
 		DE66C2F22D941AF5009A983F /* DiarySwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySwitchTableViewCell.swift; sourceTree = "<group>"; };
 		DE66C2F42D96B0E4009A983F /* DiaryViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewReactor.swift; sourceTree = "<group>"; };
 		DE66C2F62D96B26F009A983F /* DiaryImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -283,6 +297,7 @@
 		DE069B922D53A708007C2066 /* DiaryScene */ = {
 			isa = PBXGroup;
 			children = (
+				DE56384D2D9E01B900A12192 /* DataSource */,
 				DE069B932D53A818007C2066 /* Coordinator */,
 				DE069B942D53A81F007C2066 /* Reactor */,
 				DE069B952D53A826007C2066 /* View */,
@@ -478,6 +493,7 @@
 				DE9A1FED2D7C05240044F655 /* HomeCommunityContentDTO.swift */,
 				DE9A1FEF2D7C05720044F655 /* CommunityDiaryDTO.swift */,
 				DE9A1FF12D7C065C0044F655 /* HomeContentDTO.swift */,
+				DE56384B2D9DFDDF00A12192 /* CommunityDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -648,7 +664,9 @@
 		DE3BFCC82D0489980076426D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DE4D8B822D8C419700533276 /* CommonSectionHeaderView.swift */,
+				DE5638502DA147EA00A12192 /* CommonSectionHeaderView.swift */,
+				DE5638522DA1726700A12192 /* CommonButtonTableViewCell.swift */,
+				DE655B1E2DA1758F0073B4F7 /* CommonDivideTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -727,6 +745,7 @@
 		DE3BFCD22D048A010076426D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */,
 				DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */,
 				DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */,
 				DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */,
@@ -783,6 +802,14 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		DE56384D2D9E01B900A12192 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				DE56384E2D9E01D100A12192 /* DiaryDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		DE58FEA42D04284D008CADCD = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +862,7 @@
 		DE66C2F92D96B38D009A983F /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				DE5638462D99785D00A12192 /* DiaryUseCase.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -850,6 +878,7 @@
 		DE9A1FE42D7BFE9C0044F655 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				DE5638482D9DFD2E00A12192 /* DiaryCommunityData.json */,
 				DE9A1FFD2D7C31FE0044F655 /* HomeCommunityData.json */,
 				DE9A1FFF2D7C32050044F655 /* HomeMyData.json */,
 			);
@@ -997,6 +1026,7 @@
 				DE2700402D1EFB4E005C9DCF /* Pretendard-Thin.otf in Resources */,
 				DE27003C2D1EFB4E005C9DCF /* Pretendard-ExtraLight.otf in Resources */,
 				DE27003D2D1EFB4E005C9DCF /* Pretendard-Light.otf in Resources */,
+				DE5638492D9DFD2E00A12192 /* DiaryCommunityData.json in Resources */,
 				DE27003E2D1EFB4E005C9DCF /* Pretendard-Black.otf in Resources */,
 				DE2700422D1EFB4E005C9DCF /* Pretendard-SemiBold.otf in Resources */,
 				DE2700432D1EFB4E005C9DCF /* Pretendard-Regular.otf in Resources */,
@@ -1157,10 +1187,12 @@
 			files = (
 				DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */,
 				DE3BFCDE2D059D3D0076426D /* SearchViewController.swift in Sources */,
+				DE56384F2D9E01D100A12192 /* DiaryDataSource.swift in Sources */,
 				DE069BA42D571499007C2066 /* HomeTableViewHeader.swift in Sources */,
 				DE3BFCE12D059DDC0076426D /* HomeCoordinator.swift in Sources */,
 				DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */,
 				DE9A1FCE2D6C86C00044F655 /* HomeCommunityUserTableViewCell.swift in Sources */,
+				DE56384C2D9DFDDF00A12192 /* CommunityDTO.swift in Sources */,
 				DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */,
 				DE9A1FD72D79AB8B0044F655 /* HomeCommunityContent.swift in Sources */,
 				DE3BFCE42D059E970076426D /* SearchCoordinator.swift in Sources */,
@@ -1174,7 +1206,7 @@
 				DE4D8B7E2D857B5300533276 /* MyInfoViewReactor.swift in Sources */,
 				DE9A1FF22D7C065C0044F655 /* HomeContentDTO.swift in Sources */,
 				DE2700532D2113F2005C9DCF /* LoginReactor.swift in Sources */,
-				DE4D8B832D8C419700533276 /* CommonSectionHeaderView.swift in Sources */,
+				DE4D8B832D8C419700533276 /* MyInfoSectionHeaderView.swift in Sources */,
 				DE9A1FD52D79AA780044F655 /* CommunityDiary.swift in Sources */,
 				DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */,
 				DE9A1FDC2D79AFFA0044F655 /* MyDiaryItem.swift in Sources */,
@@ -1190,6 +1222,7 @@
 				DE9A1FEE2D7C05240044F655 /* HomeCommunityContentDTO.swift in Sources */,
 				DE2700492D1F9E6B005C9DCF /* UIColor+CustomColor.swift in Sources */,
 				DE2700692D22D591005C9DCF /* Constant.swift in Sources */,
+				DE5638472D99785D00A12192 /* DiaryUseCase.swift in Sources */,
 				DE9A1FCA2D6AAC8C0044F655 /* HomeViewReactor.swift in Sources */,
 				DE069B982D53A855007C2066 /* DiaryCoordinator.swift in Sources */,
 				DE069BA02D571472007C2066 /* HomeNavBarTableViewHeader.swift in Sources */,
@@ -1204,7 +1237,9 @@
 				DE9A1FFA2D7C09350044F655 /* HomeRepository.swift in Sources */,
 				DE9A1FDA2D79AD660044F655 /* HomeDataSource.swift in Sources */,
 				DE069B9A2D53A884007C2066 /* DiaryViewController.swift in Sources */,
+				DE655B1F2DA1758F0073B4F7 /* CommonDivideTableViewCell.swift in Sources */,
 				DE069B9E2D57144A007C2066 /* HomeDiaryTableViewCell.swift in Sources */,
+				DE5638512DA147EA00A12192 /* CommonSectionHeaderView.swift in Sources */,
 				DE4D8B7A2D856A4A00533276 /* MyInfoTableViewCell.swift in Sources */,
 				DE66C2FB2D96B39B009A983F /* DefaultDiaryUseCase.swift in Sources */,
 				DE069BA22D571485007C2066 /* HomeRecommendTableViewCell.swift in Sources */,
@@ -1221,6 +1256,7 @@
 				DE27005A2D2125FF005C9DCF /* LoginUseCase.swift in Sources */,
 				DE9A1FCC2D6C7D890044F655 /* HomeCommunityMyTableViewCell.swift in Sources */,
 				DE2700662D22D43E005C9DCF /* UserDTO.swift in Sources */,
+				DE5638532DA1726700A12192 /* CommonButtonTableViewCell.swift in Sources */,
 				DE27005F2D212770005C9DCF /* FireStoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

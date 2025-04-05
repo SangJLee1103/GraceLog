@@ -6,9 +6,147 @@
 //
 
 import UIKit
+import Then
+import SnapKit
+import RxSwift
+import RxCocoa
+import ReactorKit
+import RxDataSources
+import YPImagePicker
 
-final class DiaryViewController: UIViewController {
+final class DiaryViewController: UIViewController, View {
+    typealias Reactor = DiaryViewReactor
+    
+    var disposeBag = DisposeBag()
+    
+    private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
+        $0.backgroundColor = .white
+        $0.separatorStyle = .none
+        $0.rowHeight = UITableView.automaticDimension
+        $0.estimatedRowHeight = 100
+        $0.sectionFooterHeight = 0
+    }
+    
+    private let bottomView = UIView().then {
+        $0.backgroundColor = .white
+        $0.setHeight(100)
+    }
+    
+    private let splitView = UIView().then {
+        $0.backgroundColor = .gray100
+        $0.setHeight(1)
+    }
+    
+    private let shareButton = UIButton().then {
+        $0.backgroundColor = .themeColor
+        $0.setTitle("공유하기", for: .normal)
+        $0.setTitleColor(.white, for: .normal)
+        $0.titleLabel?.font = UIFont(name: "Pretendard-ExtraBold", size: 18)
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+    }
+    
+    private lazy var saveButton = UIBarButtonItem(title: "임시저장", style: .plain, target: nil, action: nil)
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<DiarySection>(
+        configureCell: { [weak self] dataSource, tableView, indexPath, item in
+            switch item {
+            case .images(let images):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryImageTableViewCell.identifier, for: indexPath) as? DiaryImageTableViewCell else {
+                    return UITableViewCell()
+                }
+                return cell
+            case .title(let title):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleTableViewCell.identifier, for: indexPath) as? DiaryTitleTableViewCell else {
+                    return UITableViewCell()
+                }
+                return cell
+            case .description(let description):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryDescriptionTableViewCell.identifier, for: indexPath) as? DiaryDescriptionTableViewCell else {
+                    return UITableViewCell()
+                }
+                return cell
+            case .shareOption(let imageUrl, let title, let isOn):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiarySwitchTableViewCell.identifier, for: indexPath) as? DiarySwitchTableViewCell else {
+                    return UITableViewCell()
+                }
+                cell.updateUI(imageUrl: imageUrl, title: title, isOn: isOn)
+                return cell
+            case .button(let title):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CommonButtonTableViewCell.identifier, for: indexPath) as? CommonButtonTableViewCell else {
+                    return UITableViewCell()
+                }
+                cell.updateUI(title: title)
+                return cell
+            case .divide(let left, right: let right):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: CommonDivideTableViewCell.identifier, for: indexPath) as? CommonDivideTableViewCell else {
+                    return UITableViewCell()
+                }
+                cell.setUI(left: left, right: right)
+                return cell
+            }
+        }
+    )
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
+        configureTableView()
+    }
+    
+    private func configureUI() {
+        navigationItem.rightBarButtonItem = saveButton
+        navigationItem.rightBarButtonItem?.tintColor = .themeColor
+        
+        let safeArea = view.safeAreaLayoutGuide
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalTo(safeArea)
+        }
+    }
+    
+    private func configureTableView() {
+        tableView.delegate = self
+        
+        tableView.register(CommonSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: CommonSectionHeaderView.identifier)
+        tableView.register(DiaryImageTableViewCell.self, forCellReuseIdentifier: DiaryImageTableViewCell.identifier)
+        tableView.register(DiaryTitleTableViewCell.self, forCellReuseIdentifier: DiaryTitleTableViewCell.identifier)
+        tableView.register(DiaryDescriptionTableViewCell.self, forCellReuseIdentifier: DiaryDescriptionTableViewCell.identifier)
+        tableView.register(DiarySwitchTableViewCell.self, forCellReuseIdentifier: DiarySwitchTableViewCell.identifier)
+        tableView.register(CommonButtonTableViewCell.self, forCellReuseIdentifier: CommonButtonTableViewCell.identifier)
+        tableView.register(CommonDivideTableViewCell.self, forCellReuseIdentifier: CommonDivideTableViewCell.identifier)
+    }
+    
+    func bind(reactor: DiaryViewReactor) {
+        saveButton.rx.tap
+            .map { Reactor.Action.saveDiary }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.sections }
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+    }
+}
+
+extension DiaryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let title = dataSource[section].title {
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommonSectionHeaderView.identifier) as? CommonSectionHeaderView
+            headerView?.setTitle(title)
+            return headerView
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let sectionModel = dataSource[section]
+        
+        switch sectionModel {
+        case .images, .button, .divide:
+            return .leastNonzeroMagnitude
+        default:
+            return 40
+        }
     }
 }

@@ -40,6 +40,8 @@ final class DiaryAddImageCollectionViewCell: UICollectionViewCell {
     }
     
     private func configureUI() {
+        backgroundColor = .white
+        
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -58,5 +60,9 @@ final class DiaryAddImageCollectionViewCell: UICollectionViewCell {
             $0.leading.trailing.equalToSuperview().inset(8)
             $0.bottom.equalToSuperview().inset(9)
         }
+    }
+    
+    func updateCount(current: Int, max: Int) {
+        countLabel.text = "\(current)/\(max)"
     }
 }

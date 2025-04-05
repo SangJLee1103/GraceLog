@@ -14,7 +14,6 @@ final class DiarySwitchTableViewCell: UITableViewCell {
     
     private let logoImgView = UIImageView().then {
         $0.setDimensions(width: 40, height: 40)
-        $0.backgroundColor = .gray200
     }
     
     private let titleLabel = UILabel().then {
@@ -23,7 +22,7 @@ final class DiarySwitchTableViewCell: UITableViewCell {
     }
     
     private let shareSwitch = UISwitch().then {
-        $0.backgroundColor = .themeColor
+        $0.onTintColor = .themeColor
         $0.setDimensions(width: 27, height: 27)
     }
     
@@ -37,6 +36,9 @@ final class DiarySwitchTableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
+        backgroundColor = .white
+        selectionStyle = .none
+        
         contentView.addSubview(logoImgView)
         logoImgView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(6)
@@ -45,14 +47,13 @@ final class DiarySwitchTableViewCell: UITableViewCell {
         
         contentView.addSubview(shareSwitch)
         shareSwitch.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(27)
+            $0.trailing.equalToSuperview().inset(50)
             $0.centerY.equalToSuperview()
         }
         
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.leading.equalTo(logoImgView.snp.trailing).offset(18)
-            $0.trailing.equalTo(shareSwitch.snp.leading).offset(-20)
             $0.centerY.equalToSuperview()
         }
     }

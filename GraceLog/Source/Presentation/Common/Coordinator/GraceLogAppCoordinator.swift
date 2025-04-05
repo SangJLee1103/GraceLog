@@ -52,7 +52,7 @@ final class GraceLogAppCoordinator: Coordinator {
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white
-        appearance.shadowColor = UIColor(hex: 0x8C8C8C)
+        appearance.shadowColor = .gray200
         appearance.shadowImage = UIImage()
         
         let itemAppearance = UITabBarItemAppearance()

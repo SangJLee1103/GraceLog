@@ -14,13 +14,15 @@ final class DiaryTitleTableViewCell: UITableViewCell {
     
     private let titleField = UITextField().then {
         $0.setHeight(40)
-        $0.font = UIFont(name: "Pretendard-Regular", size: 16)
-        $0.placeholder = "일기 제목"
-        $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: $0.frame.height))
+        $0.backgroundColor = UIColor(white: 1, alpha: 0.1)
+        $0.font = UIFont(name: "Pretendard-Regular", size: 14)
+        $0.textColor = .black
+        $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 17, height: $0.frame.height))
         $0.leftViewMode = .always
-        $0.borderStyle = .roundedRect
+        $0.layer.cornerRadius = 10
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray200.cgColor
+        $0.attributedPlaceholder = NSAttributedString(string: "일기 제목", attributes: [.foregroundColor: UIColor.gray200])
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,6 +35,9 @@ final class DiaryTitleTableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
+        backgroundColor = .white
+        selectionStyle = .none
+        
         contentView.addSubview(titleField)
         titleField.snp.makeConstraints {
             $0.top.equalToSuperview()

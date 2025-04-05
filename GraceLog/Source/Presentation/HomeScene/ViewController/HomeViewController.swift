@@ -38,7 +38,6 @@ final class HomeViewController: UIViewController, View {
                     cell.configure(with: diaryItem)
                 }
                 return cell
-                
             case .contentList:
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeRecommendTableViewCell.identifier, for: indexPath) as! HomeRecommendTableViewCell
                 cell.selectionStyle = .none
@@ -48,7 +47,6 @@ final class HomeViewController: UIViewController, View {
                     cell.configure(title: videoItem.title, image: image)
                 }
                 return cell
-                
             case .communityButtons:
                 let cell = tableView.dequeueReusableCell(withIdentifier: CommunityTableViewCell.identifier, for: indexPath) as! CommunityTableViewCell
                 cell.selectionStyle = .none
@@ -58,7 +56,6 @@ final class HomeViewController: UIViewController, View {
                     return cell
                 }
                 return cell
-                
             case .communityPosts:
                 let diaryItem = item as! CommunityDiaryItem
                 switch diaryItem.type {
@@ -67,7 +64,6 @@ final class HomeViewController: UIViewController, View {
                     cell.selectionStyle = .none
                     cell.configure(title: diaryItem.title, subtitle: diaryItem.subtitle, likes: diaryItem.likes, comments: diaryItem.comments)
                     return cell
-                    
                 case .regular:
                     let cell = tableView.dequeueReusableCell(withIdentifier: HomeCommunityUserTableViewCell.identifier, for: indexPath) as! HomeCommunityUserTableViewCell
                     cell.selectionStyle = .none
