@@ -27,7 +27,7 @@ final class CommonSectionHeaderView: UITableViewHeaderFooterView {
     private func configureUI() {
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
+            $0.top.equalToSuperview().offset(20)
             $0.bottom.equalToSuperview().inset(8)
             $0.leading.equalToSuperview().offset(30)
         }

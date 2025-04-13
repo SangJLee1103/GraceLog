@@ -38,7 +38,7 @@ final class CommonButtonTableViewCell: UITableViewCell {
             $0.top.equalToSuperview().offset(22)
             $0.leading.equalToSuperview().offset(30)
             $0.trailing.equalToSuperview().inset(29)
-            $0.bottom.equalToSuperview().inset(33)
+            $0.bottom.equalToSuperview().inset(13)
         }
     }
     

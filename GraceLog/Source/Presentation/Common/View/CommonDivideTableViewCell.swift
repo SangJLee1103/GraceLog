@@ -33,13 +33,14 @@ final class CommonDivideTableViewCell: UITableViewCell {
         }
     }
     
-    func setUI(left: CGFloat = 16, right: CGFloat = 16, height: CGFloat = 1, color: UIColor = .gray200) {
+    func setUI(left: CGFloat = 16, right: CGFloat = 16, height: CGFloat = 1, color: UIColor = .graceLightGray) {
         divideView.backgroundColor = color
         
         divideView.snp.remakeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(left)
             $0.trailing.equalToSuperview().inset(right)
+            $0.height.equalTo(height)
         }
     }
 }
