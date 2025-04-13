@@ -25,6 +25,7 @@ final class DiaryViewController: UIViewController, View {
         $0.rowHeight = UITableView.automaticDimension
         $0.estimatedRowHeight = 100
         $0.sectionFooterHeight = 0
+        $0.sectionHeaderTopPadding = 0
     }
     
     private let bottomView = UIView().then {
@@ -49,11 +50,30 @@ final class DiaryViewController: UIViewController, View {
     private lazy var saveButton = UIBarButtonItem(title: "임시저장", style: .plain, target: nil, action: nil)
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<DiarySection>(
         configureCell: { [weak self] dataSource, tableView, indexPath, item in
+            guard let self = self, let reactor = self.reactor else {
+                return UITableViewCell()
+            }
+            
             switch item {
             case .images(let images):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryImageTableViewCell.identifier, for: indexPath) as? DiaryImageTableViewCell else {
                     return UITableViewCell()
                 }
+                cell.setImages(images)
+                
+                cell.imageAddTap
+                    .subscribe(onNext: { [weak self] _ in
+                        self?.showImagePicker()
+                    })
+                    .disposed(by: cell.disposeBag)
+                
+                cell.imageDeleteTap
+                    .subscribe(onNext: { [weak self] indexToDelete in
+                        guard let self = self, let reactor = self.reactor else { return }
+                        reactor.action.onNext(.deleteImage(at: indexToDelete))
+                    })
+                    .disposed(by: cell.disposeBag)
+                
                 return cell
             case .title(let title):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleTableViewCell.identifier, for: indexPath) as? DiaryTitleTableViewCell else {
@@ -117,12 +137,65 @@ final class DiaryViewController: UIViewController, View {
         tableView.register(CommonDivideTableViewCell.self, forCellReuseIdentifier: CommonDivideTableViewCell.identifier)
     }
     
+    private func configureImagePicker() -> YPImagePicker {
+        var config = YPImagePickerConfiguration()
+        config.library.maxNumberOfItems = 5
+        config.startOnScreen = .library
+        config.screens = [.library, .photo]
+        config.library.mediaType = .photo
+        config.hidesStatusBar = false
+        config.hidesBottomBar = false
+        config.library.skipSelectionsGallery = false
+        
+        config.wordings.libraryTitle = "사진 선택"
+        config.wordings.cameraTitle = "카메라"
+        config.wordings.next = "다음"
+        config.wordings.cancel = "취소"
+        config.wordings.done = "완료"
+        
+        let picker = YPImagePicker(configuration: config)
+        return picker
+    }
+    
+    private func showImagePicker() {
+        let picker = configureImagePicker()
+        
+        picker.didFinishPicking { [weak self] items, cancelled in
+            defer {
+                picker.dismiss(animated: true, completion: nil)
+            }
+            
+            if cancelled { return }
+            
+            var newImages: [UIImage] = []
+            for item in items {
+                if case .photo(let photo) = item {
+                    newImages.append(photo.image)
+                }
+            }
+            
+            if let reactor = self?.reactor {
+                let existingImages = reactor.currentState.images
+                
+                var combinedImages = existingImages + newImages
+                if combinedImages.count > 5 {
+                    combinedImages = Array(combinedImages.prefix(5))
+                }
+                reactor.action.onNext(.updateImages(combinedImages))
+            }
+        }
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
     func bind(reactor: DiaryViewReactor) {
+        // Action
         saveButton.rx.tap
             .map { Reactor.Action.saveDiary }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        // State
         reactor.state.map { $0.sections }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)

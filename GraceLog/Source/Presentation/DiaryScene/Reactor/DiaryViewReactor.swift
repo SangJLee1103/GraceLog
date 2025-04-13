@@ -12,6 +12,7 @@ import RxCocoa
 final class DiaryViewReactor: Reactor {
     enum Action {
         case updateImages([UIImage])
+        case deleteImage(at: Int)
         case updateTitle(String)
         case updateDescription(String)
         case updateShareOption(index: Int, isOn: Bool)
@@ -57,6 +58,12 @@ extension DiaryViewReactor {
         switch action {
         case .updateImages(let images):
             return .just(.setImages(images))
+        case .deleteImage(let index):
+            var updatedImages = currentState.images
+            if index < updatedImages.count {
+                updatedImages.remove(at: index)
+            }
+            return .just(.setImages(updatedImages))
         case .updateTitle(let title):
             return .just(.setTitle(title))
         case .updateDescription(let description):
@@ -76,6 +83,7 @@ extension DiaryViewReactor {
         switch mutation {
         case .setImages(let images):
             newState.images = images
+            newState.sections = createSections(state: newState)
         case .setTitle(let title):
             newState.title = title
         case .setDescription(let description):

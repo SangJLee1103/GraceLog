@@ -8,9 +8,15 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class DiaryAddImageCollectionViewCell: UICollectionViewCell {
     static let identifier = "DiaryAddImageCollectionViewCell"
+    
+    let tapGesture = UITapGestureRecognizer()
+    let imageAddTap = PublishRelay<Void>()
+    var disposeBag = DisposeBag()
     
     private let containerView = UIView().then {
         $0.layer.cornerRadius = 10
@@ -24,7 +30,6 @@ final class DiaryAddImageCollectionViewCell: UICollectionViewCell {
     }
     
     private let countLabel = UILabel().then {
-        $0.text = "0/10"
         $0.textColor = .gray200
         $0.font = UIFont(name: "Pretendard-Regular", size: 10)
         $0.textAlignment = .center
@@ -33,6 +38,13 @@ final class DiaryAddImageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        bind()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -41,6 +53,7 @@ final class DiaryAddImageCollectionViewCell: UICollectionViewCell {
     
     private func configureUI() {
         backgroundColor = .white
+        containerView.addGestureRecognizer(tapGesture)
         
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints {
@@ -51,7 +64,7 @@ final class DiaryAddImageCollectionViewCell: UICollectionViewCell {
         cameraImageView.snp.makeConstraints {
             $0.width.height.equalTo(32)
             $0.top.equalToSuperview().inset(10)
-            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.centerX.equalToSuperview()
         }
         
         containerView.addSubview(countLabel)
@@ -62,7 +75,14 @@ final class DiaryAddImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    private func bind() {
+        tapGesture.rx.event
+            .map { _ in () }
+            .bind(to: imageAddTap)
+            .disposed(by: disposeBag)
+    }
+    
     func updateCount(current: Int, max: Int) {
-        countLabel.text = "\(current)/\(max)"
+        countLabel.setTextWithColoredPart(fullText: "\(current)/\(max)", coloredPart: "\(current)", color: .themeColor)
     }
 }
