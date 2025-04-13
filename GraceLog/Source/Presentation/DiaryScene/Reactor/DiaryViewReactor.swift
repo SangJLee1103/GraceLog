@@ -86,8 +86,10 @@ extension DiaryViewReactor {
             newState.sections = createSections(state: newState)
         case .setTitle(let title):
             newState.title = title
+            newState.sections = createSections(state: newState)
         case .setDescription(let description):
             newState.description = description
+            newState.sections = createSections(state: newState)
         case .setShareOption(index: let index, isOn: let isOn):
             if index < newState.shareOptions.count {
                 newState.shareOptions[index].isOn = isOn
@@ -105,12 +107,14 @@ extension DiaryViewReactor {
         let imageItems: [DiarySectionItem] = [.images(state.images)]
         let titleItems: [DiarySectionItem] = [.title(state.title)]
         let descriptionItems: [DiarySectionItem] = [.description(state.description)]
+        let keywordItems: [DiarySectionItem] = [.keyword]
         
         var shareItems: [DiarySectionItem] = []
         for option in state.shareOptions {
             shareItems.append(.shareOption(imageUrl: option.imageUrl, title: option.title, isOn: option.isOn))
         }
         
+        let settingItems: [DiarySectionItem] = [.settings]
         let buttonItems: [DiarySectionItem] = [.button(title: "공유하기")]
         let dividerItems: [DiarySectionItem] = [.divide(left: 0,right: 0)]
         
@@ -119,7 +123,10 @@ extension DiaryViewReactor {
             .title(header: "제목", items: titleItems),
             .description(header: "본문", items: descriptionItems),
             .divide(items: dividerItems),
+            .keyword(header: "대표 키워드", desc: "중복 선택할 수 있어요!", items: keywordItems),
             .shareOptions(header: "공동체에게 공유", items: shareItems),
+            .divide(items: dividerItems),
+            .settings(items: settingItems),
             .divide(items: dividerItems),
             .button(items: buttonItems)
         ]

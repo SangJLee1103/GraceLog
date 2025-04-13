@@ -94,6 +94,11 @@ final class DiaryViewController: UIViewController, View {
                 }
                 cell.updateUI(imageUrl: imageUrl, title: title, isOn: isOn)
                 return cell
+            case .settings:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiarySettingsTableViewCell.identifier, for: indexPath) as? DiarySettingsTableViewCell else {
+                    return UITableViewCell()
+                }
+                return cell
             case .button(let title):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: CommonButtonTableViewCell.identifier, for: indexPath) as? CommonButtonTableViewCell else {
                     return UITableViewCell()
@@ -132,10 +137,12 @@ final class DiaryViewController: UIViewController, View {
         tableView.delegate = self
         
         tableView.register(CommonSectionHeaderView.self, forHeaderFooterViewReuseIdentifier: CommonSectionHeaderView.identifier)
+        tableView.register(CommonSectionWithDescHeaderView.self, forHeaderFooterViewReuseIdentifier: CommonSectionWithDescHeaderView.identifier)
         tableView.register(DiaryImageTableViewCell.self, forCellReuseIdentifier: DiaryImageTableViewCell.identifier)
         tableView.register(DiaryTitleTableViewCell.self, forCellReuseIdentifier: DiaryTitleTableViewCell.identifier)
         tableView.register(DiaryDescriptionTableViewCell.self, forCellReuseIdentifier: DiaryDescriptionTableViewCell.identifier)
         tableView.register(DiarySwitchTableViewCell.self, forCellReuseIdentifier: DiarySwitchTableViewCell.identifier)
+        tableView.register(DiarySettingsTableViewCell.self, forCellReuseIdentifier: DiarySettingsTableViewCell.identifier)
         tableView.register(CommonButtonTableViewCell.self, forCellReuseIdentifier: CommonButtonTableViewCell.identifier)
         tableView.register(CommonDivideTableViewCell.self, forCellReuseIdentifier: CommonDivideTableViewCell.identifier)
     }
@@ -207,10 +214,23 @@ final class DiaryViewController: UIViewController, View {
 
 extension DiaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let title = dataSource[section].title {
-            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommonSectionHeaderView.identifier) as? CommonSectionHeaderView
-            headerView?.setTitle(title)
-            return headerView
+        let sectionModel = dataSource[section]
+        
+        switch sectionModel {
+        case .title, .description, .shareOptions:
+            if let title = dataSource[section].title {
+                let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommonSectionHeaderView.identifier) as? CommonSectionHeaderView
+                headerView?.setTitle(title)
+                return headerView
+            }
+        case .keyword:
+            if let title = dataSource[section].title, let desc = dataSource[section].desc {
+                let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommonSectionWithDescHeaderView.identifier) as? CommonSectionWithDescHeaderView
+                headerView?.setTitleWithDesc(title: title, desc: desc)
+                return headerView
+            }
+        default:
+            return nil
         }
         return nil
     }
@@ -219,10 +239,23 @@ extension DiaryViewController: UITableViewDelegate {
         let sectionModel = dataSource[section]
         
         switch sectionModel {
-        case .images, .button, .divide:
+        case .images, .divide, .settings, .button:
             return .leastNonzeroMagnitude
+        case .keyword:
+            return 70
         default:
             return 40
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let sectionModel = dataSource[section]
+        
+        switch sectionModel {
+        case .shareOptions:
+            return 26
+        default:
+            return .leastNonzeroMagnitude
         }
     }
 }
