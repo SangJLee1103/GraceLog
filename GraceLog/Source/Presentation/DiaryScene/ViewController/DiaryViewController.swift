@@ -79,11 +79,14 @@ final class DiaryViewController: UIViewController, View {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryTitleTableViewCell.identifier, for: indexPath) as? DiaryTitleTableViewCell else {
                     return UITableViewCell()
                 }
+                cell.configure(with: reactor, title: title ?? "")
                 return cell
             case .description(let description):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryDescriptionTableViewCell.identifier, for: indexPath) as? DiaryDescriptionTableViewCell else {
                     return UITableViewCell()
                 }
+                cell.configure(with: reactor, description: description ?? "")
+                return cell
                 return cell
             case .shareOption(let imageUrl, let title, let isOn):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiarySwitchTableViewCell.identifier, for: indexPath) as? DiarySwitchTableViewCell else {
