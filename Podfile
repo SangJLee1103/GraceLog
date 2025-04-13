@@ -13,6 +13,7 @@ target 'GraceLog' do
 	pod 'Firebase/Messaging'
 	pod 'Firebase/Auth'
 	pod 'GoogleSignIn'
+	pod 'IQKeyboardManagerSwift'
 	pod 'Then' 
 	pod 'UITextView+Placeholder'
 	pod 'SDWebImage'
@@ -25,6 +26,7 @@ target 'GraceLog' do
 	pod 'RxCocoa'
 	pod 'RxGesture'
 	pod 'NSObject+Rx'
+	pod 'RxKeyboard'
 	pod 'RxDataSources'
 	pod 'ReactorKit'
 
