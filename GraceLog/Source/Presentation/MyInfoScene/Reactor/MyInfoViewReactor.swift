@@ -65,7 +65,7 @@ extension MyInfoViewReactor {
         
         let myInfoItems = [
             MyInfoItem(icon: "user", title: "프로필 조회 및 수정", type: .myProfile),
-            MyInfoItem(icon: "coffee", title: "나의 감사일기", type: .myCalendar),
+            MyInfoItem(icon: "coffee", title: "나의 감사일기", type: .myGraceLog),
             MyInfoItem(icon: "heart", title: "좋아요 및 댓글 단 감사일기", type: .favoriteVerse)
         ]
         

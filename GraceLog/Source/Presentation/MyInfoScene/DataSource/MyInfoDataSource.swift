@@ -23,7 +23,7 @@ struct MyInfoItem {
 
 enum MyInfoItemType {
     case myProfile
-    case myCalendar
+    case myGraceLog
     case favoriteVerse
     case communityManagement
     case memberManagement

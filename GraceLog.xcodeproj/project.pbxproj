@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02ED0C942DADF48400D7B806 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED0C932DADF48400D7B806 /* ProfileEditViewController.swift */; };
+		02ED0C992DADF65F00D7B806 /* ProfileEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED0C982DADF65F00D7B806 /* ProfileEditTableViewCell.swift */; };
+		02ED0C9B2DADF68900D7B806 /* ProfileImageEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED0C9A2DADF68900D7B806 /* ProfileImageEditTableViewCell.swift */; };
+		02ED0C9F2DAE04C500D7B806 /* ProfileEditDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED0C9E2DAE04C500D7B806 /* ProfileEditDataSource.swift */; };
+		02ED0CA12DAE07D400D7B806 /* ProfileEditViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED0CA02DAE07D400D7B806 /* ProfileEditViewReactor.swift */; };
 		6D6D359847E48286C67E16F7 /* Pods_GraceLogUseCaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D415D287B3EAEECA4BE40BB /* Pods_GraceLogUseCaseTests.framework */; };
 		75248638A478EB9521F76504 /* Pods_GraceLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */; };
 		A88BF65DF907D86788F86BF8 /* Pods_GraceLog_GraceLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */; };
@@ -135,6 +140,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02ED0C932DADF48400D7B806 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		02ED0C982DADF65F00D7B806 /* ProfileEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditTableViewCell.swift; sourceTree = "<group>"; };
+		02ED0C9A2DADF68900D7B806 /* ProfileImageEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageEditTableViewCell.swift; sourceTree = "<group>"; };
+		02ED0C9E2DAE04C500D7B806 /* ProfileEditDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditDataSource.swift; sourceTree = "<group>"; };
+		02ED0CA02DAE07D400D7B806 /* ProfileEditViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewReactor.swift; sourceTree = "<group>"; };
 		13CEE664F868FEB4EF0F50A2 /* Pods-GraceLogUseCaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLogUseCaseTests.release.xcconfig"; path = "Target Support Files/Pods-GraceLogUseCaseTests/Pods-GraceLogUseCaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		3772E15DC148101F5890C6F5 /* Pods-GraceLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog.release.xcconfig"; path = "Target Support Files/Pods-GraceLog/Pods-GraceLog.release.xcconfig"; sourceTree = "<group>"; };
 		45FB5606D88433D808BF0656 /* Pods-GraceLogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLogTests.debug.xcconfig"; path = "Target Support Files/Pods-GraceLogTests/Pods-GraceLogTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -278,6 +288,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02ED0C952DADF61400D7B806 /* MyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */,
+				DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */,
+				DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */,
+				DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */,
+			);
+			path = MyInfo;
+			sourceTree = "<group>";
+		};
+		02ED0C972DADF64100D7B806 /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				02ED0C9A2DADF68900D7B806 /* ProfileImageEditTableViewCell.swift */,
+				02ED0C982DADF65F00D7B806 /* ProfileEditTableViewCell.swift */,
+			);
+			path = ProfileEdit;
+			sourceTree = "<group>";
+		};
 		2EA2272B8D90352B60124564 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +783,7 @@
 			isa = PBXGroup;
 			children = (
 				DE4D8B7D2D857B5300533276 /* MyInfoViewReactor.swift */,
+				02ED0CA02DAE07D400D7B806 /* ProfileEditViewReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -760,10 +791,8 @@
 		DE3BFCD22D048A010076426D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */,
-				DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */,
-				DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */,
-				DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */,
+				02ED0C972DADF64100D7B806 /* ProfileEdit */,
+				02ED0C952DADF61400D7B806 /* MyInfo */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -772,6 +801,7 @@
 			isa = PBXGroup;
 			children = (
 				DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */,
+				02ED0C932DADF48400D7B806 /* ProfileEditViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -813,6 +843,7 @@
 			isa = PBXGroup;
 			children = (
 				DE4D8B802D85812300533276 /* MyInfoDataSource.swift */,
+				02ED0C9E2DAE04C500D7B806 /* ProfileEditDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -1203,8 +1234,10 @@
 				DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */,
 				DE3BFCDE2D059D3D0076426D /* SearchViewController.swift in Sources */,
 				DE56384F2D9E01D100A12192 /* DiaryDataSource.swift in Sources */,
+				02ED0C992DADF65F00D7B806 /* ProfileEditTableViewCell.swift in Sources */,
 				DE069BA42D571499007C2066 /* HomeTableViewHeader.swift in Sources */,
 				DE3BFCE12D059DDC0076426D /* HomeCoordinator.swift in Sources */,
+				02ED0C9F2DAE04C500D7B806 /* ProfileEditDataSource.swift in Sources */,
 				DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */,
 				DE9A1FCE2D6C86C00044F655 /* HomeCommunityUserTableViewCell.swift in Sources */,
 				DE56384C2D9DFDDF00A12192 /* CommunityDTO.swift in Sources */,
@@ -1259,11 +1292,14 @@
 				DE069B9E2D57144A007C2066 /* HomeDiaryTableViewCell.swift in Sources */,
 				DE5638512DA147EA00A12192 /* CommonSectionHeaderView.swift in Sources */,
 				DE4D8B7A2D856A4A00533276 /* MyInfoTableViewCell.swift in Sources */,
+				02ED0C942DADF48400D7B806 /* ProfileEditViewController.swift in Sources */,
+				02ED0C9B2DADF68900D7B806 /* ProfileImageEditTableViewCell.swift in Sources */,
 				DE66C2FB2D96B39B009A983F /* DefaultDiaryUseCase.swift in Sources */,
 				DE069BA22D571485007C2066 /* HomeRecommendTableViewCell.swift in Sources */,
 				DE66C2F52D96B0E4009A983F /* DiaryViewReactor.swift in Sources */,
 				DE66C2F32D941AF5009A983F /* DiarySwitchTableViewCell.swift in Sources */,
 				DE069BA82D61E310007C2066 /* DiaryCardView.swift in Sources */,
+				02ED0CA12DAE07D400D7B806 /* ProfileEditViewReactor.swift in Sources */,
 				DEFC29A72D928C5A004D00DA /* DiaryTitleTableViewCell.swift in Sources */,
 				DE9A1FFC2D7C0B680044F655 /* DefaultHomeRepository.swift in Sources */,
 				DEFC29A92D941623004D00DA /* DiaryDescriptionTableViewCell.swift in Sources */,
@@ -1510,7 +1546,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLog;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLog2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1541,7 +1577,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLog;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLog2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
