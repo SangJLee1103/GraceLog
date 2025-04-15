@@ -87,6 +87,10 @@ final class DiaryViewController: UIViewController, View {
                 }
                 cell.configure(with: reactor, description: description ?? "")
                 return cell
+            case .keyword:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DiaryKeywordTableViewCell.identifier, for: indexPath) as? DiaryKeywordTableViewCell else {
+                    return UITableViewCell()
+                }
                 return cell
             case .shareOption(let imageUrl, let title, let isOn):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: DiarySwitchTableViewCell.identifier, for: indexPath) as? DiarySwitchTableViewCell else {
@@ -141,6 +145,7 @@ final class DiaryViewController: UIViewController, View {
         tableView.register(DiaryImageTableViewCell.self, forCellReuseIdentifier: DiaryImageTableViewCell.identifier)
         tableView.register(DiaryTitleTableViewCell.self, forCellReuseIdentifier: DiaryTitleTableViewCell.identifier)
         tableView.register(DiaryDescriptionTableViewCell.self, forCellReuseIdentifier: DiaryDescriptionTableViewCell.identifier)
+        tableView.register(DiaryKeywordTableViewCell.self, forCellReuseIdentifier: DiaryKeywordTableViewCell.identifier)
         tableView.register(DiarySwitchTableViewCell.self, forCellReuseIdentifier: DiarySwitchTableViewCell.identifier)
         tableView.register(DiarySettingsTableViewCell.self, forCellReuseIdentifier: DiarySettingsTableViewCell.identifier)
         tableView.register(CommonButtonTableViewCell.self, forCellReuseIdentifier: CommonButtonTableViewCell.identifier)

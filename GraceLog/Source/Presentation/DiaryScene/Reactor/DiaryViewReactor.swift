@@ -124,6 +124,7 @@ extension DiaryViewReactor {
             .description(header: "본문", items: descriptionItems),
             .divide(items: dividerItems),
             .keyword(header: "대표 키워드", desc: "중복 선택할 수 있어요!", items: keywordItems),
+            .divide(items: dividerItems),
             .shareOptions(header: "공동체에게 공유", items: shareItems),
             .divide(items: dividerItems),
             .settings(items: settingItems),
