@@ -1201,6 +1201,7 @@ PODS:
     - AppAuth/Core (~> 1.7)
     - GTMSessionFetcher/Core (< 4.0, >= 3.3)
   - GTMSessionFetcher/Core (3.4.1)
+  - IQKeyboardManagerSwift (7.0.3)
   - JGProgressHUD (2.0.4)
   - leveldb-library (1.22.5)
   - nanopb (2.30910.0):
@@ -1226,6 +1227,9 @@ PODS:
   - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
+  - RxKeyboard (2.0.0):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.7.1):
     - RxSwift (= 6.7.1)
   - RxSwift (6.7.1)
@@ -1238,6 +1242,7 @@ PODS:
   - SteviaLayout (5.1.2)
   - Then (3.0.0)
   - Toast-Swift (5.1.1)
+  - "UITextView+Placeholder (1.4.0)"
   - WeakMapTable (1.2.0)
   - YPImagePicker (5.2.2):
     - PryntTrimmerView (= 4.0.2)
@@ -1252,12 +1257,14 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - GoogleSignIn
+  - IQKeyboardManagerSwift
   - JGProgressHUD (~> 2.0.3)
   - "NSObject+Rx"
   - ReactorKit
   - RxCocoa
   - RxDataSources
   - RxGesture
+  - RxKeyboard
   - RxRelay
   - RxSwift
   - RxTest
@@ -1265,6 +1272,7 @@ DEPENDENCIES:
   - SnapKit
   - Then
   - Toast-Swift (~> 5.1.1)
+  - "UITextView+Placeholder"
   - YPImagePicker
 
 SPEC REPOS:
@@ -1297,6 +1305,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMAppAuth
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - JGProgressHUD
     - leveldb-library
     - nanopb
@@ -1308,6 +1317,7 @@ SPEC REPOS:
     - RxCocoa
     - RxDataSources
     - RxGesture
+    - RxKeyboard
     - RxRelay
     - RxSwift
     - RxTest
@@ -1316,6 +1326,7 @@ SPEC REPOS:
     - SteviaLayout
     - Then
     - Toast-Swift
+    - "UITextView+Placeholder"
     - WeakMapTable
     - YPImagePicker
 
@@ -1348,6 +1359,7 @@ SPEC CHECKSUMS:
   gRPC-Core: eee4be35df218649fe66d721a05a7f27a28f069b
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
+  IQKeyboardManagerSwift: f9c5dc36cba16ddd2e51fa7d51c34a2e083029b5
   JGProgressHUD: 62658b14e72cccf179efc7a13bcb54d30b92fc22
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
@@ -1359,6 +1371,7 @@ SPEC CHECKSUMS:
   RxCocoa: f5609cb4637587a7faa99c5d5787e3ad582b75a4
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
+  RxKeyboard: 4f5863f43b4ff0cbb2a20b94688d6b80c8a43c14
   RxRelay: 4151ba01152436b08271e08410135e099880eae5
   RxSwift: b9a93a26031785159e11abd40d1a55bcb8057e52
   RxTest: eec2bff159d799cdc02da2b40ef47e43dc17e688
@@ -1367,9 +1380,10 @@ SPEC CHECKSUMS:
   SteviaLayout: 05424e528d643657d39ce72c786e4adf13cfc5f2
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
   YPImagePicker: afc81b3cffab05a6e7261c5daf80dc31b4e917b4
 
-PODFILE CHECKSUM: 9ea968f243f1986dfe25461c75e6d8ddba4fae51
+PODFILE CHECKSUM: 1ca9a232b4237cb4cef30ada19b16d7fbdf0050d
 
 COCOAPODS: 1.15.2

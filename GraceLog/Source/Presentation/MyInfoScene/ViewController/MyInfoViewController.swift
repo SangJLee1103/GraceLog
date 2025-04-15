@@ -58,9 +58,7 @@ final class MyInfoViewController: UIViewController, View {
         configureTableView()
     }
     
-    private func configureUI() {
-        title = "내 계정"
-        
+    private func configureUI() { 
         let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(tableView)
@@ -91,6 +89,7 @@ final class MyInfoViewController: UIViewController, View {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MyInfoViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let title = dataSource[section].title {
