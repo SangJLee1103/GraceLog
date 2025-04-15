@@ -6,6 +6,8 @@ target 'GraceLog' do
   use_frameworks!
 
   # Pods for GraceLog
+	pod 'KakaoSDKAuth'
+	pod 'KakaoSDKUser'
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod 'Firebase/Firestore'

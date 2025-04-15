@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KakaoSDKCommon
 import Firebase
 import GoogleSignIn
 import IQKeyboardManagerSwift
