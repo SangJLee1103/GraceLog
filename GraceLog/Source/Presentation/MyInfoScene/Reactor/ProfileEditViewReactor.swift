@@ -12,7 +12,7 @@ import RxCocoa
 final class ProfileEditViewReactor: Reactor {
     enum Action {
         case viewDidLoad
-        case updateProfileImage(String?)
+        case updateProfileImage(UIImage?)
         case updateNickname(String)
         case updateName(String)
         case updateMessage(String)
@@ -20,7 +20,7 @@ final class ProfileEditViewReactor: Reactor {
     
     enum Mutation {
         case setSections([ProfileEditSectionModel])
-        case setProfileImage(String?)
+        case setProfileImage(UIImage?)
         case setNickname(String)
         case setName(String)
         case setMessage(String)
@@ -28,22 +28,26 @@ final class ProfileEditViewReactor: Reactor {
     
     struct State {
         var sections: [ProfileEditSectionModel] = []
-        var profileImage: String? = nil
+        var profileImage: UIImage? = nil
         var nickname: String = ""
         var name: String = ""
         var message: String = ""
     }
     
-    let initialState = State()
+    let initialState: State = State()
+    weak var coordinator: ProfileEditCoordinator?
     
-    init() { }
+    init(coordinator: ProfileEditCoordinator? = nil) {
+        self.coordinator = coordinator
+    }
 }
 
 extension ProfileEditViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewDidLoad:
-            return .empty()
+            return Observable.just(createSections())
+                .map { Mutation.setSections($0) }
         case .updateProfileImage(let imageUrl):
             return .just(.setProfileImage(imageUrl))
         case .updateNickname(let nickname):
@@ -61,12 +65,12 @@ extension ProfileEditViewReactor {
         switch mutation {
         case .setSections(let sections):
             newState.sections = sections
-        case .setProfileImage(let imageUrl):
-            newState.profileImage = imageUrl
+        case .setProfileImage(let image):
+            newState.profileImage = image
             
             if let index = newState.sections.indices.first {
-                if case .imageItem(let item) = newState.sections[index].items.first {
-                    let updatedItem = ProfileImageEditItem(imageUrl: imageUrl)
+                if case .imageItem = newState.sections[index].items.first {
+                    let updatedItem = ProfileImageEditItem(image: image)
                     newState.sections[index].items[0] = .imageItem(updatedItem)
                 }
             }
@@ -79,5 +83,26 @@ extension ProfileEditViewReactor {
         }
         
         return newState
+    }
+    
+    private func createSections() -> [ProfileEditSectionModel] {
+        let profileImageSection = ProfileEditSectionModel(items: [
+            .imageItem(ProfileImageEditItem(image: currentState.profileImage))
+        ])
+        
+        let profileInfoSection = ProfileEditSectionModel(items: [
+            .infoItem(ProfileInfoEditItem(title: "닉네임", info: currentState.nickname), .nicknameEdit),
+            .infoItem(ProfileInfoEditItem(title: "이름", info: currentState.nickname), .nameEdit),
+            .infoItem(ProfileInfoEditItem(title: "메시지", info: currentState.nickname), .messageEdit),
+        ])
+        
+        return [profileImageSection, profileInfoSection]
+    }
+}
+
+// MARK: - For Coordinator
+extension ProfileEditViewReactor {
+    func showImagePicker(completion: @escaping (UIImage?) -> Void) {
+        self.coordinator?.showImagePicker(completion: completion)
     }
 }

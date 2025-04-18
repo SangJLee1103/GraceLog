@@ -36,6 +36,9 @@ final class ProfileEditTableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
+        backgroundColor = UIColor(hex: 0xF4F4F4)
+        selectionStyle = .none
+        
         [titleLabel, infoField, dividerView].forEach {
             contentView.addSubview($0)
         }
@@ -51,12 +54,12 @@ final class ProfileEditTableViewCell: UITableViewCell {
         }
         
         dividerView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(5)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(6)
             $0.leading.trailing.equalToSuperview()
         }
     }
     
-    private func updateUI(title: String, info: String) {
+    func updateUI(title: String, info: String) {
         titleLabel.text = title
         infoField.text = info
     }

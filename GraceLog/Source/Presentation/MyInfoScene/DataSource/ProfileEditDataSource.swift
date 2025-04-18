@@ -10,7 +10,7 @@ import RxDataSources
 import UIKit
 
 struct ProfileImageEditItem {
-    let imageUrl: String?
+    let image: UIImage?
 }
 
 struct ProfileInfoEditItem {

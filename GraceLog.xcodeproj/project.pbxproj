@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0228FDAA2DB0E09200B8043A /* ProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0228FDA92DB0E09200B8043A /* ProfileEditCoordinator.swift */; };
 		02ED0C942DADF48400D7B806 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED0C932DADF48400D7B806 /* ProfileEditViewController.swift */; };
 		02ED0C992DADF65F00D7B806 /* ProfileEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED0C982DADF65F00D7B806 /* ProfileEditTableViewCell.swift */; };
 		02ED0C9B2DADF68900D7B806 /* ProfileImageEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED0C9A2DADF68900D7B806 /* ProfileImageEditTableViewCell.swift */; };
@@ -140,6 +141,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0228FDA92DB0E09200B8043A /* ProfileEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCoordinator.swift; sourceTree = "<group>"; };
 		02ED0C932DADF48400D7B806 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		02ED0C982DADF65F00D7B806 /* ProfileEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditTableViewCell.swift; sourceTree = "<group>"; };
 		02ED0C9A2DADF68900D7B806 /* ProfileImageEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageEditTableViewCell.swift; sourceTree = "<group>"; };
@@ -835,6 +837,7 @@
 			isa = PBXGroup;
 			children = (
 				DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */,
+				0228FDA92DB0E09200B8043A /* ProfileEditCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1257,6 +1260,7 @@
 				DE4D8B832D8C419700533276 /* MyInfoSectionHeaderView.swift in Sources */,
 				DE655B212DA5EC480073B4F7 /* UILabel+Extension.swift in Sources */,
 				DE9A1FD52D79AA780044F655 /* CommunityDiary.swift in Sources */,
+				0228FDAA2DB0E09200B8043A /* ProfileEditCoordinator.swift in Sources */,
 				DE2700502D1FA03B005C9DCF /* UIView+Extension.swift in Sources */,
 				DE9A1FDC2D79AFFA0044F655 /* MyDiaryItem.swift in Sources */,
 				DE66C2F72D96B26F009A983F /* DiaryImageTableViewCell.swift in Sources */,
@@ -1529,6 +1533,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BFTA9SX898;
@@ -1548,6 +1553,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLog2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1560,6 +1566,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BFTA9SX898;
@@ -1579,6 +1586,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sangjun.GraceLog2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

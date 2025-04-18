@@ -53,12 +53,11 @@ final class MyInfoViewController: UIViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.reactor = MyInfoViewReactor()
         configureUI()
         configureTableView()
     }
     
-    private func configureUI() { 
+    private func configureUI() {
         let safeArea = view.safeAreaLayoutGuide
         
         view.addSubview(tableView)
@@ -73,15 +72,35 @@ final class MyInfoViewController: UIViewController, View {
         tableView.register(MyInfoTableViewCell.self, forCellReuseIdentifier: MyInfoTableViewCell.identifier)
         tableView.register(MyInfoButtonTableViewCell.self, forCellReuseIdentifier: MyInfoButtonTableViewCell.identifier)
         
-        tableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
+        tableView.delegate = self
     }
     
     func bind(reactor: MyInfoViewReactor) {
+        // Action
         Observable.just(Reactor.Action.viewDidLoad)
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .map { Reactor.Action.itemSelected(at: $0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .compactMap { $0.selectedItem }
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .subscribe(onNext: { owner, itemType in
+                switch itemType {
+                case .myProfile:
+                    reactor.pushMyInfoEdit()
+                default:
+                    break
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        // State
         reactor.state
             .map { $0.sections }
             .bind(to: tableView.rx.items(dataSource: dataSource))
@@ -119,6 +138,6 @@ extension MyInfoViewController: UITableViewDelegate {
             return UITableView.automaticDimension
         default:
             return 40
-        }   
+        }
     }
 }
