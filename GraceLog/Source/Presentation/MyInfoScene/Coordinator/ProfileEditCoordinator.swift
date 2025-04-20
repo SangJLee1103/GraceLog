@@ -23,6 +23,7 @@ final class ProfileEditCoordinator: Coordinator {
     func pushProfileEditViewController() {
         let profileEditVC = ProfileEditViewController()
         profileEditVC.reactor = ProfileEditViewReactor()
+        profileEditVC.title = "프로필 편집"
         self.navigationController.pushViewController(profileEditVC, animated: true)
     }
     

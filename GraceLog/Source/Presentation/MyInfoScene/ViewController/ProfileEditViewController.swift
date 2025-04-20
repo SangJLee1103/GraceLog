@@ -18,15 +18,17 @@ final class ProfileEditViewController: UIViewController, View {
     
     typealias Reactor = ProfileEditViewReactor
     
-    private lazy var tableView = UITableView(frame: .zero, style: .grouped).then {
+    private lazy var tableView = UITableView(frame: .zero, style: .plain).then {
         $0.separatorStyle = .none
-        $0.backgroundColor = UIColor(hex: 0xF4F4F4)
-        $0.sectionFooterHeight = 0
-        $0.sectionHeaderTopPadding = 0
+        $0.backgroundColor = .white
     }
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<ProfileEditSectionModel>(
         configureCell: { _, tableView, indexPath, item in
+            guard let reactor = self.reactor else {
+                return UITableViewCell()
+            }
+            
             switch item {
             case .imageItem(let item):
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileImageEditTableViewCell.identifier) as! ProfileImageEditTableViewCell
@@ -41,9 +43,10 @@ final class ProfileEditViewController: UIViewController, View {
                 
                 return cell
                 
-            case .infoItem(let item, _):
+            case .infoItem(let item, let itemType):
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileEditTableViewCell.identifier) as! ProfileEditTableViewCell
-                cell.updateUI(title: item.title, info: item.info)
+                cell.configure(with: reactor, title: item.title, placeholder: item.placeholder, info: item.info, itemType: itemType)
+                cell.itemType = itemType
                 return cell
             }
         })
@@ -55,9 +58,8 @@ final class ProfileEditViewController: UIViewController, View {
     }
     
     private func configureUI() {
-        navigationItem.leftBarButtonItem?.tintColor = .themeColor
+        navigationController?.navigationBar.tintColor = .red
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem?.tintColor = .themeColor
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
@@ -79,6 +81,7 @@ final class ProfileEditViewController: UIViewController, View {
         // State
         reactor.state
             .map { $0.sections }
+            .distinctUntilChanged()
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }

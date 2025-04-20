@@ -8,9 +8,15 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class ProfileEditTableViewCell: UITableViewCell {
     static let identifier = "ProfileEditTableViewCell"
+    
+    var reactor: ProfileEditViewReactor?
+    var disposeBag = DisposeBag()
+    var itemType: ProfileEditItemType = .nicknameEdit
     
     private let titleLabel = UILabel().then {
         $0.font = UIFont(name: "Pretendard-Regular", size: 14)
@@ -19,6 +25,7 @@ final class ProfileEditTableViewCell: UITableViewCell {
     
     private let infoField = UITextField().then {
         $0.font = UIFont(name: "Pretendard-SemiBold", size: 16)
+        $0.textColor = .black
     }
     
     private let dividerView = UIView().then {
@@ -31,12 +38,17 @@ final class ProfileEditTableViewCell: UITableViewCell {
         configureUI()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func configureUI() {
-        backgroundColor = UIColor(hex: 0xF4F4F4)
+        backgroundColor = .white
         selectionStyle = .none
         
         [titleLabel, infoField, dividerView].forEach {
@@ -46,9 +58,11 @@ final class ProfileEditTableViewCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(23)
             $0.top.equalToSuperview().offset(26)
+            $0.width.equalTo(50)
         }
         
         infoField.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.top)
             $0.leading.equalTo(titleLabel.snp.trailing).offset(40)
             $0.trailing.equalToSuperview().inset(30)
         }
@@ -59,8 +73,39 @@ final class ProfileEditTableViewCell: UITableViewCell {
         }
     }
     
-    func updateUI(title: String, info: String) {
+    func configure(with reactor: ProfileEditViewReactor, title: String, placeholder: String, info: String, itemType: ProfileEditItemType) {
+        self.reactor = reactor
+        self.itemType = itemType
+        
         titleLabel.text = title
+        infoField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
+            .foregroundColor: UIColor.gray200,
+            .font: UIFont(name: "Pretendard-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16)
+        ])
         infoField.text = info
+        
+        bind()
+    }
+    
+    private func bind() {
+        guard let reactor = reactor else { return }
+        
+        infoField.rx.controlEvent(.editingDidEnd)
+            .withLatestFrom(infoField.rx.text.orEmpty)
+            .subscribe(onNext: { [weak self] text in
+                guard let self = self else { return }
+                
+                switch self.itemType {
+                case .nicknameEdit:
+                    reactor.action.onNext(.updateNickname(text))
+                case .nameEdit:
+                    reactor.action.onNext(.updateName(text))
+                case .messageEdit:
+                    reactor.action.onNext(.updateMessage(text))
+                default:
+                    break
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }

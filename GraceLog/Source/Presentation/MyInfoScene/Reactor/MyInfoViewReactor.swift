@@ -114,7 +114,6 @@ extension MyInfoViewReactor {
 // MARK: - For Coordinator
 extension MyInfoViewReactor {
     func pushMyInfoEdit() {
-        print("pushMyInfoEdit 호출됨, coordinator는 \(coordinator == nil ? "nil" : "not nil")")
         self.coordinator?.showProfileEditVC()
     }
 }

@@ -46,7 +46,7 @@ extension ProfileEditViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewDidLoad:
-            return Observable.just(createSections())
+            return Observable.just(createSections(state: initialState))
                 .map { Mutation.setSections($0) }
         case .updateProfileImage(let imageUrl):
             return .just(.setProfileImage(imageUrl))
@@ -76,24 +76,27 @@ extension ProfileEditViewReactor {
             }
         case .setNickname(let nickname):
             newState.nickname = nickname
+            newState.sections = createSections(state: newState)
         case .setName(let name):
             newState.name = name
+            newState.sections = createSections(state: newState)
         case .setMessage(let message):
             newState.message = message
+            newState.sections = createSections(state: newState)
         }
         
         return newState
     }
     
-    private func createSections() -> [ProfileEditSectionModel] {
+    private func createSections(state: State) -> [ProfileEditSectionModel] {
         let profileImageSection = ProfileEditSectionModel(items: [
-            .imageItem(ProfileImageEditItem(image: currentState.profileImage))
+            .imageItem(ProfileImageEditItem(image: state.profileImage))
         ])
         
         let profileInfoSection = ProfileEditSectionModel(items: [
-            .infoItem(ProfileInfoEditItem(title: "닉네임", info: currentState.nickname), .nicknameEdit),
-            .infoItem(ProfileInfoEditItem(title: "이름", info: currentState.nickname), .nameEdit),
-            .infoItem(ProfileInfoEditItem(title: "메시지", info: currentState.nickname), .messageEdit),
+            .infoItem(ProfileInfoEditItem(title: "닉네임", info: state.nickname, placeholder: "ex. Peter"), .nicknameEdit),
+            .infoItem(ProfileInfoEditItem(title: "이름", info: state.name, placeholder: "ex. 베드로"), .nameEdit),
+            .infoItem(ProfileInfoEditItem(title: "메시지", info: state.message, placeholder: "ex. 잠언 16:9"), .messageEdit),
         ])
         
         return [profileImageSection, profileInfoSection]

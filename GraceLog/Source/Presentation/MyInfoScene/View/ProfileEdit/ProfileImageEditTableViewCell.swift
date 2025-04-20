@@ -22,11 +22,12 @@ final class ProfileImageEditTableViewCell: UITableViewCell {
         $0.setDimensions(width: 112, height: 112)
         $0.layer.cornerRadius = 56
         $0.image = UIImage(named: "profile")
-        $0.clipsToBounds = true
+        $0.clipsToBounds = false
     }
     
     private let editButton = UIButton().then {
         $0.setDimensions(width: 30, height: 30)
+        $0.layer.cornerRadius = 15
         $0.backgroundColor = .graceLightGray
         $0.setImage(UIImage(named: "edit_camera"), for: .normal)
         $0.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
@@ -47,7 +48,7 @@ final class ProfileImageEditTableViewCell: UITableViewCell {
     }
     
     private func configureUI() {
-        backgroundColor = UIColor(hex: 0xF4F4F4)
+        backgroundColor = .white
         selectionStyle = .none
         
         contentView.addSubview(profileImgView)

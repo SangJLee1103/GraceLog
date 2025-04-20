@@ -88,7 +88,6 @@ final class MyInfoViewController: UIViewController, View {
         
         reactor.state
             .compactMap { $0.selectedItem }
-            .distinctUntilChanged()
             .withUnretained(self)
             .subscribe(onNext: { owner, itemType in
                 switch itemType {
