@@ -14,7 +14,7 @@ import RxCocoa
 final class DiaryTitleTableViewCell: UITableViewCell {
     static let identifier = "DiaryTitleTableViewCell"
     
-    var reactor: DiaryViewReactor?
+    var reactor : DiaryViewReactor?
     var disposeBag = DisposeBag()
     
     private let maxLength = 30
