@@ -17,5 +17,9 @@ final class DefaultSignInUseCase: SignInUseCase {
     
     func signIn(provider: SignInProvider, token: String) -> Single<SignInResult> {
         return authRepository.signIn(provider: provider, token: token)
+            .do(onSuccess: { result in
+                KeychainServiceImpl.shared.accessToken = result.accessToken
+                KeychainServiceImpl.shared.refreshToken = result.refreshToken
+            })
     }
 }
