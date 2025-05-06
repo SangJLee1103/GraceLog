@@ -17,6 +17,7 @@ target 'GraceLog' do
 	pod 'GoogleSignIn'
 	pod 'IQKeyboardManagerSwift'
 	pod 'Then' 
+  	pod 'NVActivityIndicatorView'
 	pod 'UITextView+Placeholder'
 	pod 'SDWebImage'
 	pod 'Alamofire' 

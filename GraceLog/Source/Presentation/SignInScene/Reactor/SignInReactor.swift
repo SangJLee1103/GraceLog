@@ -92,11 +92,12 @@ extension SignInReactor {
                 .withUnretained(self)
                 .flatMap { owner, result -> Observable<Mutation> in
                     owner.coordinator?.didFinishSignIn()
-                    return Observable.just(.setLoading(false))
+                    return .empty()
                 }
                 .catch { error in
                     return Observable.just(.setError(error))
-                }
+                },
+            Observable.just(.setLoading(false))
         ])
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 import Then
 import ReactorKit
+import Toast_Swift
+import NVActivityIndicatorView
 
 import Firebase
 import GoogleSignIn
@@ -75,13 +77,13 @@ final class SignInViewController: UIViewController {
         $0.font = UIFont(name: "Pretendard-Regular", size: 12)
     }
     
+    private let activityIndicator = NVActivityIndicatorView(frame: .zero, type: .ballSpinFadeLoader, color: .black, padding: 0).then {
+        $0.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
-        [startLabel, leftLine, rightLine, appleLoginButton, googleLoginButton, kakaoLoginButton].forEach {
-            $0.alpha = 0
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -107,7 +109,7 @@ final class SignInViewController: UIViewController {
         loginStack.distribution = .fillEqually
         loginStack.spacing = 27
         
-        [sloganLabel, logoImgView, startLabel, leftLine, rightLine, loginStack, copyrightLabel].forEach {
+        [sloganLabel, logoImgView, startLabel, leftLine, rightLine, loginStack, copyrightLabel, activityIndicator].forEach {
             view.addSubview($0)
         }
         
@@ -148,11 +150,21 @@ final class SignInViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(safeArea).inset(20)
         }
+        
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(40)
+        }
+        
+        [startLabel, leftLine, rightLine, appleLoginButton, googleLoginButton, kakaoLoginButton].forEach {
+            $0.alpha = 0
+        }
     }
 }
 
 extension SignInViewController: View {
     func bind(reactor: SignInReactor) {
+        // Action
         googleLoginButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
@@ -174,6 +186,7 @@ extension SignInViewController: View {
             }
             .disposed(by: disposeBag)
         
+        // State
         reactor.state
             .map { $0.user }
             .distinctUntilChanged()
@@ -181,6 +194,26 @@ extension SignInViewController: View {
                 if let user = user {
                     print("받은 유저 정보: \(user)")
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isLoading }
+            .bind(onNext: { [weak self] isLoading in
+                if isLoading {
+                    self?.activityIndicator.isHidden = false
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.isHidden = true
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.error }
+            .subscribe(onNext: { [weak self] error in
+                self?.view.makeToast(error?.localizedDescription)
             })
             .disposed(by: disposeBag)
     }

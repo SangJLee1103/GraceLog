@@ -1223,6 +1223,9 @@ PODS:
   - nanopb/encode (2.30910.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
+  - NVActivityIndicatorView (5.2.0):
+    - NVActivityIndicatorView/Base (= 5.2.0)
+  - NVActivityIndicatorView/Base (5.2.0)
   - PromisesObjC (2.4.0)
   - PryntTrimmerView (4.0.2)
   - ReactorKit (3.2.0):
@@ -1275,6 +1278,7 @@ DEPENDENCIES:
   - KakaoSDKUser
   - KeychainAccess
   - "NSObject+Rx"
+  - NVActivityIndicatorView
   - ReactorKit
   - RxCocoa
   - RxDataSources
@@ -1329,6 +1333,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - "NSObject+Rx"
+    - NVActivityIndicatorView
     - PromisesObjC
     - PryntTrimmerView
     - ReactorKit
@@ -1387,6 +1392,7 @@ SPEC CHECKSUMS:
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  NVActivityIndicatorView: fe52a6a68664c2df8991d7d9e3d86d8d19453c53
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
   ReactorKit: e8b11d6b9c415405f381669b095c154a05b59eca
@@ -1407,6 +1413,6 @@ SPEC CHECKSUMS:
   WeakMapTable: 05c694ce8439a7a9ebabb56187287a63c57673d6
   YPImagePicker: afc81b3cffab05a6e7261c5daf80dc31b4e917b4
 
-PODFILE CHECKSUM: 709946399c73e1e6571a42e5e515e713e2686a5e
+PODFILE CHECKSUM: c393a32d7aa46c7537b54b108be7f8167abfd8c5
 
 COCOAPODS: 1.15.2
