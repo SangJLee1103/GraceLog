@@ -60,7 +60,7 @@ extension SignInReactor {
             isAgreed = !isAgreed
             return .just(.setAgree(isAgreed))
         case .showTerms:
-            // coordinator?.showTerms()
+            //             coordinator?.showTerms()
             return .empty()
         }
     }

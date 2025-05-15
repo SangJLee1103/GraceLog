@@ -13,17 +13,14 @@ struct AuthService {
     func signIn(request: SignInRequestDTO) -> Single<SignInResponseDTO> {
         return .create { single in
             AF.request(AuthTarget.signIn(request))
-                .validate()
+                .validate(statusCode: 200..<300)
                 .responseDecodable(of: GraceLogResponseDTO<SignInResponseDTO>.self) { response in
-                    print("로그인 \(response)")
                     switch response.result {
                     case .success(let response):
                         if response.code == 200 {
-                            print("로그인 성공 \(response.data)")
                             single(.success(response.data))
                         }
                     case .failure(let error):
-                        print("로그인 실패 \(error)")
                         single(.failure(error))
                     }
                 }

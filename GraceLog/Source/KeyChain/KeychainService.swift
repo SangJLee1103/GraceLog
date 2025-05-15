@@ -26,22 +26,14 @@ class KeychainServiceImpl: KeychainService {
     var accessToken: String? {
         get { keychainAccess.get(Key.accessToken) }
         set {
-            if accessToken != nil {
-                keychainAccess.save(Key.accessToken, newValue ?? "")
-            } else {
-                keychainAccess.remove(Key.accessToken)
-            }
+            keychainAccess.save(Key.accessToken, newValue ?? "")
         }
     }
     
     var refreshToken: String? {
         get { keychainAccess.get(Key.refreshToken) }
         set {
-            if refreshToken != nil {
-                keychainAccess.save(Key.refreshToken, newValue ?? "")
-            } else {
-                keychainAccess.remove(Key.refreshToken)
-            }
+            keychainAccess.save(Key.refreshToken, newValue ?? "")
         }
     }
     
