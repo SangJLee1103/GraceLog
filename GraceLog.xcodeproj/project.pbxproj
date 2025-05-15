@@ -1362,11 +1362,8 @@
 				DE9A1FF22D7C065C0044F655 /* HomeContentDTO.swift in Sources */,
 				DE2700532D2113F2005C9DCF /* SignInReactor.swift in Sources */,
 				DE4D8B832D8C419700533276 /* MyInfoSectionHeaderView.swift in Sources */,
-<<<<<<< HEAD
 				023446172DB61B0300F21439 /* DiaryAdditionalSettingsViewController.swift in Sources */,
-=======
 				DED5587A2DBC798A00137B10 /* AuthTarget.swift in Sources */,
->>>>>>> develop
 				DE655B212DA5EC480073B4F7 /* UILabel+Extension.swift in Sources */,
 				DE9A1FD52D79AA780044F655 /* CommunityDiary.swift in Sources */,
 				DE9565032DC4B311006DD9CF /* KeychainService.swift in Sources */,
@@ -1433,13 +1430,9 @@
 				DE9A1FCC2D6C7D890044F655 /* HomeCommunityMyTableViewCell.swift in Sources */,
 				DE2700662D22D43E005C9DCF /* UserResponseDTO.swift in Sources */,
 				DE5638532DA1726700A12192 /* CommonButtonTableViewCell.swift in Sources */,
-<<<<<<< HEAD
-				DE27005F2D212770005C9DCF /* FireStoreRepository.swift in Sources */,
 				0234461F2DB6283600F21439 /* DiaryAdditionalSettingsViewReactor.swift in Sources */,
-=======
 				DED5587F2DBC7C2F00137B10 /* HTTPHeaderField.swift in Sources */,
 				DE27005F2D212770005C9DCF /* UserRepository.swift in Sources */,
->>>>>>> develop
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
