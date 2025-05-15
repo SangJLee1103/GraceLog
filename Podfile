@@ -6,6 +6,8 @@ target 'GraceLog' do
   use_frameworks!
 
   # Pods for GraceLog
+	pod 'KakaoSDKAuth'
+	pod 'KakaoSDKUser'
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod 'Firebase/Firestore'
@@ -15,6 +17,7 @@ target 'GraceLog' do
 	pod 'GoogleSignIn'
 	pod 'IQKeyboardManagerSwift'
 	pod 'Then' 
+  	pod 'NVActivityIndicatorView'
 	pod 'UITextView+Placeholder'
 	pod 'SDWebImage'
 	pod 'Alamofire' 
@@ -29,6 +32,7 @@ target 'GraceLog' do
 	pod 'RxKeyboard'
 	pod 'RxDataSources'
 	pod 'ReactorKit'
+        pod 'KeychainAccess'
 
   target 'GraceLogUseCaseTests' do
     inherit! :search_paths

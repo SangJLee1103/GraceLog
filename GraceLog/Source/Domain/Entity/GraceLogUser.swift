@@ -6,12 +6,10 @@
 //
 
 import Foundation
-import Firebase
 
 struct GraceLogUser: Equatable {
-    let uid: String
-    let displayName: String
-    let email: String
-    let photoUrl: String
-    let createdAt: Timestamp
+    let id: String
+    let name: String
+    let nickname: String
+    let profileImage: String
 }

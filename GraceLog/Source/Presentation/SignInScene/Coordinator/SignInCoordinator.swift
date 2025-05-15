@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LoginCoordinator: Coordinator {
+final class SignInCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     var childerCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -20,19 +20,17 @@ final class LoginCoordinator: Coordinator {
         //
     }
     
-    func createLoginViewController() -> UIViewController {
-        let loginVC = LoginViewController()
-        let reactor = LoginReactor(
-            loginUseCase: DefaultLoginUseCase(
-                firestoreRepository: DefaultFireStoreRepository()
-            )
+    func createSignInViewController() -> UIViewController {
+        let loginVC = SignInViewController()
+        let reactor = SignInReactor(
+            signInUseCase: DefaultSignInUseCase(authRepository: DefaultAuthRepository(authService: AuthService()))
         )
         reactor.coordinator = self
         loginVC.reactor = reactor
         return loginVC
     }
     
-    func didFinishLogin() {
+    func didFinishSignIn() {
         if let appCoordinator = parentCoordinator as? GraceLogAppCoordinator {
             appCoordinator.window?.rootViewController?.dismiss(animated: true) { [weak self] in
                 if let self = self {
