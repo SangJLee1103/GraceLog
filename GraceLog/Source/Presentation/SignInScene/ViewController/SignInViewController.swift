@@ -9,17 +9,22 @@ import UIKit
 import SnapKit
 import Then
 import ReactorKit
+import Toast_Swift
+import NVActivityIndicatorView
 
 import Firebase
 import GoogleSignIn
 import RxSwift
 import RxCocoa
 
+import KakaoSDKAuth
+import KakaoSDKUser
+
 import CryptoKit
 import AuthenticationServices
 
-final class LoginViewController: UIViewController {
-    typealias Reactor = LoginReactor
+final class SignInViewController: UIViewController {
+    typealias Reactor = SignInReactor
     var disposeBag = DisposeBag()
     fileprivate var currentNonce: String?
     
@@ -61,8 +66,8 @@ final class LoginViewController: UIViewController {
         $0.setDimensions(width: 60, height: 60)
     }
     
-    private lazy var facebookLoginButton = UIButton().then {
-        $0.setImage(UIImage(named: "facebook"), for: .normal)
+    private lazy var kakaoLoginButton = UIButton().then {
+        $0.setImage(UIImage(named: "kakao"), for: .normal)
         $0.setDimensions(width: 60, height: 60)
     }
     
@@ -72,13 +77,13 @@ final class LoginViewController: UIViewController {
         $0.font = UIFont(name: "Pretendard-Regular", size: 12)
     }
     
+    private let activityIndicator = NVActivityIndicatorView(frame: .zero, type: .ballSpinFadeLoader, color: .black, padding: 0).then {
+        $0.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
-        [startLabel, leftLine, rightLine, appleLoginButton, googleLoginButton, facebookLoginButton].forEach {
-            $0.alpha = 0
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,7 +93,7 @@ final class LoginViewController: UIViewController {
             options: .curveEaseIn
         ) {
             [self.startLabel, self.leftLine, self.rightLine,
-             self.appleLoginButton, self.googleLoginButton, self.facebookLoginButton].forEach {
+             self.appleLoginButton, self.googleLoginButton, self.kakaoLoginButton].forEach {
                 $0.alpha = 1
             }
         }
@@ -99,12 +104,12 @@ final class LoginViewController: UIViewController {
         
         let safeArea = view.safeAreaLayoutGuide
         
-        let loginStack = UIStackView(arrangedSubviews: [appleLoginButton, googleLoginButton, facebookLoginButton])
+        let loginStack = UIStackView(arrangedSubviews: [appleLoginButton, googleLoginButton, kakaoLoginButton])
         loginStack.axis = .horizontal
         loginStack.distribution = .fillEqually
         loginStack.spacing = 27
         
-        [sloganLabel, logoImgView, startLabel, leftLine, rightLine, loginStack, copyrightLabel].forEach {
+        [sloganLabel, logoImgView, startLabel, leftLine, rightLine, loginStack, copyrightLabel, activityIndicator].forEach {
             view.addSubview($0)
         }
         
@@ -145,15 +150,25 @@ final class LoginViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(safeArea).inset(20)
         }
+        
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.height.equalTo(40)
+        }
+        
+        [startLabel, leftLine, rightLine, appleLoginButton, googleLoginButton, kakaoLoginButton].forEach {
+            $0.alpha = 0
+        }
     }
 }
 
-extension LoginViewController: View {
-    func bind(reactor: LoginReactor) {
+extension SignInViewController: View {
+    func bind(reactor: SignInReactor) {
+        // Action
         googleLoginButton.rx.tap
             .withUnretained(self)
             .bind { owner, _ in
-                owner.handleGoogleLogin()
+                
             }
             .disposed(by: disposeBag)
         
@@ -164,6 +179,14 @@ extension LoginViewController: View {
             }
             .disposed(by: disposeBag)
         
+        kakaoLoginButton.rx.tap
+            .withUnretained(self)
+            .bind { owner, _ in
+                owner.handleKakaoLogin()
+            }
+            .disposed(by: disposeBag)
+        
+        // State
         reactor.state
             .map { $0.user }
             .distinctUntilChanged()
@@ -173,40 +196,68 @@ extension LoginViewController: View {
                 }
             })
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.isLoading }
+            .bind(onNext: { [weak self] isLoading in
+                if isLoading {
+                    self?.activityIndicator.isHidden = false
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.isHidden = true
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.error }
+            .subscribe(onNext: { [weak self] error in
+                self?.view.makeToast(error?.localizedDescription)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
-extension LoginViewController {
-    private func handleGoogleLogin() {
-        guard let clientId = FirebaseApp.app()?.options.clientID else { return }
-        
-        let config = GIDConfiguration(clientID: clientId)
-        GIDSignIn.sharedInstance.configuration = config
-        
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-            guard error == nil else {
-                return
-            }
-            
-            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
-                return
-            }
-            
-            let credential = GoogleAuthProvider.credential(
-                withIDToken: idToken,
-                accessToken: user.accessToken.tokenString
-            )
-            
-            reactor?.action.onNext(.googleLogin(credential))
-        }
-    }
-    
+extension SignInViewController {
     private func handleAppleLogin() {
         startSignInWithAppleFlow()
     }
+    
+    private func handleKakaoLogin() {
+        if UserApi.isKakaoTalkLoginAvailable() {
+            UserApi.shared.loginWithKakaoTalk { [weak self] (oauthToken, error) in
+                if let error = error {
+                    print("카카오톡 로그인 에러: \(error)")
+                    return
+                }
+                
+                guard let token = oauthToken?.accessToken else {
+                    print("카카오 액세스 토큰을 가져오지 못했습니다")
+                    return
+                }
+                
+                self?.reactor?.action.onNext(.kakaoLogin(token: token))
+            }
+        } else {
+            UserApi.shared.loginWithKakaoAccount { [weak self] (oauthToken, error) in
+                if let error = error {
+                    print("카카오 계정 로그인 에러: \(error)")
+                    return
+                }
+                
+                guard let token = oauthToken?.accessToken else {
+                    print("카카오 액세스 토큰을 가져오지 못했습니다")
+                    return
+                }
+                
+                self?.reactor?.action.onNext(.kakaoLogin(token: token))
+            }
+        }
+    }
 }
 
-extension LoginViewController {
+extension SignInViewController {
     func startSignInWithAppleFlow() {
         let nonce = randomNonceString()
         currentNonce = nonce
@@ -253,7 +304,7 @@ extension LoginViewController {
     }
 }
 
-extension LoginViewController: ASAuthorizationControllerDelegate {
+extension SignInViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
               let nonce = currentNonce else { return }
@@ -273,7 +324,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             fullName: appleIDCredential.fullName
         )
         
-        reactor?.action.onNext(.appleLogin(credential))
+        reactor?.action.onNext(.appleLogin)
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
@@ -281,7 +332,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     }
 }
 
-extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+extension SignInViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window ?? UIWindow()
     }
