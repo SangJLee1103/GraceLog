@@ -13,7 +13,7 @@ final class NetworkManager {
     static let shared = NetworkManager()
     
     let baseURL: String
-    private let session: Session
+    let session: Session
     private let interceptor: AuthenticationInterceptor<GraceLogAuthenticator>
     private let authenticator: GraceLogAuthenticator
     

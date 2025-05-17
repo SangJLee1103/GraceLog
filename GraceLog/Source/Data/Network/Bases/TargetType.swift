@@ -30,6 +30,8 @@ extension TargetType {
         case .body(let request):
             let params = request?.toDictionary() ?? [:]
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
+        case .none:
+            break
         }
         
         return urlRequest
@@ -39,6 +41,7 @@ extension TargetType {
 enum RequestParams {
     case query(_ parameter: Encodable?)
     case body(_ parameter: Encodable?)
+    case none
 }
 
 extension Encodable {

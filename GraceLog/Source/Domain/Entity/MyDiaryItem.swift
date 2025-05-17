@@ -12,7 +12,7 @@ struct MyDiaryItem {
     let date: String
     let dateDesc: String
     let title: String
-    let subtitle: String
+    let desc: String
     let tags: [String]
     let image: UIImage?
 }
