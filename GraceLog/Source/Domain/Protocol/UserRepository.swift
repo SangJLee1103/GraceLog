@@ -9,7 +9,5 @@ import Foundation
 import RxSwift
 
 protocol UserRepository {
-    // MARK: - SignIn
-//    func fetchUser(id: String) -> Observable<Result<GraceLogUser, Error>>
-//    func signIn(provider: String, token: String) -> Observable<Result<GraceLogUser, Error>>
+    func fetchUser() -> Single<GraceLogUser>
 }

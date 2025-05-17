@@ -37,6 +37,7 @@ final class HomeViewController: UIViewController, View {
                 if let diaryItem = item as? [MyDiaryItem] {
                     cell.configure(with: diaryItem)
                 }
+                
                 return cell
             case .contentList:
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeRecommendTableViewCell.identifier, for: indexPath) as! HomeRecommendTableViewCell
@@ -81,7 +82,12 @@ final class HomeViewController: UIViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.reactor = HomeViewReactor(homeUsecase: DefaultHomeUseCase(repository: DefaultHomeRepository()))
+        self.reactor = HomeViewReactor(homeUsecase: DefaultHomeUseCase(
+            userRepository: DefaultUserRepository(
+                userService: UserService()
+            ),
+            homeRepository: DefaultHomeRepository()
+        ))
         configureUI()
         configureTableView()
     }
@@ -144,6 +150,16 @@ final class HomeViewController: UIViewController, View {
                 DispatchQueue.main.async {
                     owner.tableView.reloadData()
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.user }
+            .distinctUntilChanged()
+            .compactMap { $0 }
+            .withUnretained(self)
+            .subscribe(onNext: { owner, user in
+                owner.headerView.updateUser(user: user)
             })
             .disposed(by: disposeBag)
         

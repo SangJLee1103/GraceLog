@@ -9,11 +9,21 @@ import Foundation
 import RxSwift
 
 final class DefaultUserRepository: UserRepository {
-//    func fetchUser(id: String) -> RxSwift.Observable<Result<GraceLogUser, any Error>> {
-//        <#code#>
-//    }
+    private let userService: UserService
     
-//    func signIn(provider: String, token: String) -> Observable<Result<GraceLogUser, any Error>> {
-//        
-//    }
+    init(userService: UserService) {
+        self.userService = userService
+    }
+    
+    func fetchUser() -> Single<GraceLogUser> {
+        return userService.fetchUser()
+            .map { responseDTO in
+                return GraceLogUser(
+                    id: responseDTO.memberId,
+                    name: responseDTO.name,
+                    nickname: responseDTO.nickname,
+                    profileImage: responseDTO.profileImage
+                )
+            }
+    }
 }
