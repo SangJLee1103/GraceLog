@@ -20,7 +20,6 @@ final class HomeDiaryTableViewCell: UITableViewCell {
     private let titleLabel = UILabel().then {
         $0.font = UIFont(name: "Pretendard-Bold", size: 12)
         $0.textColor = .themeColor
-        $0.text = "승렬님, 오늘도 하나님과 동행하세요"
     }
     
     private let diaryStackView = UIStackView().then {
@@ -64,9 +63,13 @@ final class HomeDiaryTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with items: [MyDiaryItem]) {
+    func configure(with diaryList: [MyDiaryItem]) {
         cleanupViews()
-        setupDiaryItems(items)
+        setupDiaryItems(diaryList)
+    }
+    
+    func setTitle(username: String) {
+        titleLabel.text = "\(username)님, 오늘도 하나님과 동행하세요"
     }
     
     private func cleanupViews() {

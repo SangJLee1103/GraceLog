@@ -38,6 +38,10 @@ final class HomeViewController: UIViewController, View {
                     cell.configure(with: diaryItem)
                 }
                 
+                if let username = self?.reactor?.currentState.user?.name {
+                    cell.setTitle(username: username)
+                }
+                
                 return cell
             case .contentList:
                 let cell = tableView.dequeueReusableCell(withIdentifier: HomeRecommendTableViewCell.identifier, for: indexPath) as! HomeRecommendTableViewCell

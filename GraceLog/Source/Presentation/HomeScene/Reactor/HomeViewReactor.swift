@@ -116,10 +116,8 @@ final class HomeViewReactor: Reactor {
             }
         }
     }
-    
     let initialState: State = State()
 }
-
 
 extension HomeViewReactor {
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
