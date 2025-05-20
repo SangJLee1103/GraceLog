@@ -13,6 +13,20 @@
 		0234461F2DB6283600F21439 /* DiaryAdditionalSettingsViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0234461E2DB6283600F21439 /* DiaryAdditionalSettingsViewReactor.swift */; };
 		02C5861A2DD736CA00E1F626 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C586192DD736CA00E1F626 /* UserService.swift */; };
 		02C5861C2DD736D600E1F626 /* UserTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C5861B2DD736D600E1F626 /* UserTarget.swift */; };
+		02DC29802DDC29C000662D8A /* MyInfoSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29742DDC29C000662D8A /* MyInfoSectionHeaderView.swift */; };
+		02DC29812DDC29C000662D8A /* MyInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC296A2DDC29C000662D8A /* MyInfoCoordinator.swift */; };
+		02DC29822DDC29C000662D8A /* ProfileEditViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29712DDC29C000662D8A /* ProfileEditViewReactor.swift */; };
+		02DC29832DDC29C000662D8A /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC297D2DDC29C000662D8A /* ProfileEditViewController.swift */; };
+		02DC29842DDC29C000662D8A /* ProfileImageEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29792DDC29C000662D8A /* ProfileImageEditTableViewCell.swift */; };
+		02DC29852DDC29C000662D8A /* ProfileEditDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC296E2DDC29C000662D8A /* ProfileEditDataSource.swift */; };
+		02DC29862DDC29C000662D8A /* MyInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29702DDC29C000662D8A /* MyInfoViewReactor.swift */; };
+		02DC29872DDC29C000662D8A /* ProfileEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC296B2DDC29C000662D8A /* ProfileEditCoordinator.swift */; };
+		02DC29882DDC29C000662D8A /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29752DDC29C000662D8A /* MyInfoTableViewCell.swift */; };
+		02DC29892DDC29C000662D8A /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC297C2DDC29C000662D8A /* MyInfoViewController.swift */; };
+		02DC298A2DDC29C000662D8A /* ProfileEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29782DDC29C000662D8A /* ProfileEditTableViewCell.swift */; };
+		02DC298B2DDC29C000662D8A /* MyInfoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29732DDC29C000662D8A /* MyInfoButtonTableViewCell.swift */; };
+		02DC298C2DDC29C000662D8A /* MyInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC296D2DDC29C000662D8A /* MyInfoDataSource.swift */; };
+		02DC298D2DDC29C000662D8A /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29762DDC29C000662D8A /* ProfileTableViewCell.swift */; };
 		6D6D359847E48286C67E16F7 /* Pods_GraceLogUseCaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D415D287B3EAEECA4BE40BB /* Pods_GraceLogUseCaseTests.framework */; };
 		75248638A478EB9521F76504 /* Pods_GraceLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27041694929DC3D121EF0C /* Pods_GraceLog.framework */; };
 		A88BF65DF907D86788F86BF8 /* Pods_GraceLog_GraceLogUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92AAD74E157DB380B9B4192E /* Pods_GraceLog_GraceLogUITests.framework */; };
@@ -49,18 +63,10 @@
 		DE3BFCD62D048B170076426D /* GraceLogAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */; };
 		DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD72D048B550076426D /* Coordinator.swift */; };
 		DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCD92D059A3B0076426D /* HomeViewController.swift */; };
-		DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */; };
 		DE3BFCDE2D059D3D0076426D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCDD2D059D3D0076426D /* SearchViewController.swift */; };
 		DE3BFCE12D059DDC0076426D /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */; };
 		DE3BFCE42D059E970076426D /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE32D059E970076426D /* SearchCoordinator.swift */; };
-		DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */; };
 		DE3BFCEC2D0D3D390076426D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */; };
-		DE4D8B782D85646500533276 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */; };
-		DE4D8B7A2D856A4A00533276 /* MyInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */; };
-		DE4D8B7E2D857B5300533276 /* MyInfoViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B7D2D857B5300533276 /* MyInfoViewReactor.swift */; };
-		DE4D8B812D85812300533276 /* MyInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B802D85812300533276 /* MyInfoDataSource.swift */; };
-		DE4D8B832D8C419700533276 /* MyInfoSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */; };
-		DE4D8B852D8D6ED100533276 /* MyInfoButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */; };
 		DE5638472D99785D00A12192 /* DiaryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5638462D99785D00A12192 /* DiaryUseCase.swift */; };
 		DE5638492D9DFD2E00A12192 /* DiaryCommunityData.json in Resources */ = {isa = PBXBuildFile; fileRef = DE5638482D9DFD2E00A12192 /* DiaryCommunityData.json */; };
 		DE56384C2D9DFDDF00A12192 /* CommunityDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE56384B2D9DFDDF00A12192 /* CommunityDTO.swift */; };
@@ -165,6 +171,20 @@
 		0234461E2DB6283600F21439 /* DiaryAdditionalSettingsViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryAdditionalSettingsViewReactor.swift; sourceTree = "<group>"; };
 		02C586192DD736CA00E1F626 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		02C5861B2DD736D600E1F626 /* UserTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTarget.swift; sourceTree = "<group>"; };
+		02DC296A2DDC29C000662D8A /* MyInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoCoordinator.swift; sourceTree = "<group>"; };
+		02DC296B2DDC29C000662D8A /* ProfileEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditCoordinator.swift; sourceTree = "<group>"; };
+		02DC296D2DDC29C000662D8A /* MyInfoDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDataSource.swift; sourceTree = "<group>"; };
+		02DC296E2DDC29C000662D8A /* ProfileEditDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditDataSource.swift; sourceTree = "<group>"; };
+		02DC29702DDC29C000662D8A /* MyInfoViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewReactor.swift; sourceTree = "<group>"; };
+		02DC29712DDC29C000662D8A /* ProfileEditViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewReactor.swift; sourceTree = "<group>"; };
+		02DC29732DDC29C000662D8A /* MyInfoButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonTableViewCell.swift; sourceTree = "<group>"; };
+		02DC29742DDC29C000662D8A /* MyInfoSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSectionHeaderView.swift; sourceTree = "<group>"; };
+		02DC29752DDC29C000662D8A /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
+		02DC29762DDC29C000662D8A /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		02DC29782DDC29C000662D8A /* ProfileEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditTableViewCell.swift; sourceTree = "<group>"; };
+		02DC29792DDC29C000662D8A /* ProfileImageEditTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageEditTableViewCell.swift; sourceTree = "<group>"; };
+		02DC297C2DDC29C000662D8A /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		02DC297D2DDC29C000662D8A /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
 		13CEE664F868FEB4EF0F50A2 /* Pods-GraceLogUseCaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLogUseCaseTests.release.xcconfig"; path = "Target Support Files/Pods-GraceLogUseCaseTests/Pods-GraceLogUseCaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		3772E15DC148101F5890C6F5 /* Pods-GraceLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLog.release.xcconfig"; path = "Target Support Files/Pods-GraceLog/Pods-GraceLog.release.xcconfig"; sourceTree = "<group>"; };
 		45FB5606D88433D808BF0656 /* Pods-GraceLogTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GraceLogTests.debug.xcconfig"; path = "Target Support Files/Pods-GraceLogTests/Pods-GraceLogTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -207,16 +227,12 @@
 		DE3BFCD52D048B170076426D /* GraceLogAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraceLogAppCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCD72D048B550076426D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DE3BFCD92D059A3B0076426D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		DE3BFCDD2D059D3D0076426D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DE3BFCE02D059DDC0076426D /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCE32D059E970076426D /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
-		DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoCoordinator.swift; sourceTree = "<group>"; };
 		DE3BFCEB2D0D3D390076426D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTableViewCell.swift; sourceTree = "<group>"; };
-		DE4D8B7D2D857B5300533276 /* MyInfoViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoViewReactor.swift; sourceTree = "<group>"; };
-		DE4D8B802D85812300533276 /* MyInfoDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDataSource.swift; sourceTree = "<group>"; };
 		DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSectionHeaderView.swift; sourceTree = "<group>"; };
 		DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoButtonTableViewCell.swift; sourceTree = "<group>"; };
 		DE5638462D99785D00A12192 /* DiaryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryUseCase.swift; sourceTree = "<group>"; };
@@ -355,6 +371,94 @@
 				02C5861B2DD736D600E1F626 /* UserTarget.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		02DC29032DDC24A900662D8A /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */,
+				DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */,
+				DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */,
+				DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		02DC296C2DDC29C000662D8A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				02DC296A2DDC29C000662D8A /* MyInfoCoordinator.swift */,
+				02DC296B2DDC29C000662D8A /* ProfileEditCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		02DC296F2DDC29C000662D8A /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				02DC296D2DDC29C000662D8A /* MyInfoDataSource.swift */,
+				02DC296E2DDC29C000662D8A /* ProfileEditDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		02DC29722DDC29C000662D8A /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				02DC29702DDC29C000662D8A /* MyInfoViewReactor.swift */,
+				02DC29712DDC29C000662D8A /* ProfileEditViewReactor.swift */,
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		02DC29772DDC29C000662D8A /* MyInfo */ = {
+			isa = PBXGroup;
+			children = (
+				02DC29732DDC29C000662D8A /* MyInfoButtonTableViewCell.swift */,
+				02DC29742DDC29C000662D8A /* MyInfoSectionHeaderView.swift */,
+				02DC29752DDC29C000662D8A /* MyInfoTableViewCell.swift */,
+				02DC29762DDC29C000662D8A /* ProfileTableViewCell.swift */,
+			);
+			path = MyInfo;
+			sourceTree = "<group>";
+		};
+		02DC297A2DDC29C000662D8A /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				02DC29782DDC29C000662D8A /* ProfileEditTableViewCell.swift */,
+				02DC29792DDC29C000662D8A /* ProfileImageEditTableViewCell.swift */,
+			);
+			path = ProfileEdit;
+			sourceTree = "<group>";
+		};
+		02DC297B2DDC29C000662D8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				02DC29772DDC29C000662D8A /* MyInfo */,
+				02DC297A2DDC29C000662D8A /* ProfileEdit */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		02DC297E2DDC29C000662D8A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				02DC297C2DDC29C000662D8A /* MyInfoViewController.swift */,
+				02DC297D2DDC29C000662D8A /* ProfileEditViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		02DC297F2DDC29C000662D8A /* MyInfoScene */ = {
+			isa = PBXGroup;
+			children = (
+				02DC296C2DDC29C000662D8A /* Coordinator */,
+				02DC296F2DDC29C000662D8A /* DataSource */,
+				02DC29722DDC29C000662D8A /* Reactor */,
+				02DC297B2DDC29C000662D8A /* View */,
+				02DC297E2DDC29C000662D8A /* ViewController */,
+			);
+			path = MyInfoScene;
 			sourceTree = "<group>";
 		};
 		2EA2272B8D90352B60124564 /* Pods */ = {
@@ -672,7 +776,7 @@
 				DE3BFCC32D043D8B0076426D /* HomeScene */,
 				DE069B922D53A708007C2066 /* DiaryScene */,
 				DE3BFCC62D043DB70076426D /* SearchScene */,
-				DE3BFCC52D043DA40076426D /* MyInfoScene */,
+				02DC297F2DDC29C000662D8A /* MyInfoScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -716,18 +820,6 @@
 				DE3BFCC72D0489850076426D /* ViewController */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		DE3BFCC52D043DA40076426D /* MyInfoScene */ = {
-			isa = PBXGroup;
-			children = (
-				DE4D8B7F2D857FCF00533276 /* DataSource */,
-				DE3BFCE52D05A1FD0076426D /* Coordinator */,
-				DE3BFCD12D0489FB0076426D /* Reactor */,
-				DE3BFCD22D048A010076426D /* View */,
-				DE3BFCD32D048A080076426D /* ViewController */,
-			);
-			path = MyInfoScene;
 			sourceTree = "<group>";
 		};
 		DE3BFCC62D043DB70076426D /* SearchScene */ = {
@@ -822,33 +914,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		DE3BFCD12D0489FB0076426D /* Reactor */ = {
-			isa = PBXGroup;
-			children = (
-				DE4D8B7D2D857B5300533276 /* MyInfoViewReactor.swift */,
-			);
-			path = Reactor;
-			sourceTree = "<group>";
-		};
-		DE3BFCD22D048A010076426D /* View */ = {
-			isa = PBXGroup;
-			children = (
-				DE4D8B822D8C419700533276 /* MyInfoSectionHeaderView.swift */,
-				DE4D8B772D85646500533276 /* ProfileTableViewCell.swift */,
-				DE4D8B792D856A4A00533276 /* MyInfoTableViewCell.swift */,
-				DE4D8B842D8D6ED100533276 /* MyInfoButtonTableViewCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		DE3BFCD32D048A080076426D /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				DE3BFCDB2D059A480076426D /* MyInfoViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		DE3BFCD42D048AE50076426D /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -874,22 +939,6 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		DE3BFCE52D05A1FD0076426D /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				DE3BFCE62D05A2820076426D /* MyInfoCoordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		DE4D8B7F2D857FCF00533276 /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				DE4D8B802D85812300533276 /* MyInfoDataSource.swift */,
-			);
-			path = DataSource;
-			sourceTree = "<group>";
-		};
 		DE56384D2D9E01B900A12192 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +957,7 @@
 				DE58FEAE2D04284D008CADCD /* Products */,
 				2EA2272B8D90352B60124564 /* Pods */,
 				5220B6260B4015DECE44E88F /* Frameworks */,
+				02DC29032DDC24A900662D8A /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1363,19 +1413,15 @@
 				DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */,
 				DE9A1FD72D79AB8B0044F655 /* HomeCommunityContent.swift in Sources */,
 				DE3BFCE42D059E970076426D /* SearchCoordinator.swift in Sources */,
-				DE4D8B812D85812300533276 /* MyInfoDataSource.swift in Sources */,
 				DED5588A2DBE226D00137B10 /* AuthRepository.swift in Sources */,
-				DE3BFCDC2D059A480076426D /* MyInfoViewController.swift in Sources */,
 				DEA04FA72D69A8C000BA978A /* String+Extension.swift in Sources */,
 				DE58FEB32D04284D008CADCD /* SceneDelegate.swift in Sources */,
 				DEEFEACA2D29270500699692 /* GraceLogUser.swift in Sources */,
 				DE9A1FD02D6C87E60044F655 /* HomeCommunityDateHeaderView.swift in Sources */,
 				DE9A1FC62D69D62E0044F655 /* CommunityTableViewCell.swift in Sources */,
 				DED558962DBE576A00137B10 /* Const.swift in Sources */,
-				DE4D8B7E2D857B5300533276 /* MyInfoViewReactor.swift in Sources */,
 				DE9A1FF22D7C065C0044F655 /* HomeContentDTO.swift in Sources */,
 				DE2700532D2113F2005C9DCF /* SignInReactor.swift in Sources */,
-				DE4D8B832D8C419700533276 /* MyInfoSectionHeaderView.swift in Sources */,
 				023446172DB61B0300F21439 /* DiaryAdditionalSettingsViewController.swift in Sources */,
 				DED5587A2DBC798A00137B10 /* AuthTarget.swift in Sources */,
 				DE655B212DA5EC480073B4F7 /* UILabel+Extension.swift in Sources */,
@@ -1389,8 +1435,21 @@
 				DE2700632D22D188005C9DCF /* DefaultUserRepository.swift in Sources */,
 				DE9A1FDE2D79B0A50044F655 /* HomeContent.swift in Sources */,
 				DE66C2FD2D96B6F9009A983F /* DiaryImageCollectionViewCell.swift in Sources */,
-				DE3BFCE72D05A2820076426D /* MyInfoCoordinator.swift in Sources */,
 				DE3BFCDA2D059A3B0076426D /* HomeViewController.swift in Sources */,
+				02DC29802DDC29C000662D8A /* MyInfoSectionHeaderView.swift in Sources */,
+				02DC29812DDC29C000662D8A /* MyInfoCoordinator.swift in Sources */,
+				02DC29822DDC29C000662D8A /* ProfileEditViewReactor.swift in Sources */,
+				02DC29832DDC29C000662D8A /* ProfileEditViewController.swift in Sources */,
+				02DC29842DDC29C000662D8A /* ProfileImageEditTableViewCell.swift in Sources */,
+				02DC29852DDC29C000662D8A /* ProfileEditDataSource.swift in Sources */,
+				02DC29862DDC29C000662D8A /* MyInfoViewReactor.swift in Sources */,
+				02DC29872DDC29C000662D8A /* ProfileEditCoordinator.swift in Sources */,
+				02DC29882DDC29C000662D8A /* MyInfoTableViewCell.swift in Sources */,
+				02DC29892DDC29C000662D8A /* MyInfoViewController.swift in Sources */,
+				02DC298A2DDC29C000662D8A /* ProfileEditTableViewCell.swift in Sources */,
+				02DC298B2DDC29C000662D8A /* MyInfoButtonTableViewCell.swift in Sources */,
+				02DC298C2DDC29C000662D8A /* MyInfoDataSource.swift in Sources */,
+				02DC298D2DDC29C000662D8A /* ProfileTableViewCell.swift in Sources */,
 				DE9A1FF02D7C05720044F655 /* CommunityDiaryDTO.swift in Sources */,
 				DED558842DBE1E4000137B10 /* GraceLogResponseDTO.swift in Sources */,
 				DE9A1FF82D7C08070044F655 /* DefaultHomeUseCase.swift in Sources */,
@@ -1425,7 +1484,6 @@
 				DE069B9E2D57144A007C2066 /* HomeDiaryTableViewCell.swift in Sources */,
 				DED5589F2DC4B12200137B10 /* KeychainAccessible.swift in Sources */,
 				DE5638512DA147EA00A12192 /* CommonSectionHeaderView.swift in Sources */,
-				DE4D8B7A2D856A4A00533276 /* MyInfoTableViewCell.swift in Sources */,
 				DE66C2FB2D96B39B009A983F /* DefaultDiaryUseCase.swift in Sources */,
 				DE069BA22D571485007C2066 /* HomeRecommendTableViewCell.swift in Sources */,
 				DE66C2F52D96B0E4009A983F /* DiaryViewReactor.swift in Sources */,
@@ -1439,8 +1497,6 @@
 				DED558642DABAC7800137B10 /* DiaryKeywordCollectionViewCell.swift in Sources */,
 				DED558662DABAFBE00137B10 /* CommonSectionWithDescHeaderView.swift in Sources */,
 				DE9A1FC82D69DA2A0044F655 /* CommunityButton.swift in Sources */,
-				DE4D8B782D85646500533276 /* ProfileTableViewCell.swift in Sources */,
-				DE4D8B852D8D6ED100533276 /* MyInfoButtonTableViewCell.swift in Sources */,
 				DE27005A2D2125FF005C9DCF /* SignInUseCase.swift in Sources */,
 				DE9A1FCC2D6C7D890044F655 /* HomeCommunityMyTableViewCell.swift in Sources */,
 				02C5861C2DD736D600E1F626 /* UserTarget.swift in Sources */,

@@ -40,7 +40,14 @@ final class MyInfoCoordinator: Coordinator {
         let myInfoVC = MyInfoViewController()
         myInfoVC.view.backgroundColor = UIColor(hex: 0xF4F4F4)
         myInfoVC.title = "내 계정"
+        myInfoVC.reactor = MyInfoViewReactor(coordinator: self)
         navigationController.setViewControllers([myInfoVC], animated: false)
         return navigationController
+    }
+    
+    func showProfileEditVC() {
+        let profileEditCoordinator = ProfileEditCoordinator(self.navigationController)
+        self.childerCoordinators.append(profileEditCoordinator)
+        profileEditCoordinator.start()
     }
 }
