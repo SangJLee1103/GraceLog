@@ -21,6 +21,7 @@ final class HomeViewReactor: Reactor {
     private func loadData() {
         homeUsecase.fetchHomeMyContent()
         homeUsecase.fetchHomeCommunityContent()
+        homeUsecase.fetchUser()
     }
     
     enum Action {
@@ -35,6 +36,7 @@ final class HomeViewReactor: Reactor {
         case setHomeMyData(HomeContent)
         case setHomeCommunityData(HomeCommunityContent)
         case setError(Error)
+        case setUser(GraceLogUser)
     }
     
     struct State {
@@ -50,6 +52,7 @@ final class HomeViewReactor: Reactor {
         var communitySections: [(date: String, items: [CommunityDiaryItem])] = []
         var communityButtons: [String] = []
         var error: Error?
+        var user: GraceLogUser? = nil
         
         var sections: [HomeSectionModel] {
             switch currentSegment {
@@ -63,7 +66,7 @@ final class HomeViewReactor: Reactor {
                         date: item.date,
                         dateDesc: item.dateDesc,
                         title: item.title,
-                        subtitle: item.subtitle,
+                        desc: item.desc,
                         tags: item.tags,
                         image: item.image
                     )
@@ -113,10 +116,8 @@ final class HomeViewReactor: Reactor {
             }
         }
     }
-    
     let initialState: State = State()
 }
-
 
 extension HomeViewReactor {
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
@@ -128,6 +129,10 @@ extension HomeViewReactor {
             .compactMap { $0 }
             .map { Mutation.setHomeCommunityData($0) }
         
+        let userMutation = homeUsecase.user
+            .compactMap { $0 }
+            .map { Mutation.setUser($0) }
+        
         let errorMutation = homeUsecase.error
             .map { Mutation.setError($0) }
         
@@ -135,6 +140,7 @@ extension HomeViewReactor {
             mutation,
             myDataMutation,
             communityDataMutation,
+            userMutation,
             errorMutation
         )
     }
@@ -170,6 +176,8 @@ extension HomeViewReactor {
             }
         case .setError(let error):
             newState.error = error
+        case .setUser(let user):
+            newState.user = user
         }
         return newState
     }

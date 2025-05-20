@@ -225,7 +225,7 @@ extension DiaryViewController: UITableViewDelegate {
         case .title, .description, .shareOptions:
             if let title = dataSource[section].title {
                 let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommonSectionHeaderView.identifier) as? CommonSectionHeaderView
-                headerView?.setTitle(title)
+                headerView?.setTitle(title, font: UIFont(name: "Pretendard-Bold", size: 14)!)
                 return headerView
             }
         case .keyword:

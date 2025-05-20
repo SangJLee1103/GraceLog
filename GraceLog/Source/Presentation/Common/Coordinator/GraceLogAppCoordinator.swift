@@ -6,7 +6,9 @@
 //
 
 import UIKit
-import Firebase
+import KakaoSDKAuth
+import KakaoSDKCommon
+import KakaoSDKUser
 
 
 final class GraceLogAppCoordinator: Coordinator {
@@ -22,7 +24,11 @@ final class GraceLogAppCoordinator: Coordinator {
         let mainTabViewController = configureTabBarController()
         self.window?.rootViewController = mainTabViewController
         
-        if Auth.auth().currentUser == nil {
+        checkLoginStatus()
+    }
+    
+    private func checkLoginStatus() {
+        if !KeychainServiceImpl.shared.isLoggedIn() {
             showLoginFlow()
         }
     }
@@ -30,13 +36,13 @@ final class GraceLogAppCoordinator: Coordinator {
     private func showLoginFlow() {
         guard let mainTabViewController = window?.rootViewController else { return }
         
-        let loginCoordinator = LoginCoordinator()
-        loginCoordinator.parentCoordinator = self
-        childerCoordinators.append(loginCoordinator)
+        let signInCoordinator = SignInCoordinator()
+        signInCoordinator.parentCoordinator = self
+        childerCoordinators.append(signInCoordinator)
         
-        let loginVC = loginCoordinator.createLoginViewController()
-        loginVC.modalPresentationStyle = .fullScreen
-        mainTabViewController.present(loginVC, animated: true)
+        let signInVC = signInCoordinator.createSignInViewController()
+        signInVC.modalPresentationStyle = .fullScreen 
+        mainTabViewController.present(signInVC, animated: true)
     }
     
     func removeChildCoordinator(_ coordinator: Coordinator) {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KakaoSDKCommon
 import Firebase
 import GoogleSignIn
 import IQKeyboardManagerSwift
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.resignOnTouchOutside = true
+        
+        KakaoSDK.initSDK(appKey: kakaoKey)
+        
         return true
     }
     

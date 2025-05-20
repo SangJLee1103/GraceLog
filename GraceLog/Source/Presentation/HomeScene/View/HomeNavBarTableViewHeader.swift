@@ -9,6 +9,7 @@ import UIKit
 import Then
 import SnapKit
 import RxSwift
+import SDWebImage
 
 final class HomeNavBarTableViewHeader: UIView {
     let segmentTapped = PublishSubject<Bool>()
@@ -112,6 +113,16 @@ final class HomeNavBarTableViewHeader: UIView {
         
         bellButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+        }
+    }
+    
+    func updateUser(user: GraceLogUser) {
+        userButton.setTitle(user.name, for: .normal)
+        
+        if let imageUrl = URL(string: user.profileImage) {
+            profileButton.sd_setBackgroundImage(with: imageUrl, for: .normal, placeholderImage: UIImage(named: "home_profile"))
+        } else {
+            profileButton.setBackgroundImage(UIImage(named: "home_profile"), for: .normal)
         }
     }
     
