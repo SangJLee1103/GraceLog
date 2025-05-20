@@ -19,7 +19,7 @@ final class DefaultHomeRepository: HomeRepository {
                         date: dto.date,
                         dateDesc: dto.dateDesc,
                         title: dto.title,
-                        subtitle: dto.subtitle,
+                        desc: dto.desc,
                         tags: dto.tags,
                         image: UIImage(named: dto.imageName)
                     )

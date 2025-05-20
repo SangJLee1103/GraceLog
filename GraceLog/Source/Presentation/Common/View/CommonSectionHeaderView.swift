@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import SnapKit
 
 final class CommonSectionHeaderView: UITableViewHeaderFooterView {
     static let identifier = "CommonSectionHeaderView"
     
+    private var bottomOffSet: Constraint?
+    
     private let titleLabel = UILabel().then {
         $0.textColor = .themeColor
-        $0.font = UIFont(name: "Pretendard-Bold", size: 14)
     }
     
     override init(reuseIdentifier: String?) {
@@ -28,12 +30,17 @@ final class CommonSectionHeaderView: UITableViewHeaderFooterView {
         addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(20)
-            $0.bottom.equalToSuperview().inset(8)
+            bottomOffSet = $0.bottom.equalToSuperview().inset(8).constraint
             $0.leading.equalToSuperview().offset(30)
         }
     }
     
-    func setTitle(_ title: String) {
+    func setTitle(_ title: String, font: UIFont) {
         titleLabel.text = title
+        titleLabel.font = font
+    }
+    
+    func updateTopOffset(_ offset: CGFloat) {
+        bottomOffSet?.update(offset: offset)
     }
 }

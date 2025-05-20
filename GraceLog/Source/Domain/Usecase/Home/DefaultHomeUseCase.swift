@@ -11,17 +11,20 @@ import RxSwift
 final class DefaultHomeUseCase: HomeUseCase {
     var homeMyData = BehaviorSubject<HomeContent?>(value: nil)
     var homeCommunityData = BehaviorSubject<HomeCommunityContent?>(value: nil)
+    var user = BehaviorSubject<GraceLogUser?>(value: nil)
     var error = PublishSubject<Error>()
     private let disposeBag = DisposeBag()
     
-    private let repository: HomeRepository
+    private let userRepository: UserRepository
+    private let homeRepository: HomeRepository
     
-    init(repository: HomeRepository) {
-        self.repository = repository
+    init(userRepository: UserRepository, homeRepository: HomeRepository) {
+        self.userRepository = userRepository
+        self.homeRepository = homeRepository
     }
     
     func fetchHomeMyContent() {
-        repository.fetchHomeMyContent()
+        homeRepository.fetchHomeMyContent()
             .subscribe(
                 onSuccess: { data in
                     self.homeMyData.onNext(data)
@@ -34,7 +37,7 @@ final class DefaultHomeUseCase: HomeUseCase {
     }
     
     func fetchHomeCommunityContent() {
-        repository.fetchHomeCommunityContent()
+        homeRepository.fetchHomeCommunityContent()
             .subscribe(
                 onSuccess: { data in
                     self.homeCommunityData.onNext(data)
@@ -46,7 +49,17 @@ final class DefaultHomeUseCase: HomeUseCase {
             .disposed(by: disposeBag)
     }
     
-    //    func fetchCommunityDiary(communityID: Int) {
-    //        <#code#>
-    //    }
+    func fetchUser() {
+        userRepository.fetchUser()
+            .subscribe(
+                onSuccess: { user in
+                    print("유저 \(user)")
+                    self.user.onNext(user)
+                },
+                onFailure: { err in
+                    self.error.onError(err)
+                }
+            )
+            .disposed(by: disposeBag)
+    }
 }

@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 struct UserResponseDTO: Codable {
-    let memberId: String
+    let memberId: Int
     let name: String
     let nickname: String
     let profileImage: String

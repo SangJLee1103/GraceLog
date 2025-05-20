@@ -37,12 +37,13 @@ class GraceLogAuthenticator: Authenticator {
         
         let url = "\(baseURL)/auth/refresh"
         
+        let parameters: [String: String] = ["refreshToken": credential.refreshToken]
+        
         let headers: HTTPHeaders = [
-            "Content-Type": "application/json",
-            "Authorization": "Bearer \(credential.refreshToken)"
+            "Content-Type": "application/json"
         ]
         
-        AF.request(url, method: .post, headers: headers)
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
             .responseDecodable(of: GraceLogResponseDTO<SignInResponseDTO>.self) { response in
                 switch response.result {
@@ -53,10 +54,47 @@ class GraceLogAuthenticator: Authenticator {
                             refreshToken: value.data.refreshToken,
                             expiredAt: Date(timeIntervalSinceNow: 60 * 120)
                         )
+                        
+                        KeychainServiceImpl.shared.accessToken = value.data.accessToken
+                        KeychainServiceImpl.shared.refreshToken = value.data.refreshToken
+                        
+                        completion(.success(newCredential))
                     }
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }
     }
+    
+//    func refresh(_ credential: GraceLogAuthenticationCredential, for session: Alamofire.Session, completion: @escaping (Result<GraceLogAuthenticationCredential, any Error>) -> Void) {
+//        
+//        let url = "\(baseURL)/auth/refresh"
+//        
+//        let headers: HTTPHeaders = [
+//            "Content-Type": "application/json",
+//            "Authorization": "Bearer \(credential.refreshToken)"
+//        ]
+//        
+//        AF.request(url, method: .post, headers: headers)
+//            .validate()
+//            .responseDecodable(of: GraceLogResponseDTO<SignInResponseDTO>.self) { response in
+//                switch response.result {
+//                case .success(let value):
+//                    if value.code == 200 {
+//                        let newCredential = GraceLogAuthenticationCredential(
+//                            accessToken: value.data.accessToken,
+//                            refreshToken: value.data.refreshToken,
+//                            expiredAt: Date(timeIntervalSinceNow: 60 * 120)
+//                        )
+//                        
+//                        KeychainServiceImpl.shared.accessToken = value.data.accessToken
+//                        KeychainServiceImpl.shared.refreshToken = value.data.refreshToken
+//                        
+//                        completion(.success(newCredential))
+//                    }
+//                case .failure(let error):
+//                    completion(.failure(error))
+//                }
+//            }
+//    }
 }

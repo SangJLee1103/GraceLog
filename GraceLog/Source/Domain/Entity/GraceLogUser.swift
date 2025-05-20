@@ -8,7 +8,7 @@
 import Foundation
 
 struct GraceLogUser: Equatable {
-    let id: String
+    let id: Int
     let name: String
     let nickname: String
     let profileImage: String

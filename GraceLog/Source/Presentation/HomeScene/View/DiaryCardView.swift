@@ -40,16 +40,12 @@ final class DiaryCardView: UIView {
         $0.textColor = .white
     }
     
-    private lazy var subtitleLabel = UILabel().then {
+    private lazy var descLabel = UILabel().then {
         $0.textColor = .white
-        $0.font = UIFont(name: "Pretendard-Bold", size: 32)
+        $0.font = UIFont(name: "Pretendard-Regular", size: 18)
         $0.numberOfLines = 0
     }
     
-    private lazy var tagStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 8
-    }
     
     init(style: Style, item: MyDiaryItem) {
         self.style = style
@@ -85,19 +81,7 @@ final class DiaryCardView: UIView {
     }
     
     private func setupLatestUI() {
-        subtitleLabel.text = item.subtitle
-        setupTagStack()
-    }
-    
-    private func setupTagStack() {
-        item.tags.forEach { tag in
-            let tagLabel = UILabel().then {
-                $0.text = tag
-                $0.font = UIFont(name: "Pretendard-Regular", size: 14)
-                $0.textColor = .white
-            }
-            tagStackView.addArrangedSubview(tagLabel)
-        }
+        descLabel.text = item.desc
     }
     
     private func setupLayout() {
@@ -115,9 +99,7 @@ final class DiaryCardView: UIView {
         }
         
         if style == .latest {
-            [subtitleLabel, tagStackView].forEach {
-                overlayView.addSubview($0)
-            }
+            overlayView.addSubview(descLabel)
         }
     }
     
@@ -164,15 +146,10 @@ final class DiaryCardView: UIView {
             $0.leading.trailing.equalTo(contentView).inset(21)
         }
         
-        subtitleLabel.snp.makeConstraints {
-            $0.leading.trailing.equalTo(contentView).inset(21)
+        descLabel.snp.makeConstraints {
+            $0.leading.equalTo(contentView).offset(22)
+            $0.trailing.equalTo(contentView).inset(34)
             $0.centerY.equalTo(contentView)
-        }
-        
-        tagStackView.snp.makeConstraints {
-            $0.top.equalTo(subtitleLabel.snp.bottom).offset(32)
-            $0.leading.equalTo(contentView).offset(21)
-            $0.bottom.lessThanOrEqualTo(contentView).offset(-21)
         }
     }
     
