@@ -14,7 +14,7 @@ class GraceLogAuthenticator: Authenticator {
     private let baseURL: String
     private let disposeBag = DisposeBag()
     
-    init(baseURL: String = "https://api.gracelog.com") {
+    init(baseURL: String = "http://15.164.124.189:8080/api/v1") {
         self.baseURL = baseURL
     }
     

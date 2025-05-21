@@ -129,6 +129,42 @@ final class HomeViewController: UIViewController, View {
     }
     
     func bind(reactor: HomeViewReactor) {
+        // Action
+        headerView.segmentTapped
+            .map { isUserSelected in
+                return isUserSelected ?
+                HomeViewReactor.Action.userButtonTapped :
+                HomeViewReactor.Action.groupButtonTapped
+            }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.setDelegate(self)
+            .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(Any.self)
+            .subscribe(onNext: { item in
+                if let communityItem = item as? CommunityItem {
+                    reactor.action.onNext(.selectCommunity(item: communityItem))
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        tableView.rx.willDisplayCell
+            .subscribe(onNext: { [weak self] cell, indexPath in
+                guard let self = self, let reactor = self.reactor else { return }
+                
+                if let communityCell = cell as? CommunityTableViewCell {
+                    communityCell.communityButtonTapped
+                        .take(1)
+                        .map { HomeViewReactor.Action.selectCommunity(item: $0) }
+                        .bind(to: reactor.action)
+                        .disposed(by: self.disposeBag)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        // State
         reactor.state
             .map { $0.sections }
             .bind(to: tableView.rx.items(dataSource: dataSource))
@@ -167,37 +203,11 @@ final class HomeViewController: UIViewController, View {
             })
             .disposed(by: disposeBag)
         
-        headerView.segmentTapped
-            .map { isUserSelected in
-                return isUserSelected ?
-                HomeViewReactor.Action.userButtonTapped :
-                HomeViewReactor.Action.groupButtonTapped
-            }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
-        tableView.rx.setDelegate(self)
-            .disposed(by: disposeBag)
-        
-        tableView.rx.modelSelected(Any.self)
-            .subscribe(onNext: { item in
-                if let communityItem = item as? CommunityItem {
-                    reactor.action.onNext(.selectCommunity(item: communityItem))
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        tableView.rx.willDisplayCell
-            .subscribe(onNext: { [weak self] cell, indexPath in
-                guard let self = self, let reactor = self.reactor else { return }
-                
-                if let communityCell = cell as? CommunityTableViewCell {
-                    communityCell.communityButtonTapped
-                        .take(1)
-                        .map { HomeViewReactor.Action.selectCommunity(item: $0) }
-                        .bind(to: reactor.action)
-                        .disposed(by: self.disposeBag)
-                }
+        reactor.state
+            .compactMap { $0.error }
+            .withUnretained(self)
+            .bind(onNext: { owner, error in
+                owner.view.makeToast(error?.localizedDescription)
             })
             .disposed(by: disposeBag)
     }

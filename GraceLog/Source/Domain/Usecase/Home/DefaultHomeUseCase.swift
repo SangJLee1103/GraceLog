@@ -30,7 +30,7 @@ final class DefaultHomeUseCase: HomeUseCase {
                     self.homeMyData.onNext(data)
                 },
                 onFailure: { err in
-                    self.error.onError(err)
+                    self.error.onNext(err)
                 }
             )
             .disposed(by: disposeBag)
@@ -57,7 +57,7 @@ final class DefaultHomeUseCase: HomeUseCase {
                     self.user.onNext(user)
                 },
                 onFailure: { err in
-                    self.error.onError(err)
+                    self.error.onNext(err)
                 }
             )
             .disposed(by: disposeBag)
