@@ -12,7 +12,7 @@ protocol KeychainService {
     var refreshToken: String? { get set }
 }
 
-class KeychainServiceImpl: KeychainService {
+final class KeychainServiceImpl: KeychainService {
     static let shared = KeychainServiceImpl()
     private init() {}
     
@@ -38,6 +38,7 @@ class KeychainServiceImpl: KeychainService {
     }
     
     func isLoggedIn() -> Bool {
+        print("토큰:", accessToken)
         return accessToken != nil
     }
 }
