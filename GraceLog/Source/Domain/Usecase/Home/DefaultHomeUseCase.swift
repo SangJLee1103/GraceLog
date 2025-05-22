@@ -54,6 +54,7 @@ final class DefaultHomeUseCase: HomeUseCase {
             .subscribe(
                 onSuccess: { user in
                     print("User: \(user)")
+                    AuthManager.shared.saveUser(user)
                     self.user.onNext(user)
                 },
                 onFailure: { err in
