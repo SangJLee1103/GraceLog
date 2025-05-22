@@ -53,10 +53,11 @@ final class DefaultHomeUseCase: HomeUseCase {
         userRepository.fetchUser()
             .subscribe(
                 onSuccess: { user in
-                    print("유저 \(user)")
+                    print("User: \(user)")
                     self.user.onNext(user)
                 },
                 onFailure: { err in
+                    print("error:", err)
                     self.error.onNext(err)
                 }
             )

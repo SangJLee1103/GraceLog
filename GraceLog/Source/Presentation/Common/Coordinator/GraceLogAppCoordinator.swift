@@ -18,6 +18,17 @@ final class GraceLogAppCoordinator: Coordinator {
     init(_ window: UIWindow?) {
         self.window = window
         window?.makeKeyAndVisible()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleAuthenticationFailure),
+            name: .authenticationFailed,
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func start() {
@@ -33,6 +44,11 @@ final class GraceLogAppCoordinator: Coordinator {
         }
     }
     
+    @objc private func handleAuthenticationFailure() {
+        print("🔥 AppCoordinator - 인증 실패 알림 받음")
+        showLoginFlow()
+    }
+    
     private func showLoginFlow() {
         guard let mainTabViewController = window?.rootViewController else { return }
         
@@ -41,7 +57,7 @@ final class GraceLogAppCoordinator: Coordinator {
         childerCoordinators.append(signInCoordinator)
         
         let signInVC = signInCoordinator.createSignInViewController()
-        signInVC.modalPresentationStyle = .fullScreen 
+        signInVC.modalPresentationStyle = .fullScreen
         mainTabViewController.present(signInVC, animated: true)
     }
     
