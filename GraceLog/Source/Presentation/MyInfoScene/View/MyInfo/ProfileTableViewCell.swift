@@ -15,21 +15,27 @@ final class ProfileTableViewCell: UITableViewCell {
     private let profileImgView = UIImageView().then {
         $0.setDimensions(width: 112, height: 112)
         $0.layer.cornerRadius = 56
-        $0.image = UIImage(named: "profile")
+        
+        if let user = AuthManager.shared.getUser(),
+           let imageUrl = URL(string: user.profileImage) {
+            $0.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "home_profile"))
+        } else {
+            $0.image = UIImage(named: "home_profile")
+        }
     }
     
     private let nameLabel = UILabel().then {
         $0.textColor = .themeColor
         $0.font = UIFont(name: "Pretendard-Bold", size: 20)
         $0.textAlignment = .center
-        $0.text = "윤승렬"
+        $0.text = AuthManager.shared.getUser()?.name
     }
     
     private let emailLabel = UILabel().then {
         $0.textColor = .graceGray
         $0.font = UIFont(name: "Pretendard-Regular", size: 12)
         $0.textAlignment = .center
-        $0.text = "dbs3153@naver.com"
+        $0.text = AuthManager.shared.getUser()?.email
     }
     
     
