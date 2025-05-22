@@ -12,4 +12,6 @@ struct GraceLogUser: Equatable {
     let name: String
     let nickname: String
     let profileImage: String
+    let email: String
+    let message: String
 }

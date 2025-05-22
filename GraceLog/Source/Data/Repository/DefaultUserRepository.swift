@@ -22,7 +22,9 @@ final class DefaultUserRepository: UserRepository {
                     id: responseDTO.memberId,
                     name: responseDTO.name,
                     nickname: responseDTO.nickname,
-                    profileImage: responseDTO.profileImage
+                    profileImage: responseDTO.profileImage,
+                    email: responseDTO.email,
+                    message: responseDTO.message
                 )
             }
     }

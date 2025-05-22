@@ -13,6 +13,8 @@ struct UserResponseDTO: Codable {
     let name: String
     let nickname: String
     let profileImage: String
+    let email: String
+    let message: String
 }
 
 extension UserResponseDTO {
@@ -21,7 +23,9 @@ extension UserResponseDTO {
             id: memberId,
             name: name,
             nickname: nickname,
-            profileImage: profileImage
+            profileImage: profileImage,
+            email: email,
+            message: message
         )
     }
 }
