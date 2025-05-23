@@ -1,15 +1,13 @@
 //
-//  UserDTO.swift
+//  UserRequestDTO.swift
 //  GraceLog
 //
-//  Created by 이상준 on 12/30/24.
+//  Created by 이상준 on 5/23/25.
 //
 
 import Foundation
-import Firebase
 
-struct UserResponseDTO: Decodable {
-    let memberId: Int
+struct UserRequestDTO: Encodable {
     let name: String
     let nickname: String
     let profileImage: String

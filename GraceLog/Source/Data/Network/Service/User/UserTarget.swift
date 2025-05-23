@@ -9,6 +9,7 @@ import Alamofire
 
 enum UserTarget {
     case fetchUser
+    case updateUser(UserRequestDTO)
 }
 
 extension UserTarget: TargetType {
@@ -19,18 +20,22 @@ extension UserTarget: TargetType {
     var method: HTTPMethod {
         switch self {
         case .fetchUser: return .get
+        case .updateUser: return .put
         }
     }
     
     var path: String {
         switch self {
-        case .fetchUser: return "/member"
+        case .fetchUser, .updateUser: return "/member"
         }
     }
     
     var parameters: RequestParams {
         switch self {
-        case .fetchUser: .none
+        case .fetchUser:
+            return .none
+        case .updateUser(let request):
+            return .body(request)
         }
     }
 }

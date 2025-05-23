@@ -18,7 +18,7 @@ final class ProfileTableViewCell: UITableViewCell {
         
         if let user = AuthManager.shared.getUser(),
            let imageUrl = URL(string: user.profileImage) {
-            $0.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "home_profile"))
+            $0.sd_setImage(with: imageUrl)
         } else {
             $0.image = UIImage(named: "home_profile")
         }
