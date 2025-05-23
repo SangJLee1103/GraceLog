@@ -29,16 +29,18 @@ final class ProfileEditViewReactor: Reactor {
     struct State {
         var sections: [ProfileEditSectionModel] = []
         var profileImage: UIImage? = nil
-        var nickname: String = ""
-        var name: String = ""
-        var message: String = ""
+        var nickname: String = AuthManager.shared.getUser()?.nickname ?? ""
+        var name: String = AuthManager.shared.getUser()?.name ?? ""
+        var message: String = AuthManager.shared.getUser()?.message ?? ""
     }
     
     let initialState: State = State()
     weak var coordinator: ProfileEditCoordinator?
+    private let useCase: DefaultMyInfoUseCase
     
-    init(coordinator: ProfileEditCoordinator? = nil) {
+    init(coordinator: ProfileEditCoordinator? = nil, useCase: DefaultMyInfoUseCase) {
         self.coordinator = coordinator
+        self.useCase = useCase
     }
 }
 

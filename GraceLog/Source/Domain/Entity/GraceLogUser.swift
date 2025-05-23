@@ -22,7 +22,6 @@ extension GraceLogUser {
             name: name,
             nickname: nickname,
             profileImage: profileImage,
-            email: email,
             message: message
         )
     }

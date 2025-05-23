@@ -45,8 +45,26 @@ final class ProfileEditViewController: UIViewController, View {
                 
             case .infoItem(let item, let itemType):
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileEditTableViewCell.identifier) as! ProfileEditTableViewCell
-                cell.configure(with: reactor, title: item.title, placeholder: item.placeholder, info: item.info, itemType: itemType)
-                cell.itemType = itemType
+                
+                cell.configure(
+                    title: item.title,
+                    placeholder: item.placeholder,
+                    info: item.info,
+                    itemType: itemType
+                ) { [weak self] text, type in
+                    guard let reactor = self?.reactor else { return }
+                    
+                    switch type {
+                    case .nicknameEdit:
+                        reactor.action.onNext(.updateNickname(text))
+                    case .nameEdit:
+                        reactor.action.onNext(.updateName(text))
+                    case .messageEdit:
+                        reactor.action.onNext(.updateMessage(text))
+                    default:
+                        break
+                    }
+                }
                 return cell
             }
         })

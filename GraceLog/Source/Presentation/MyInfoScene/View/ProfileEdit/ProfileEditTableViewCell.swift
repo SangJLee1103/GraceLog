@@ -14,9 +14,9 @@ import RxCocoa
 final class ProfileEditTableViewCell: UITableViewCell {
     static let identifier = "ProfileEditTableViewCell"
     
-    var reactor: ProfileEditViewReactor?
     var disposeBag = DisposeBag()
     var itemType: ProfileEditItemType = .nicknameEdit
+    var onTextChanged: ((String, ProfileEditItemType) -> Void)?
     
     private let titleLabel = UILabel().then {
         $0.font = UIFont(name: "Pretendard-Regular", size: 14)
@@ -73,8 +73,7 @@ final class ProfileEditTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with reactor: ProfileEditViewReactor, title: String, placeholder: String, info: String, itemType: ProfileEditItemType) {
-        self.reactor = reactor
+    func configure(title: String, placeholder: String, info: String, itemType: ProfileEditItemType, onTextChanged: @escaping (String, ProfileEditItemType) -> Void) {
         self.itemType = itemType
         
         titleLabel.text = title
@@ -88,23 +87,11 @@ final class ProfileEditTableViewCell: UITableViewCell {
     }
     
     private func bind() {
-        guard let reactor = reactor else { return }
-        
         infoField.rx.controlEvent(.editingDidEnd)
             .withLatestFrom(infoField.rx.text.orEmpty)
             .subscribe(onNext: { [weak self] text in
                 guard let self = self else { return }
-                
-                switch self.itemType {
-                case .nicknameEdit:
-                    reactor.action.onNext(.updateNickname(text))
-                case .nameEdit:
-                    reactor.action.onNext(.updateName(text))
-                case .messageEdit:
-                    reactor.action.onNext(.updateMessage(text))
-                default:
-                    break
-                }
+                self.onTextChanged?(text, self.itemType)
             })
             .disposed(by: disposeBag)
     }
