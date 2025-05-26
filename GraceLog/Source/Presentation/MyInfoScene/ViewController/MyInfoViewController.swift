@@ -26,6 +26,7 @@ final class MyInfoViewController: UIViewController, View {
             if let profileItem = item as? ProfileItem {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as! ProfileTableViewCell
                 cell.selectionStyle = .none
+                cell.updateUI(with: profileItem)
                 return cell
             } else if let myInfoItem = item as? MyInfoItem {
                 let section = dataSource[indexPath.section]
