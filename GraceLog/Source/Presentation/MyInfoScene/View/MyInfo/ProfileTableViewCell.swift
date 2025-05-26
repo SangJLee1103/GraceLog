@@ -15,13 +15,7 @@ final class ProfileTableViewCell: UITableViewCell {
     private let profileImgView = UIImageView().then {
         $0.setDimensions(width: 112, height: 112)
         $0.layer.cornerRadius = 56
-        
-        if let user = AuthManager.shared.getUser(),
-           let imageUrl = URL(string: user.profileImage) {
-            $0.sd_setImage(with: imageUrl)
-        } else {
-            $0.image = UIImage(named: "home_profile")
-        }
+        $0.clipsToBounds = true
     }
     
     private let nameLabel = UILabel().then {
@@ -69,6 +63,17 @@ final class ProfileTableViewCell: UITableViewCell {
             $0.top.equalTo(nameLabel.snp.bottom).offset(2)
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(2)
+        }
+    }
+    
+    func updateUI(with profileItem: ProfileItem) {
+        nameLabel.text = profileItem.name
+        emailLabel.text = profileItem.email
+        
+        if let imageUrl = URL(string: profileItem.imageUrl) {
+            profileImgView.sd_setImage(with: imageUrl)
+        } else {
+            profileImgView.image = UIImage(named: "home_profile")
         }
     }
 }

@@ -66,7 +66,11 @@ extension MyInfoViewReactor {
     
     private func createSections() -> [MyInfoSection] {
         let profileItems = [
-            ProfileItem(imageUrl: "profile_image", name: "윤승렬", email: "dbs3153@naver.com")
+            ProfileItem(
+                imageUrl: AuthManager.shared.getUser()?.profileImage ?? "",
+                name: AuthManager.shared.getUser()?.name ?? "",
+                email: AuthManager.shared.getUser()?.email ?? ""
+            )
         ]
         
         let myInfoItems = [
@@ -101,7 +105,7 @@ extension MyInfoViewReactor {
         
         return [
             .profile(items: profileItems),
-            .myInfo(title: "승렬님의 Grace Log", items: myInfoItems),
+            .myInfo(title: "\(AuthManager.shared.getUser()?.name ?? "")님의 Grace Log", items: myInfoItems),
             .community(title: "공동체 및 친구관리", items: communityItems),
             .notification(title: "푸시 알림 설정", items: notificationItems),
             .customerService(title: "고객센터", items: customerServiceItems),
