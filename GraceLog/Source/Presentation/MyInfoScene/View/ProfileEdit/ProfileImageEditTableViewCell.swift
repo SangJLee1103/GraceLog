@@ -21,8 +21,14 @@ final class ProfileImageEditTableViewCell: UITableViewCell {
     private let profileImgView = UIImageView().then {
         $0.setDimensions(width: 112, height: 112)
         $0.layer.cornerRadius = 56
-        $0.image = UIImage(named: "profile")
-        $0.clipsToBounds = false
+        $0.clipsToBounds = true
+        
+        let profileImageUrl = AuthManager.shared.getUser()?.profileImage ?? ""
+        if !profileImageUrl.isEmpty, let url = URL(string: profileImageUrl) {
+            $0.sd_setImage(with: url)
+        } else {
+            $0.image = UIImage(named: "profile")
+        }
     }
     
     private let editButton = UIButton().then {
@@ -58,9 +64,9 @@ final class ProfileImageEditTableViewCell: UITableViewCell {
             $0.bottom.equalToSuperview().inset(32)
         }
         
-        profileImgView.addSubview(editButton)
+        contentView.addSubview(editButton)
         editButton.snp.makeConstraints {
-            $0.trailing.bottom.equalToSuperview()
+            $0.trailing.bottom.equalTo(profileImgView)
         }
     }
     
