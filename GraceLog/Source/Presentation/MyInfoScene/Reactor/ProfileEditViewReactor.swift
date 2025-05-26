@@ -16,6 +16,7 @@ final class ProfileEditViewReactor: Reactor {
         case updateNickname(String)
         case updateName(String)
         case updateMessage(String)
+        case didTapSaveButton
     }
     
     enum Mutation {
@@ -24,6 +25,9 @@ final class ProfileEditViewReactor: Reactor {
         case setNickname(String)
         case setName(String)
         case setMessage(String)
+        case setLoading(Bool)
+        case setSaveSuccess(Bool)
+        case setError(Error)
     }
     
     struct State {
@@ -32,6 +36,9 @@ final class ProfileEditViewReactor: Reactor {
         var nickname: String = AuthManager.shared.getUser()?.nickname ?? ""
         var name: String = AuthManager.shared.getUser()?.name ?? ""
         var message: String = AuthManager.shared.getUser()?.message ?? ""
+        var isLoading: Bool = false
+        var saveSuccess: Bool = false
+        var error: Error? = nil
     }
     
     let initialState: State = State()
@@ -58,6 +65,8 @@ extension ProfileEditViewReactor {
             return .just(.setName(name))
         case .updateMessage(let message):
             return .just(.setMessage(message))
+        case .didTapSaveButton:
+            return .empty()
         }
     }
     
@@ -85,6 +94,12 @@ extension ProfileEditViewReactor {
         case .setMessage(let message):
             newState.message = message
             newState.sections = createSections(state: newState)
+        case .setLoading(_):
+            break
+        case .setSaveSuccess(_):
+            break
+        case .setError(_):
+            break
         }
         
         return newState
@@ -103,6 +118,19 @@ extension ProfileEditViewReactor {
         
         return [profileImageSection, profileInfoSection]
     }
+    
+//    private func saveProfile() -> Observable<Mutation> {
+//        guard let user = AuthManager.shared.getUser() else { return .empty() }
+//        
+////        let updateUser = GraceLogUser(
+////            id: user.id,
+////            name: currentState.name,
+////            nickname: currentState.nickname,
+////            profileImage: currentState.profileImage,
+////            email: user.email,
+////            message: currentState.message
+////        )
+//    }
 }
 
 // MARK: - For Coordinator
