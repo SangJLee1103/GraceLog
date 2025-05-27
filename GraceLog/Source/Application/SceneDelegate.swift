@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var appCoordinator: GraceLogAppCoordinator?
     
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {        
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         appCoordinator = GraceLogAppCoordinator(window)
@@ -54,7 +54,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .white
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont(name: "Pretendard-Bold", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)
+        ]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         
         UINavigationBar.appearance().standardAppearance = appearance
