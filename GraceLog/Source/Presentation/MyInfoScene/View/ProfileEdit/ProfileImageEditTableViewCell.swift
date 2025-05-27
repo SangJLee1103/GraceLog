@@ -14,8 +14,6 @@ import RxCocoa
 final class ProfileImageEditTableViewCell: UITableViewCell {
     static let identifier = "ProfileImageEditTableViewCell"
     
-    let editButtonTap = PublishRelay<Void>()
-    
     var disposeBag = DisposeBag()
     
     private let profileImgView = UIImageView().then {
@@ -31,12 +29,11 @@ final class ProfileImageEditTableViewCell: UITableViewCell {
         }
     }
     
-    private let editButton = UIButton().then {
+    let editButton = UIButton().then {
         $0.setDimensions(width: 30, height: 30)
         $0.layer.cornerRadius = 15
         $0.backgroundColor = .graceLightGray
         $0.setImage(UIImage(named: "edit_camera"), for: .normal)
-        $0.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -68,10 +65,6 @@ final class ProfileImageEditTableViewCell: UITableViewCell {
         editButton.snp.makeConstraints {
             $0.trailing.bottom.equalTo(profileImgView)
         }
-    }
-    
-    @objc private func didTapEditButton() {
-        editButtonTap.accept(())
     }
     
     func updateUI(_ image: UIImage?) {

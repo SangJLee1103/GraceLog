@@ -38,8 +38,6 @@ final class KeychainServiceImpl: KeychainService {
     }
     
     func isLoggedIn() -> Bool {
-        print("액세스 토큰", accessToken)
-        print("리프레시 토큰", refreshToken)
         return accessToken != nil
     }
 }

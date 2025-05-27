@@ -66,7 +66,7 @@ extension ProfileEditViewReactor {
         case .updateMessage(let message):
             return .just(.setMessage(message))
         case .didTapSaveButton:
-            return .empty()
+            return saveProfile()
         }
     }
     
@@ -94,12 +94,12 @@ extension ProfileEditViewReactor {
         case .setMessage(let message):
             newState.message = message
             newState.sections = createSections(state: newState)
-        case .setLoading(_):
-            break
-        case .setSaveSuccess(_):
-            break
-        case .setError(_):
-            break
+        case .setLoading(let isLoading):
+            newState.isLoading = isLoading
+        case .setSaveSuccess(let success):
+            newState.saveSuccess = success
+        case .setError(let error):
+            newState.error = error
         }
         
         return newState
@@ -119,18 +119,28 @@ extension ProfileEditViewReactor {
         return [profileImageSection, profileInfoSection]
     }
     
-//    private func saveProfile() -> Observable<Mutation> {
-//        guard let user = AuthManager.shared.getUser() else { return .empty() }
-//        
-////        let updateUser = GraceLogUser(
-////            id: user.id,
-////            name: currentState.name,
-////            nickname: currentState.nickname,
-////            profileImage: currentState.profileImage,
-////            email: user.email,
-////            message: currentState.message
-////        )
-//    }
+    private func saveProfile() -> Observable<Mutation> {
+        guard let user = AuthManager.shared.getUser() else { return .empty() }
+        
+        let updateUser = GraceLogUser(
+            id: user.id,
+            name: currentState.name,
+            nickname: currentState.nickname,
+            profileImage: AuthManager.shared.getUser()?.profileImage ?? "",
+            email: user.email,
+            message: currentState.message
+        )
+        
+        return Observable.concat([
+            .just(.setLoading(true)),
+            useCase.updateUser(user: updateUser)
+                .asObservable()
+                .map { _ in .setSaveSuccess(true) }
+                .catch { error in
+                    .just(.setError(error)) },
+            .just(.setLoading(false))
+        ])
+    }
 }
 
 // MARK: - For Coordinator

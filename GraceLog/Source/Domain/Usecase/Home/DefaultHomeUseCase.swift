@@ -53,12 +53,10 @@ final class DefaultHomeUseCase: HomeUseCase {
         userRepository.fetchUser()
             .subscribe(
                 onSuccess: { user in
-                    print("User: \(user)")
                     AuthManager.shared.saveUser(user)
                     self.user.onNext(user)
                 },
                 onFailure: { err in
-                    print("error:", err)
                     self.error.onNext(err)
                 }
             )
