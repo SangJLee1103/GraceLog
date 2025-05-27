@@ -78,13 +78,7 @@ extension ProfileEditViewReactor {
             newState.sections = sections
         case .setProfileImage(let image):
             newState.profileImage = image
-            
-            if let index = newState.sections.indices.first {
-                if case .imageItem = newState.sections[index].items.first {
-                    let updatedItem = ProfileImageEditItem(image: image)
-                    newState.sections[index].items[0] = .imageItem(updatedItem)
-                }
-            }
+            newState.sections = createSections(state: newState)
         case .setNickname(let nickname):
             newState.nickname = nickname
             newState.sections = createSections(state: newState)

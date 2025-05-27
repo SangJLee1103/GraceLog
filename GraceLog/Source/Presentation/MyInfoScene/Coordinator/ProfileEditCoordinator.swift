@@ -9,6 +9,7 @@ import UIKit
 import YPImagePicker
 
 final class ProfileEditCoordinator: Coordinator {
+    weak var parentCoordinator: Coordinator?
     var childerCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
@@ -21,16 +22,23 @@ final class ProfileEditCoordinator: Coordinator {
     }
     
     func pushProfileEditViewController() {
-        let profileEditVC = ProfileEditViewController()
-        profileEditVC.reactor = ProfileEditViewReactor(
-            useCase: DefaultMyInfoUseCase(
-                userRepository: DefaultUserRepository(
-                    userService: UserService()
-                )
+        let useCase = DefaultMyInfoUseCase(
+            userRepository: DefaultUserRepository(
+                userService: UserService()
             )
         )
+        
+        let reactor = ProfileEditViewReactor(coordinator: self, useCase: useCase)
+        let profileEditVC = ProfileEditViewController()
+        profileEditVC.reactor = reactor
         profileEditVC.title = "프로필 편집"
+        
         self.navigationController.pushViewController(profileEditVC, animated: true)
+    }
+    
+    func didFinishProfileEdit() {
+        navigationController.popViewController(animated: true)
+        parentCoordinator?.childDidFinish(self)
     }
     
     func showImagePicker(completion: @escaping (UIImage?) -> Void) {

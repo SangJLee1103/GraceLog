@@ -31,6 +31,7 @@ final class MyInfoCoordinator: Coordinator {
     
     func showProfileEditVC() {
         let profileEditCoordinator = ProfileEditCoordinator(self.navigationController)
+        profileEditCoordinator.parentCoordinator = self
         self.childerCoordinators.append(profileEditCoordinator)
         profileEditCoordinator.start()
     }
