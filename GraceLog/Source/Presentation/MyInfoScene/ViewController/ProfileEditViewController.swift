@@ -40,7 +40,7 @@ final class ProfileEditViewController: UIViewController, View {
             switch item {
             case .imageItem(let item):
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileImageEditTableViewCell.identifier) as! ProfileImageEditTableViewCell
-                
+                cell.updateUI(item.image)
                 cell.editButton.rx.tap
                     .withUnretained(self)
                     .subscribe(onNext: { owner, _ in
@@ -132,6 +132,19 @@ final class ProfileEditViewController: UIViewController, View {
             .map { $0.error }
             .subscribe(onNext: { [weak self] error in
                 self?.view.makeToast(error?.localizedDescription)
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.saveSuccess }
+            .filter { $0 }
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.view.makeToast("프로필이 성공적으로 수정되었습니다")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    owner.reactor?.coordinator?.didFinishProfileEdit()
+                }
             })
             .disposed(by: disposeBag)
     }

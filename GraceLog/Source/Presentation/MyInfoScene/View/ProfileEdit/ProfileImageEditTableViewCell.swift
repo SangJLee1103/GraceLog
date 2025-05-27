@@ -68,6 +68,15 @@ final class ProfileImageEditTableViewCell: UITableViewCell {
     }
     
     func updateUI(_ image: UIImage?) {
-        profileImgView.image = image ?? UIImage(named: "profile")
+        if let image = image {
+            profileImgView.image = image
+        } else {
+            let profileImageUrl = AuthManager.shared.getUser()?.profileImage ?? ""
+            if !profileImageUrl.isEmpty, let url = URL(string: profileImageUrl) {
+                profileImgView.sd_setImage(with: url, placeholderImage: UIImage(named: "profile"))
+            } else {
+                profileImgView.image = UIImage(named: "profile")
+            }
+        }
     }
 }
