@@ -40,7 +40,7 @@ jobs:
       env:
         ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       with:
-        github-token: ${{ secrets.GIT_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require('fs');
           const path = require('path');
@@ -85,8 +85,8 @@ jobs:
                   'anthropic-version': '2023-06-01'
                 },
                 body: JSON.stringify({
-                  model: 'claude-3-sonnet-20240229',
-                  max_tokens: 4000,
+                  model: 'claude-3-5-sonnet-20241022',  // 최신 모델로 업그레이드
+                  max_tokens: 8192,  // 최대 토큰으로 증가
                   messages: [{
                     role: 'user',
                     content: prompt
@@ -111,7 +111,7 @@ jobs:
                 const fileContent = fs.readFileSync(file, 'utf8');
                 
                 // 파일이 너무 크면 스킵 (Claude 토큰 제한)
-                if (fileContent.length > 10000) {
+                if (fileContent.length > 50000) {  // 50,000자로 대폭 증가
                   reviewComments.push(`
           ## 📁 ${file}
           
@@ -132,7 +132,7 @@ jobs:
                 `);
                 
                 // API 호출 간격 조절 (rate limiting 방지)
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                await new Promise(resolve => setTimeout(resolve, 2000));  // 2초로 증가
                 
               } catch (error) {
                 console.error(`Error processing file ${file}:`, error);
