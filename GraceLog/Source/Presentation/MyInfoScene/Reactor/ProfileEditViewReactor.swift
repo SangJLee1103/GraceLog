@@ -112,7 +112,7 @@ extension ProfileEditViewReactor {
             id: user.id,
             name: currentState.name,
             nickname: currentState.nickname,
-            profileImage: AuthManager.shared.getUser()?.profileImage ?? "",
+            profileImage: user.profileImage,
             email: user.email,
             message: currentState.message
         )

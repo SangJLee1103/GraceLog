@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GraceLogUser: Equatable {
+struct GraceLogUser: Equatable, Codable {
     let id: Int
     let name: String
     let nickname: String

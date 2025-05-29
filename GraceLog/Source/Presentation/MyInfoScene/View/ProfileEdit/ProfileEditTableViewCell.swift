@@ -91,6 +91,7 @@ final class ProfileEditTableViewCell: UITableViewCell {
             .withLatestFrom(infoField.rx.text.orEmpty)
             .subscribe(onNext: { [weak self] text in
                 guard let self = self else { return }
+                print("🔥 TextField changed: \(text), type: \(self.itemType)") 
                 self.onTextChanged?(text, self.itemType)
             })
             .disposed(by: disposeBag)
