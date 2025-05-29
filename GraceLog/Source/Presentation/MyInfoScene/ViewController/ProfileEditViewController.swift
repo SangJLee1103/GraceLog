@@ -42,14 +42,9 @@ final class ProfileEditViewController: UIViewController, View {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileImageEditTableViewCell.identifier) as! ProfileImageEditTableViewCell
                 cell.updateUI(item.image)
                 cell.editButton.rx.tap
-                    .withUnretained(self)
-                    .subscribe(onNext: { owner, _ in
-                        owner.reactor?.showImagePicker { image in
-                            owner.reactor?.action.onNext(.updateProfileImage(image))
-                        }
-                    })
+                    .map { Reactor.Action.didTapProfileImageEdit}
+                    .bind(to: reactor.action)
                     .disposed(by: cell.disposeBag)
-                
                 return cell
             case .infoItem(let item, let itemType):
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileEditTableViewCell.identifier) as! ProfileEditTableViewCell

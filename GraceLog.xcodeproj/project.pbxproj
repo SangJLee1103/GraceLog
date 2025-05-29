@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0220A0752DE7F57000D045F7 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0220A0742DE7F57000D045F7 /* ImagePickerManager.swift */; };
 		023446172DB61B0300F21439 /* DiaryAdditionalSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023446162DB61B0300F21439 /* DiaryAdditionalSettingsViewController.swift */; };
 		0234461B2DB61CAC00F21439 /* DiaryAdditionalSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0234461A2DB61CAC00F21439 /* DiaryAdditionalSettingsTableViewCell.swift */; };
 		0234461D2DB6251300F21439 /* DiaryAdditionalSettingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0234461C2DB6251300F21439 /* DiaryAdditionalSettingsDataSource.swift */; };
@@ -14,6 +15,7 @@
 		025019C62DE03F73003FD48D /* UserRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025019C52DE03F73003FD48D /* UserRequestDTO.swift */; };
 		025019CA2DE04410003FD48D /* MyInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025019C92DE04410003FD48D /* MyInfoUseCase.swift */; };
 		025019CC2DE0469B003FD48D /* DefaultMyInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025019CB2DE0469B003FD48D /* DefaultMyInfoUseCase.swift */; };
+		026656AB2DE7E9CA00541D96 /* NavigationBarUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026656AA2DE7E9CA00541D96 /* NavigationBarUtil.swift */; };
 		02C5861A2DD736CA00E1F626 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C586192DD736CA00E1F626 /* UserService.swift */; };
 		02C5861C2DD736D600E1F626 /* UserTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C5861B2DD736D600E1F626 /* UserTarget.swift */; };
 		02DC29802DDC29C000662D8A /* MyInfoSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DC29742DDC29C000662D8A /* MyInfoSectionHeaderView.swift */; };
@@ -168,6 +170,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0220A0742DE7F57000D045F7 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		023446162DB61B0300F21439 /* DiaryAdditionalSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryAdditionalSettingsViewController.swift; sourceTree = "<group>"; };
 		0234461A2DB61CAC00F21439 /* DiaryAdditionalSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryAdditionalSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		0234461C2DB6251300F21439 /* DiaryAdditionalSettingsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryAdditionalSettingsDataSource.swift; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 		025019C52DE03F73003FD48D /* UserRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestDTO.swift; sourceTree = "<group>"; };
 		025019C92DE04410003FD48D /* MyInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoUseCase.swift; sourceTree = "<group>"; };
 		025019CB2DE0469B003FD48D /* DefaultMyInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMyInfoUseCase.swift; sourceTree = "<group>"; };
+		026656AA2DE7E9CA00541D96 /* NavigationBarUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarUtil.swift; sourceTree = "<group>"; };
 		02C586192DD736CA00E1F626 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		02C5861B2DD736D600E1F626 /* UserTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTarget.swift; sourceTree = "<group>"; };
 		02DC296A2DDC29C000662D8A /* MyInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoCoordinator.swift; sourceTree = "<group>"; };
@@ -387,6 +391,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		026656A92DE7E9BD00541D96 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				026656AA2DE7E9CA00541D96 /* NavigationBarUtil.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		02C586182DD736C200E1F626 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +508,7 @@
 		02F0DA4F2DDEAECC00CD036A /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				0220A0742DE7F57000D045F7 /* ImagePickerManager.swift */,
 				02F0DA502DDEAED900CD036A /* AuthManager.swift */,
 			);
 			path = Manager;
@@ -826,6 +839,7 @@
 		DE3BFCC22D043D200076426D /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				026656A92DE7E9BD00541D96 /* UI */,
 				02F0DA4F2DDEAECC00CD036A /* Manager */,
 				DE2700472D1F9E56005C9DCF /* Extension */,
 			);
@@ -1428,6 +1442,7 @@
 				DE58FEB12D04284D008CADCD /* AppDelegate.swift in Sources */,
 				DE9A1FCE2D6C86C00044F655 /* HomeCommunityUserTableViewCell.swift in Sources */,
 				DED5588E2DBE26E600137B10 /* GraceLogAuthenticationCredential.swift in Sources */,
+				0220A0752DE7F57000D045F7 /* ImagePickerManager.swift in Sources */,
 				DE56384C2D9DFDDF00A12192 /* CommunityDTO.swift in Sources */,
 				DE3BFCD82D048B550076426D /* Coordinator.swift in Sources */,
 				DE9A1FD72D79AB8B0044F655 /* HomeCommunityContent.swift in Sources */,
@@ -1462,6 +1477,7 @@
 				02DC29832DDC29C000662D8A /* ProfileEditViewController.swift in Sources */,
 				02DC29842DDC29C000662D8A /* ProfileImageEditTableViewCell.swift in Sources */,
 				02DC29852DDC29C000662D8A /* ProfileEditDataSource.swift in Sources */,
+				026656AB2DE7E9CA00541D96 /* NavigationBarUtil.swift in Sources */,
 				02DC29862DDC29C000662D8A /* MyInfoViewReactor.swift in Sources */,
 				02DC29872DDC29C000662D8A /* ProfileEditCoordinator.swift in Sources */,
 				02DC29882DDC29C000662D8A /* MyInfoTableViewCell.swift in Sources */,

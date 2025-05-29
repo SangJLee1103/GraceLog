@@ -42,23 +42,9 @@ final class ProfileEditCoordinator: Coordinator {
     }
     
     func showImagePicker(completion: @escaping (UIImage?) -> Void) {
-        var config = YPImagePickerConfiguration()
-        config.library.maxNumberOfItems = 1
-        config.startOnScreen = .library
-        config.screens = [.library, .photo]
-        config.showsPhotoFilters = false
-        
-        let picker = YPImagePicker(configuration: config)
-        
-        picker.didFinishPicking { items, cancelled in
-            if let photo = items.singlePhoto {
-                completion(photo.image)
-            } else {
-                completion(nil)
-            }
-            picker.dismiss(animated: true)
-        }
-        
-        self.navigationController.present(picker, animated: true)
+        ImagePickerManager.showImagePicker(
+            from: navigationController,
+            completion: completion
+        )
     }
 }

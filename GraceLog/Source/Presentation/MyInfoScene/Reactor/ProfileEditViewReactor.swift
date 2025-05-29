@@ -16,6 +16,7 @@ final class ProfileEditViewReactor: Reactor {
         case updateNickname(String)
         case updateName(String)
         case updateMessage(String)
+        case didTapProfileImageEdit
         case didTapSaveButton
     }
     
@@ -65,6 +66,11 @@ extension ProfileEditViewReactor {
             return .just(.setName(name))
         case .updateMessage(let message):
             return .just(.setMessage(message))
+        case .didTapProfileImageEdit:
+            coordinator?.showImagePicker { [weak self] image in
+                self?.action.onNext(.updateProfileImage(image))
+            }
+            return .empty()
         case .didTapSaveButton:
             return saveProfile()
         }
@@ -99,20 +105,6 @@ extension ProfileEditViewReactor {
         return newState
     }
     
-    private func createSections(state: State) -> [ProfileEditSectionModel] {
-        let profileImageSection = ProfileEditSectionModel(items: [
-            .imageItem(ProfileImageEditItem(image: state.profileImage))
-        ])
-        
-        let profileInfoSection = ProfileEditSectionModel(items: [
-            .infoItem(ProfileInfoEditItem(title: "닉네임", info: state.nickname, placeholder: "ex. Peter"), .nicknameEdit),
-            .infoItem(ProfileInfoEditItem(title: "이름", info: state.name, placeholder: "ex. 베드로"), .nameEdit),
-            .infoItem(ProfileInfoEditItem(title: "메시지", info: state.message, placeholder: "ex. 잠언 16:9"), .messageEdit),
-        ])
-        
-        return [profileImageSection, profileInfoSection]
-    }
-    
     private func saveProfile() -> Observable<Mutation> {
         guard let user = AuthManager.shared.getUser() else { return .empty() }
         
@@ -137,9 +129,18 @@ extension ProfileEditViewReactor {
     }
 }
 
-// MARK: - For Coordinator
 extension ProfileEditViewReactor {
-    func showImagePicker(completion: @escaping (UIImage?) -> Void) {
-        self.coordinator?.showImagePicker(completion: completion)
+    private func createSections(state: State) -> [ProfileEditSectionModel] {
+        let profileImageSection = ProfileEditSectionModel(items: [
+            .imageItem(ProfileImageEditItem(image: state.profileImage))
+        ])
+        
+        let profileInfoSection = ProfileEditSectionModel(items: [
+            .infoItem(ProfileInfoEditItem(title: "닉네임", info: state.nickname, placeholder: "ex. Peter"), .nicknameEdit),
+            .infoItem(ProfileInfoEditItem(title: "이름", info: state.name, placeholder: "ex. 베드로"), .nameEdit),
+            .infoItem(ProfileInfoEditItem(title: "메시지", info: state.message, placeholder: "ex. 잠언 16:9"), .messageEdit),
+        ])
+        
+        return [profileImageSection, profileInfoSection]
     }
 }

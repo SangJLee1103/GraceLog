@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appCoordinator = GraceLogAppCoordinator(window)
         appCoordinator?.start()
         
-        setupNavigationBarAppearance()
+        NavigationBarUtil.setupDefaultAppearance()
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -48,22 +48,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func sceneDidEnterBackground(_ scene: UIScene) {
         
-    }
-    
-    func setupNavigationBarAppearance() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .white
-        appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
-            .font: UIFont(name: "Pretendard-Bold", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)
-        ]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
-        
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().compactAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        UINavigationBar.appearance().tintColor = .themeColor
     }
 }
 
