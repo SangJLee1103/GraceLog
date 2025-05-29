@@ -17,7 +17,7 @@ final class NetworkManager {
     private let authenticator: GraceLogAuthenticator
     
     private init() {
-        self.authenticator = GraceLogAuthenticator(baseURL: Const.baseURL)
+        self.authenticator = GraceLogAuthenticator(baseURL: "http://\(Const.baseURL)")
         
         var credential: GraceLogAuthenticationCredential?
         

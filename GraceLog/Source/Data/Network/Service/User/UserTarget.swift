@@ -14,7 +14,7 @@ enum UserTarget {
 
 extension UserTarget: TargetType {
     var baseURL: String {
-        return Const.baseURL
+        return "http://\(Const.baseURL)"
     }
     
     var method: HTTPMethod {
