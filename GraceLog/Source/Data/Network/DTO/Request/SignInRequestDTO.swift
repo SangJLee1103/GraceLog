@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum SignInProvider: String, Codable {
+enum SignInProvider: String, Encodable {
     case google = "google"
     case apple = "apple"
     case kakao = "kakao"
 }
 
-struct SignInRequestDTO: Codable {
+struct SignInRequestDTO: Encodable {
     let provider: SignInProvider
     let token: String
 }

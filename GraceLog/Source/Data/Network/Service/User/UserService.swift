@@ -27,4 +27,23 @@ struct UserService {
             return Disposables.create()
         }
     }
+    
+    func updateUser(request: UserRequestDTO) -> Single<UserResponseDTO> {
+        return .create { single in
+            NetworkManager.shared.session.request(UserTarget.updateUser(request))
+                .validate(statusCode: 200..<300)
+                .responseDecodable(of: GraceLogResponseDTO<UserResponseDTO>.self) { response in
+                    switch response.result {
+                    case .success(let response):
+                        if response.code == 200 {
+                            single(.success(response.data))
+                        }
+                    case .failure(let error):
+                        single(.failure(error))
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
 }

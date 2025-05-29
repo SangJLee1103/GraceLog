@@ -13,7 +13,7 @@ enum AuthTarget {
 
 extension AuthTarget: TargetType {
     var baseURL: String {
-        return "http://15.164.124.189:8080/api/v1/auth"
+        return "http://\(Const.baseURL)/auth"
     }
     
     var method: HTTPMethod {

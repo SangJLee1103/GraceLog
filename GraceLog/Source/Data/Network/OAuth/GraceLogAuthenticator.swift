@@ -14,10 +14,9 @@ class GraceLogAuthenticator: Authenticator {
     private let baseURL: String
     private let disposeBag = DisposeBag()
     
-    init(baseURL: String = "http://15.164.124.189:8080/api/v1") {
+    init(baseURL: String) {
         self.baseURL = baseURL
     }
-    
     
     func apply(_ credential: GraceLogAuthenticationCredential, to urlRequest: inout URLRequest) {
         urlRequest.headers.add(.authorization(bearerToken: credential.accessToken))
@@ -25,7 +24,7 @@ class GraceLogAuthenticator: Authenticator {
     }
     
     func didRequest(_ urlRequest: URLRequest, with response: HTTPURLResponse, failDueToAuthenticationError error: any Error) -> Bool {
-        return response.statusCode == 401
+        return response.statusCode == 401 || response.statusCode == 403
     }
     
     func isRequest(_ urlRequest: URLRequest, authenticatedWith credential: GraceLogAuthenticationCredential) -> Bool {
@@ -34,7 +33,6 @@ class GraceLogAuthenticator: Authenticator {
     }
     
     func refresh(_ credential: GraceLogAuthenticationCredential, for session: Alamofire.Session, completion: @escaping (Result<GraceLogAuthenticationCredential, any Error>) -> Void) {
-        
         let url = "\(baseURL)/auth/refresh"
         
         let parameters: [String: String] = ["refreshToken": credential.refreshToken]
@@ -59,42 +57,14 @@ class GraceLogAuthenticator: Authenticator {
                         KeychainServiceImpl.shared.refreshToken = value.data.refreshToken
                         
                         completion(.success(newCredential))
+                    } else {
+                        AuthManager.shared.handleAuthenticationFailure()
+                        completion(.failure(NSError(domain: "AuthError", code: 401, userInfo: nil)))
                     }
                 case .failure(let error):
                     completion(.failure(error))
+                    AuthManager.shared.handleAuthenticationFailure()
                 }
             }
     }
-    
-//    func refresh(_ credential: GraceLogAuthenticationCredential, for session: Alamofire.Session, completion: @escaping (Result<GraceLogAuthenticationCredential, any Error>) -> Void) {
-//        
-//        let url = "\(baseURL)/auth/refresh"
-//        
-//        let headers: HTTPHeaders = [
-//            "Content-Type": "application/json",
-//            "Authorization": "Bearer \(credential.refreshToken)"
-//        ]
-//        
-//        AF.request(url, method: .post, headers: headers)
-//            .validate()
-//            .responseDecodable(of: GraceLogResponseDTO<SignInResponseDTO>.self) { response in
-//                switch response.result {
-//                case .success(let value):
-//                    if value.code == 200 {
-//                        let newCredential = GraceLogAuthenticationCredential(
-//                            accessToken: value.data.accessToken,
-//                            refreshToken: value.data.refreshToken,
-//                            expiredAt: Date(timeIntervalSinceNow: 60 * 120)
-//                        )
-//                        
-//                        KeychainServiceImpl.shared.accessToken = value.data.accessToken
-//                        KeychainServiceImpl.shared.refreshToken = value.data.refreshToken
-//                        
-//                        completion(.success(newCredential))
-//                    }
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
-//    }
 }

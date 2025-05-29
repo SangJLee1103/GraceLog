@@ -13,6 +13,8 @@
 			</array>
 		</dict>
 	</array>
+	<key>BASE_URL</key>
+	<string>${BASE_URL}</string>
 	<key>KAKAO_NATIVE_APP_KEY</key>
 	<string>${KAKAO_NATIVE_APP_KEY}</string>
 	<key>NSAppTransportSecurity</key>

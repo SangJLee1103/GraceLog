@@ -207,7 +207,7 @@ final class HomeViewController: UIViewController, View {
             .compactMap { $0.error }
             .withUnretained(self)
             .bind(onNext: { owner, error in
-                owner.view.makeToast(error?.localizedDescription)
+                owner.view.makeToast(error.localizedDescription)
             })
             .disposed(by: disposeBag)
     }

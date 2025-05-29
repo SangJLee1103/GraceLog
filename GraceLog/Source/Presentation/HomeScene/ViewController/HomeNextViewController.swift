@@ -8,7 +8,6 @@
 import UIKit
 
 final class HomeNextViewController: UIViewController {
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)

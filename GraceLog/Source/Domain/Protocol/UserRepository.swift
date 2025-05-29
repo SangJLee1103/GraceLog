@@ -10,4 +10,5 @@ import RxSwift
 
 protocol UserRepository {
     func fetchUser() -> Single<GraceLogUser>
+    func updateUser(user: GraceLogUser) -> Single<GraceLogUser>
 }
