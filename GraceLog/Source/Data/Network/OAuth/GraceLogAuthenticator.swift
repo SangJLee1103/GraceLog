@@ -14,10 +14,9 @@ class GraceLogAuthenticator: Authenticator {
     private let baseURL: String
     private let disposeBag = DisposeBag()
     
-    init(baseURL: String = "http://15.164.124.189:8080/api/v1") {
+    init(baseURL: String) {
         self.baseURL = baseURL
     }
-    
     
     func apply(_ credential: GraceLogAuthenticationCredential, to urlRequest: inout URLRequest) {
         urlRequest.headers.add(.authorization(bearerToken: credential.accessToken))

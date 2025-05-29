@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.resignOnTouchOutside = true
         
-        KakaoSDK.initSDK(appKey: kakaoKey)
+        KakaoSDK.initSDK(appKey: Const.kakaoKey)
         
         return true
     }

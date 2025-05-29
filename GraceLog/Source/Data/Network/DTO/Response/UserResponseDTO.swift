@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Firebase
 
 struct UserResponseDTO: Decodable {
     let memberId: Int

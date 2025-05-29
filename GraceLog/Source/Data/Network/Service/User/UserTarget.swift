@@ -14,7 +14,7 @@ enum UserTarget {
 
 extension UserTarget: TargetType {
     var baseURL: String {
-        return "http://15.164.124.189:8080/api/v1"
+        return Const.baseURL
     }
     
     var method: HTTPMethod {

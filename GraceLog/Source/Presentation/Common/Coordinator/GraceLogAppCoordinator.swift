@@ -45,7 +45,6 @@ final class GraceLogAppCoordinator: Coordinator {
     }
     
     @objc private func handleAuthenticationFailure() {
-        print("🔥 AppCoordinator - 인증 실패 알림 받음")
         showLoginFlow()
     }
     

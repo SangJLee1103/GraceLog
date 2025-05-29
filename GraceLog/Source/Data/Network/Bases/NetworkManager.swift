@@ -12,15 +12,12 @@ import RxSwift
 final class NetworkManager {
     static let shared = NetworkManager()
     
-    let baseURL: String
     let session: Session
     private let interceptor: AuthenticationInterceptor<GraceLogAuthenticator>
     private let authenticator: GraceLogAuthenticator
     
-    
     private init() {
-        self.baseURL = "http://15.164.124.189:8080/api/v1"
-        self.authenticator = GraceLogAuthenticator()
+        self.authenticator = GraceLogAuthenticator(baseURL: Const.baseURL)
         
         var credential: GraceLogAuthenticationCredential?
         
