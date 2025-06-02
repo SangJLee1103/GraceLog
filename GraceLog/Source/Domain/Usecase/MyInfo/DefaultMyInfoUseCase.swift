@@ -17,5 +17,9 @@ final class DefaultMyInfoUseCase: MyInfoUseCase {
     
     func updateUser(user: GraceLogUser) -> Single<GraceLogUser> {
         return userRepository.updateUser(user: user)
+            .map { updatedUser in
+                AuthManager.shared.saveUser(updatedUser)
+                return updatedUser
+            }
     }
 }

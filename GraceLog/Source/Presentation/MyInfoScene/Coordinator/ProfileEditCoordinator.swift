@@ -30,6 +30,7 @@ final class ProfileEditCoordinator: Coordinator {
         
         let reactor = ProfileEditViewReactor(coordinator: self, useCase: useCase)
         let profileEditVC = ProfileEditViewController()
+        profileEditVC.view.backgroundColor = .white
         profileEditVC.reactor = reactor
         profileEditVC.title = "프로필 편집"
         

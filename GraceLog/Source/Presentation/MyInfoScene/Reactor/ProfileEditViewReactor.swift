@@ -21,8 +21,8 @@ final class ProfileEditViewReactor: Reactor {
     }
     
     enum Mutation {
-        case setSections([ProfileEditSectionModel])
-        case setProfileImage(UIImage?)
+        case setProfileImageURL(String)
+        case setSelectedImage(UIImage?)
         case setNickname(String)
         case setName(String)
         case setMessage(String)
@@ -32,8 +32,8 @@ final class ProfileEditViewReactor: Reactor {
     }
     
     struct State {
-        var sections: [ProfileEditSectionModel] = []
-        var profileImage: UIImage? = nil
+        var profileImageURL: String = AuthManager.shared.getUser()?.profileImage ?? ""
+        var selectedImage: UIImage? = nil
         var nickname: String = AuthManager.shared.getUser()?.nickname ?? ""
         var name: String = AuthManager.shared.getUser()?.name ?? ""
         var message: String = AuthManager.shared.getUser()?.message ?? ""
@@ -56,10 +56,15 @@ extension ProfileEditViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewDidLoad:
-            return Observable.just(createSections(state: initialState))
-                .map { Mutation.setSections($0) }
-        case .updateProfileImage(let imageUrl):
-            return .just(.setProfileImage(imageUrl))
+            let user = AuthManager.shared.getUser()
+            return Observable.from([
+                .setNickname(user?.nickname ?? ""),
+                .setName(user?.name ?? ""),
+                .setMessage(user?.message ?? ""),
+                .setProfileImageURL(user?.profileImage ?? "")
+            ])
+        case .updateProfileImage(let image):
+            return .just(.setSelectedImage(image))
         case .updateNickname(let nickname):
             return .just(.setNickname(nickname))
         case .updateName(let name):
@@ -80,20 +85,17 @@ extension ProfileEditViewReactor {
         var newState = state
         
         switch mutation {
-        case .setSections(let sections):
-            newState.sections = sections
-        case .setProfileImage(let image):
-            newState.profileImage = image
-            newState.sections = createSections(state: newState)
+        case .setProfileImageURL(let url):
+            newState.profileImageURL = url
+            newState.selectedImage = nil
+        case .setSelectedImage(let image):
+            newState.selectedImage = image
         case .setNickname(let nickname):
             newState.nickname = nickname
-            newState.sections = createSections(state: newState)
         case .setName(let name):
             newState.name = name
-            newState.sections = createSections(state: newState)
         case .setMessage(let message):
             newState.message = message
-            newState.sections = createSections(state: newState)
         case .setLoading(let isLoading):
             newState.isLoading = isLoading
         case .setSaveSuccess(let success):
@@ -126,21 +128,5 @@ extension ProfileEditViewReactor {
                     .just(.setError(error)) },
             .just(.setLoading(false))
         ])
-    }
-}
-
-extension ProfileEditViewReactor {
-    private func createSections(state: State) -> [ProfileEditSectionModel] {
-        let profileImageSection = ProfileEditSectionModel(items: [
-            .imageItem(ProfileImageEditItem(image: state.profileImage))
-        ])
-        
-        let profileInfoSection = ProfileEditSectionModel(items: [
-            .infoItem(ProfileInfoEditItem(title: "닉네임", info: state.nickname, placeholder: "ex. Peter"), .nicknameEdit),
-            .infoItem(ProfileInfoEditItem(title: "이름", info: state.name, placeholder: "ex. 베드로"), .nameEdit),
-            .infoItem(ProfileInfoEditItem(title: "메시지", info: state.message, placeholder: "ex. 잠언 16:9"), .messageEdit),
-        ])
-        
-        return [profileImageSection, profileInfoSection]
     }
 }

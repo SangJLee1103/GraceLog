@@ -51,6 +51,14 @@ final class MyInfoViewController: UIViewController, View {
         }
     )
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if isMovingToParent == false {
+            reactor?.action.onNext(.refreshData)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()

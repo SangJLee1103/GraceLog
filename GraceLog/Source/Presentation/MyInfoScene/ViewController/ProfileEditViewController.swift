@@ -21,93 +21,108 @@ final class ProfileEditViewController: UIViewController, View {
     
     typealias Reactor = ProfileEditViewReactor
     
-    private lazy var tableView = UITableView(frame: .zero, style: .plain).then {
-        $0.separatorStyle = .none
-        $0.backgroundColor = .white
-    }
-    
     private let saveBarButtonItem = UIBarButtonItem(title: "저장", style: .plain, target: nil, action: nil)
     private let activityIndicator = NVActivityIndicatorView(frame: .zero, type: .ballSpinFadeLoader, color: .black, padding: 0).then {
         $0.isHidden = true
     }
     
-    private lazy var dataSource = RxTableViewSectionedReloadDataSource<ProfileEditSectionModel>(
-        configureCell: { _, tableView, indexPath, item in
-            guard let reactor = self.reactor else {
-                return UITableViewCell()
-            }
-            
-            switch item {
-            case .imageItem(let item):
-                let cell = tableView.dequeueReusableCell(withIdentifier: ProfileImageEditTableViewCell.identifier) as! ProfileImageEditTableViewCell
-                cell.updateUI(item.image)
-                cell.editButton.rx.tap
-                    .map { Reactor.Action.didTapProfileImageEdit}
-                    .bind(to: reactor.action)
-                    .disposed(by: cell.disposeBag)
-                return cell
-            case .infoItem(let item, let itemType):
-                let cell = tableView.dequeueReusableCell(withIdentifier: ProfileEditTableViewCell.identifier) as! ProfileEditTableViewCell
-                
-                cell.configure(
-                    title: item.title,
-                    placeholder: item.placeholder,
-                    info: item.info,
-                    itemType: itemType
-                ) { [weak self] text, type in
-                    guard let reactor = self?.reactor else { return }
-                    
-                    switch type {
-                    case .nicknameEdit:
-                        reactor.action.onNext(.updateNickname(text))
-                    case .nameEdit:
-                        reactor.action.onNext(.updateName(text))
-                    case .messageEdit:
-                        reactor.action.onNext(.updateMessage(text))
-                    default:
-                        break
-                    }
-                }
-                return cell
-            }
-        })
+    private let profileImgView = UIImageView().then {
+        $0.setDimensions(width: 112, height: 112)
+        $0.layer.cornerRadius = 56
+        $0.clipsToBounds = true
+    }
+    
+    private let editButton = UIButton().then {
+        $0.setDimensions(width: 30, height: 30)
+        $0.layer.cornerRadius = 15
+        $0.backgroundColor = .graceLightGray
+        $0.setImage(UIImage(named: "edit_camera"), for: .normal)
+    }
+    
+    private let nicknameContainerView = ProfileEditFieldView()
+    private let nameContainerView = ProfileEditFieldView()
+    private let messageContainerView = ProfileEditFieldView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        configureTableView()
     }
     
     private func configureUI() {
+        let safeArea = view.safeAreaLayoutGuide
+        
         navigationItem.rightBarButtonItem = saveBarButtonItem
         
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        [profileImgView, editButton, nicknameContainerView, nameContainerView, messageContainerView].forEach {
+            view.addSubview($0)
         }
-    }
-    
-    private func configureTableView() {
-        tableView.register(ProfileImageEditTableViewCell.self, forCellReuseIdentifier: ProfileImageEditTableViewCell.identifier)
-        tableView.register(ProfileEditTableViewCell.self, forCellReuseIdentifier: ProfileEditTableViewCell.identifier)
         
-        tableView.rowHeight = UITableView.automaticDimension
+        profileImgView.snp.makeConstraints {
+            $0.top.equalTo(safeArea).offset(27)
+            $0.centerX.equalToSuperview()
+        }
+        
+        editButton.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(profileImgView)
+        }
+        
+        nicknameContainerView.snp.makeConstraints {
+            $0.top.equalTo(profileImgView.snp.bottom).offset(32)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        nameContainerView.snp.makeConstraints {
+            $0.top.equalTo(nicknameContainerView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        messageContainerView.snp.makeConstraints {
+            $0.top.equalTo(nameContainerView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        nicknameContainerView.configure(title: "닉네임", placeholder: "ex. Peter")
+        nameContainerView.configure(title: "이름", placeholder: "ex. 베드로")
+        messageContainerView.configure(title: "메시지", placeholder: "ex. 잠언 16:9")
     }
     
     func bind(reactor: ProfileEditViewReactor) {
-        // Action
-        reactor.action.onNext(.viewDidLoad)
-        
-        saveBarButtonItem.rx.tap
-            .map { Reactor.Action.didTapSaveButton }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
         // State
         reactor.state
-            .map { $0.sections }
+            .map { ($0.selectedImage, $0.profileImageURL) }
+            .distinctUntilChanged { lhs, rhs in
+                return lhs.0 === rhs.0 && lhs.1 == rhs.1
+            }
+            .bind(onNext: { [weak self] selectedImage, profileImageURL in
+                if let selectedImage = selectedImage {
+                    self?.profileImgView.image = selectedImage
+                } else if !profileImageURL.isEmpty, let url = URL(string: profileImageURL) {
+                    self?.profileImgView.sd_setImage(
+                        with: url,
+                        placeholderImage: UIImage(named: "profile")
+                    )
+                } else {
+                    self?.profileImgView.image = UIImage(named: "profile")
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.nickname }
             .distinctUntilChanged()
-            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .bind(to: nicknameContainerView.infoField.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.name }
+            .distinctUntilChanged()
+            .bind(to: nameContainerView.infoField.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map { $0.message }
+            .distinctUntilChanged()
+            .bind(to: messageContainerView.infoField.rx.text)
             .disposed(by: disposeBag)
         
         reactor.state
@@ -141,6 +156,37 @@ final class ProfileEditViewController: UIViewController, View {
                     owner.reactor?.coordinator?.didFinishProfileEdit()
                 }
             })
+            .disposed(by: disposeBag)
+        
+        // Action
+        reactor.action.onNext(.viewDidLoad)
+        
+        editButton.rx.tap
+            .map { Reactor.Action.didTapProfileImageEdit }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        saveBarButtonItem.rx.tap
+            .map { Reactor.Action.didTapSaveButton }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        nicknameContainerView.infoField.rx.text.orEmpty
+            .distinctUntilChanged()
+            .map { Reactor.Action.updateNickname($0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        nameContainerView.infoField.rx.text.orEmpty
+            .distinctUntilChanged()
+            .map { Reactor.Action.updateName($0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        messageContainerView.infoField.rx.text.orEmpty
+            .distinctUntilChanged()
+            .map { Reactor.Action.updateMessage($0) }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
 }

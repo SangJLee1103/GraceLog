@@ -12,6 +12,7 @@ import RxSwift
 final class MyInfoViewReactor: Reactor {
     enum Action {
         case viewDidLoad
+        case refreshData
         case itemSelected(at: IndexPath)
     }
     
@@ -37,16 +38,21 @@ final class MyInfoViewReactor: Reactor {
 extension MyInfoViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewDidLoad:
+        case .viewDidLoad, .refreshData:
             let sections = createSections()
             return .just(.setSections(sections))
         case .itemSelected(let indexPath):
             let item = currentState.sections[indexPath.section].items[indexPath.row]
             
             if let myInfoItem = item as? MyInfoItem {
-                return .just(.selectItem(myInfoItem.type))
+                switch myInfoItem.type {
+                case .myProfile:
+                    coordinator?.showProfileEditVC()
+                    return .empty()
+                default:
+                    return .empty()
+                }
             }
-            
             return .empty()
         }
     }
@@ -65,11 +71,13 @@ extension MyInfoViewReactor {
     }
     
     private func createSections() -> [MyInfoSection] {
+        let user = AuthManager.shared.getUser()
+        
         let profileItems = [
             ProfileItem(
-                imageUrl: AuthManager.shared.getUser()?.profileImage ?? "",
-                name: AuthManager.shared.getUser()?.name ?? "",
-                email: AuthManager.shared.getUser()?.email ?? ""
+                imageUrl: user?.profileImage ?? "",
+                name: user?.name ?? "",
+                email: user?.email ?? ""
             )
         ]
         
