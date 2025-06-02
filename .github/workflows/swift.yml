@@ -48,32 +48,53 @@ jobs:
           // Changed files
           const changedFiles = '${{ steps.changed-files.outputs.all_changed_files }}'.split(',');
           
-          // Anthropic API 호출 함수
-          async function reviewCodeWithClaude(code, filename) {
-            const prompt = `
-          다음은 iOS Swift 프로젝트의 코드입니다. 전문적인 코드 리뷰를 해주세요:
+          // 코드를 청크로 나누는 함수
+          function chunkCode(code, maxChunkSize = 8000) {
+            const lines = code.split('\n');
+            const chunks = [];
+            let currentChunk = '';
+            
+            for (const line of lines) {
+              if ((currentChunk + line + '\n').length > maxChunkSize && currentChunk.length > 0) {
+                chunks.push(currentChunk.trim());
+                currentChunk = line + '\n';
+              } else {
+                currentChunk += line + '\n';
+              }
+            }
+            
+            if (currentChunk.trim().length > 0) {
+              chunks.push(currentChunk.trim());
+            }
+            
+            return chunks;
+          }
 
-          파일: ${filename}
+          // Anthropic API 호출 함수
+          async function reviewCodeWithClaude(code, filename, chunkIndex = null) {
+            const chunkInfo = chunkIndex !== null ? ` (Part ${chunkIndex + 1})` : '';
+            const prompt = `
+          다음은 iOS Swift 프로젝트의 코드${chunkInfo}입니다. 간결하고 핵심적인 코드 리뷰를 해주세요:
+
+          파일: ${filename}${chunkInfo}
           
           \`\`\`swift
           ${code}
           \`\`\`
 
-          다음 관점에서 리뷰해주세요:
-          1. **아키텍처 패턴**: MVVM, Coordinator, ReactorKit 등의 적절한 사용
-          2. **메모리 관리**: 강한 참조 사이클, 메모리 누수 가능성
-          3. **성능**: 비효율적인 코드나 개선 가능한 부분
-          4. **코드 품질**: 가독성, 유지보수성, Swift 컨벤션
-          5. **보안**: 잠재적 보안 이슈
-          6. **베스트 프랙티스**: iOS 개발 모범 사례 준수
+          다음 관점에서 **중요한 이슈만** 간단히 리뷰해주세요:
+          1. **메모리 관리**: 강한 참조 사이클, 메모리 누수
+          2. **성능**: 명확한 성능 문제
+          3. **버그**: 런타임 에러나 로직 오류
+          4. **보안**: 데이터 노출이나 보안 취약점
+          5. **Swift 컨벤션**: 중요한 스타일 위반
 
-          ### 리뷰 형식:
-          - ✅ **잘된 점**: 좋은 부분들
-          - ⚠️ **개선 필요**: 문제점과 해결 방안
-          - 💡 **제안사항**: 더 나은 구현 방법
-          - 🐛 **잠재적 버그**: 발견된 문제점
+          ### 응답 형식 (간결하게):
+          - ✅ **잘된 점** (1-2줄)
+          - ⚠️ **주요 이슈** (구체적 문제점만)
+          - 💡 **개선 제안** (핵심 개선사항만)
 
-          구체적이고 실행 가능한 피드백을 제공해주세요.
+          불필요한 설명은 생략하고 핵심만 간단히 작성해주세요.
             `;
 
             try {
@@ -85,14 +106,18 @@ jobs:
                   'anthropic-version': '2023-06-01'
                 },
                 body: JSON.stringify({
-                  model: 'claude-3-5-sonnet-20241022',  // 최신 모델로 업그레이드
-                  max_tokens: 8192,  // 최대 토큰으로 증가
+                  model: 'claude-sonnet-4-20250514',  // 최신 Claude Sonnet 4 모델
+                  max_tokens: 4000,  // 토큰 수 최적화
                   messages: [{
                     role: 'user',
                     content: prompt
                   }]
                 })
               });
+
+              if (!response.ok) {
+                throw new Error(`API responded with status ${response.status}`);
+              }
 
               const data = await response.json();
               return data.content[0].text;
@@ -110,36 +135,61 @@ jobs:
               try {
                 const fileContent = fs.readFileSync(file, 'utf8');
                 
-                // 파일이 너무 크면 스킵 (Claude 토큰 제한)
-                if (fileContent.length > 50000) {  // 50,000자로 대폭 증가
+                // 파일 크기 체크 - 15,000자로 제한
+                if (fileContent.length > 15000) {
                   reviewComments.push(`
           ## 📁 ${file}
           
-          ⚠️ **파일이 너무 큽니다** (${fileContent.length} characters)
-          - 파일을 더 작은 단위로 분리하는 것을 고려해보세요
-          - 단일 책임 원칙(SRP)을 적용해보세요
+          ⚠️ **파일이 너무 큽니다** (${Math.round(fileContent.length/1000)}k characters)
+          - 파일을 더 작은 단위로 분리를 고려해보세요
+          - 코드 리뷰를 위해 파일을 나누어 다시 PR 해주세요
                   `);
                   continue;
                 }
                 
-                console.log(`Reviewing file: ${file}`);
-                const review = await reviewCodeWithClaude(fileContent, file);
+                console.log(`Reviewing file: ${file} (${fileContent.length} chars)`);
                 
-                reviewComments.push(`
+                // 큰 파일은 청크로 나누어 처리
+                if (fileContent.length > 8000) {
+                  const chunks = chunkCode(fileContent);
+                  let chunkReviews = [];
+                  
+                  for (let i = 0; i < Math.min(chunks.length, 3); i++) { // 최대 3개 청크만 처리
+                    const review = await reviewCodeWithClaude(chunks[i], file, i);
+                    chunkReviews.push(review);
+                    
+                    // API 호출 간격 조절
+                    if (i < chunks.length - 1) {
+                      await new Promise(resolve => setTimeout(resolve, 1500));
+                    }
+                  }
+                  
+                  reviewComments.push(`
+          ## 📁 ${file}
+          
+          ${chunkReviews.join('\n\n---\n\n')}
+          
+          ${chunks.length > 3 ? `\n⚠️ **파일이 커서 처음 3개 섹션만 리뷰했습니다**` : ''}
+                  `);
+                } else {
+                  // 작은 파일은 전체 리뷰
+                  const review = await reviewCodeWithClaude(fileContent, file);
+                  reviewComments.push(`
           ## 📁 ${file}
           
           ${review}
-                `);
+                  `);
+                }
                 
-                // API 호출 간격 조절 (rate limiting 방지)
-                await new Promise(resolve => setTimeout(resolve, 2000));  // 2초로 증가
+                // API 호출 간격 조절
+                await new Promise(resolve => setTimeout(resolve, 1000));
                 
               } catch (error) {
                 console.error(`Error processing file ${file}:`, error);
                 reviewComments.push(`
           ## 📁 ${file}
           
-          ⚠️ 파일 처리 중 오류가 발생했습니다: ${error.message}
+          ⚠️ 파일 처리 중 오류: ${error.message}
                 `);
               }
             }
@@ -148,18 +198,18 @@ jobs:
           // PR에 코멘트 추가
           if (reviewComments.length > 0) {
             const fullReview = `
-          # 🤖 Claude iOS Swift Code Review
+          # 🤖 Claude iOS Code Review
           
-          > 이 리뷰는 Claude AI에 의해 자동 생성되었습니다.
+          > Claude Sonnet 4 AI 자동 리뷰 (핵심 이슈 중심)
           
           ${reviewComments.join('\n\n---\n\n')}
           
           ---
           
-          ### 📝 참고사항:
-          - 이 리뷰는 AI가 생성한 것으로, 참고용으로만 사용해주세요
-          - 중요한 변경사항은 팀원과 함께 검토해주세요
-          - 보안 관련 이슈는 별도로 확인이 필요합니다
+          ### 📝 참고:
+          - AI 리뷰이므로 참고용으로만 사용
+          - 중요한 변경사항은 팀 리뷰 필수
+          - 보안 이슈는 별도 검토 필요
             `;
 
             await github.rest.issues.createComment({
