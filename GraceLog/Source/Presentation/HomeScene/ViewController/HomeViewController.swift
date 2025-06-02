@@ -6,14 +6,10 @@
 //
 
 import UIKit
-import Then
-import SnapKit
-import RxSwift
-import RxCocoa
 import RxDataSources
 import ReactorKit
 
-final class HomeViewController: UIViewController, View {
+final class HomeViewController: GraceLogBaseViewController, View {
     weak var coordinator: Coordinator?
     var disposeBag = DisposeBag()
     
@@ -113,7 +109,6 @@ final class HomeViewController: UIViewController, View {
         }
     }
     
-    
     private func configureTableView() {
         // User
         tableView.register(HomeTableViewHeader.self, forHeaderFooterViewReuseIdentifier: HomeTableViewHeader.identifier)
@@ -126,6 +121,11 @@ final class HomeViewController: UIViewController, View {
         tableView.register(HomeCommunityDateHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeCommunityDateHeaderView.identifier)
         tableView.register(HomeCommunityUserTableViewCell.self, forCellReuseIdentifier: HomeCommunityUserTableViewCell.identifier)
         tableView.register(HomeCommunityMyTableViewCell.self, forCellReuseIdentifier: HomeCommunityMyTableViewCell.identifier)
+    }
+    
+    // MARK: - 유저 업데이트 시 NOTI
+    override func onUserProfileUpdated(_ user: GraceLogUser) {
+        reactor?.action.onNext(.updateUser(user))
     }
     
     func bind(reactor: HomeViewReactor) {

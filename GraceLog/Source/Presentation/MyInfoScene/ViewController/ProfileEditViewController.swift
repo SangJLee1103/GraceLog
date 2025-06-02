@@ -6,17 +6,10 @@
 //
 
 import UIKit
-import SnapKit
-import Then
-import Toast_Swift
 import NVActivityIndicatorView
-
 import ReactorKit
-import RxSwift
-import RxCocoa
-import RxDataSources
 
-final class ProfileEditViewController: UIViewController, View {
+final class ProfileEditViewController: GraceLogBaseViewController, View {
     var disposeBag = DisposeBag()
     
     typealias Reactor = ProfileEditViewReactor

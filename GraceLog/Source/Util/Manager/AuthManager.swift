@@ -9,6 +9,7 @@ import Foundation
 
 extension Notification.Name {
     static let authenticationFailed = Notification.Name("AuthenticationFailed")
+    static let userProfileUpdated = Notification.Name("UserProfileUpdated")
 }
 
 final class AuthManager {
@@ -35,6 +36,10 @@ final class AuthManager {
         if let encoded = try? JSONEncoder().encode(user),
            let jsonString = String(data: encoded, encoding: .utf8) {
             keychain.save(KeychainKeys.userKey, jsonString)
+        }
+        
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .userProfileUpdated, object: user)
         }
     }
     

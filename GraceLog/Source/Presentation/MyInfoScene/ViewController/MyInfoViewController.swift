@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 import RxDataSources
 import ReactorKit
 
-final class MyInfoViewController: UIViewController, View {
+final class MyInfoViewController: GraceLogBaseViewController, View {
     typealias Reactor = MyInfoViewReactor
     
     var disposeBag = DisposeBag()
@@ -51,14 +49,6 @@ final class MyInfoViewController: UIViewController, View {
         }
     )
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if isMovingToParent == false {
-            reactor?.action.onNext(.refreshData)
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -81,6 +71,10 @@ final class MyInfoViewController: UIViewController, View {
         tableView.register(MyInfoButtonTableViewCell.self, forCellReuseIdentifier: MyInfoButtonTableViewCell.identifier)
         
         tableView.delegate = self
+    }
+    
+    override func onUserProfileUpdated(_ user: GraceLogUser) {
+        reactor?.action.onNext(.refreshData)
     }
     
     func bind(reactor: MyInfoViewReactor) {
