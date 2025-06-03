@@ -23,6 +23,7 @@ final class ProfileEditViewController: GraceLogBaseViewController, View {
         $0.setDimensions(width: 112, height: 112)
         $0.layer.cornerRadius = 56
         $0.clipsToBounds = true
+        $0.backgroundColor = UIColor.init(hex: 0xF0F0F0)
     }
     
     private let editButton = UIButton().then {

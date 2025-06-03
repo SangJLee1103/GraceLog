@@ -14,7 +14,7 @@ final class ProfileTableViewCell: UITableViewCell {
     
     private let profileImgView = UIImageView().then {
         $0.setDimensions(width: 112, height: 112)
-        $0.backgroundColor = .gray100
+        $0.backgroundColor = UIColor.init(hex: 0xF0F0F0)
         $0.layer.cornerRadius = 56
         $0.clipsToBounds = true
     }
@@ -71,7 +71,7 @@ final class ProfileTableViewCell: UITableViewCell {
         if let imageUrl = URL(string: profileItem.imageUrl) {
             profileImgView.sd_setImage(with: imageUrl)
         } else {
-            profileImgView.image = UIImage(named: "home_profile")
+            profileImgView.image = UIImage(named: "profile")
         }
         
         nameLabel.text = profileItem.name
