@@ -9,7 +9,7 @@ import UIKit
 
 final class SignInCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
-    var childerCoordinators: [Coordinator] = []
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
     init() {

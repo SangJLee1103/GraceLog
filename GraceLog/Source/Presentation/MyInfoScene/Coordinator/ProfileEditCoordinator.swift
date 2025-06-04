@@ -10,7 +10,7 @@ import YPImagePicker
 
 final class ProfileEditCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
-    var childerCoordinators: [Coordinator] = []
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
     required init(_ navigationController: UINavigationController) {

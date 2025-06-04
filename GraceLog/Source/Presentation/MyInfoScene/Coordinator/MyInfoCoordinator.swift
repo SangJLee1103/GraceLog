@@ -9,7 +9,7 @@ import UIKit
 
 final class MyInfoCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
-    var childerCoordinators: [Coordinator] = []
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
     init() {
@@ -32,7 +32,7 @@ final class MyInfoCoordinator: Coordinator {
     func showProfileEditVC() {
         let profileEditCoordinator = ProfileEditCoordinator(self.navigationController)
         profileEditCoordinator.parentCoordinator = self
-        self.childerCoordinators.append(profileEditCoordinator)
+        self.childCoordinators.append(profileEditCoordinator)
         profileEditCoordinator.start()
     }
 }
