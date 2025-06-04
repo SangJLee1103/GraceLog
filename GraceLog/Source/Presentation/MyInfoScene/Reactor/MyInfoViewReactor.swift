@@ -12,6 +12,7 @@ import RxSwift
 final class MyInfoViewReactor: Reactor {
     enum Action {
         case viewDidLoad
+        case refreshData
         case itemSelected(at: IndexPath)
     }
     
@@ -37,16 +38,21 @@ final class MyInfoViewReactor: Reactor {
 extension MyInfoViewReactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewDidLoad:
+        case .viewDidLoad, .refreshData:
             let sections = createSections()
             return .just(.setSections(sections))
         case .itemSelected(let indexPath):
             let item = currentState.sections[indexPath.section].items[indexPath.row]
             
             if let myInfoItem = item as? MyInfoItem {
-                return .just(.selectItem(myInfoItem.type))
+                switch myInfoItem.type {
+                case .myProfile:
+                    coordinator?.showProfileEditVC()
+                    return .empty()
+                default:
+                    return .empty()
+                }
             }
-            
             return .empty()
         }
     }
@@ -65,8 +71,14 @@ extension MyInfoViewReactor {
     }
     
     private func createSections() -> [MyInfoSection] {
+        let user = AuthManager.shared.getUser()
+        
         let profileItems = [
-            ProfileItem(imageUrl: "profile_image", name: "윤승렬", email: "dbs3153@naver.com")
+            ProfileItem(
+                imageUrl: user?.profileImage ?? "",
+                name: user?.name ?? "",
+                email: user?.email ?? ""
+            )
         ]
         
         let myInfoItems = [
@@ -101,7 +113,7 @@ extension MyInfoViewReactor {
         
         return [
             .profile(items: profileItems),
-            .myInfo(title: "승렬님의 Grace Log", items: myInfoItems),
+            .myInfo(title: "\(AuthManager.shared.getUser()?.name ?? "")님의 Grace Log", items: myInfoItems),
             .community(title: "공동체 및 친구관리", items: communityItems),
             .notification(title: "푸시 알림 설정", items: notificationItems),
             .customerService(title: "고객센터", items: customerServiceItems),

@@ -14,22 +14,23 @@ final class ProfileTableViewCell: UITableViewCell {
     
     private let profileImgView = UIImageView().then {
         $0.setDimensions(width: 112, height: 112)
+        $0.backgroundColor = UIColor.init(hex: 0xF0F0F0)
         $0.layer.cornerRadius = 56
-        $0.image = UIImage(named: "profile")
+        $0.clipsToBounds = true
     }
     
     private let nameLabel = UILabel().then {
         $0.textColor = .themeColor
         $0.font = UIFont(name: "Pretendard-Bold", size: 20)
         $0.textAlignment = .center
-        $0.text = "윤승렬"
+        $0.text = AuthManager.shared.getUser()?.name
     }
     
     private let emailLabel = UILabel().then {
         $0.textColor = .graceGray
         $0.font = UIFont(name: "Pretendard-Regular", size: 12)
         $0.textAlignment = .center
-        $0.text = "dbs3153@naver.com"
+        $0.text = AuthManager.shared.getUser()?.email
     }
     
     
@@ -64,5 +65,16 @@ final class ProfileTableViewCell: UITableViewCell {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(2)
         }
+    }
+    
+    func updateUI(with profileItem: ProfileItem) {
+        if let imageUrl = URL(string: profileItem.imageUrl) {
+            profileImgView.sd_setImage(with: imageUrl)
+        } else {
+            profileImgView.image = UIImage(named: "profile")
+        }
+        
+        nameLabel.text = profileItem.name
+        emailLabel.text = profileItem.email
     }
 }

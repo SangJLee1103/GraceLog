@@ -12,7 +12,6 @@ import ReactorKit
 import Toast_Swift
 import NVActivityIndicatorView
 
-import Firebase
 import GoogleSignIn
 import RxSwift
 import RxCocoa
@@ -317,12 +316,6 @@ extension SignInViewController: ASAuthorizationControllerDelegate {
             print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
             return
         }
-        
-        let credential = OAuthProvider.appleCredential(
-            withIDToken: idTokenString,
-            rawNonce: nonce,
-            fullName: appleIDCredential.fullName
-        )
         
         reactor?.action.onNext(.appleLogin)
     }

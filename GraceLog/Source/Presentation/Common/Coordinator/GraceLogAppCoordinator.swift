@@ -12,12 +12,23 @@ import KakaoSDKUser
 
 
 final class GraceLogAppCoordinator: Coordinator {
-    var childerCoordinators: [Coordinator] = []
+    var childCoordinators: [Coordinator] = []
     let window: UIWindow?
     
     init(_ window: UIWindow?) {
         self.window = window
         window?.makeKeyAndVisible()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleAuthenticationFailure),
+            name: .authenticationFailed,
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func start() {
@@ -33,21 +44,25 @@ final class GraceLogAppCoordinator: Coordinator {
         }
     }
     
+    @objc private func handleAuthenticationFailure() {
+        showLoginFlow()
+    }
+    
     private func showLoginFlow() {
         guard let mainTabViewController = window?.rootViewController else { return }
         
         let signInCoordinator = SignInCoordinator()
         signInCoordinator.parentCoordinator = self
-        childerCoordinators.append(signInCoordinator)
+        childCoordinators.append(signInCoordinator)
         
         let signInVC = signInCoordinator.createSignInViewController()
-        signInVC.modalPresentationStyle = .fullScreen 
+        signInVC.modalPresentationStyle = .fullScreen
         mainTabViewController.present(signInVC, animated: true)
     }
     
     func removeChildCoordinator(_ coordinator: Coordinator) {
-        if let index = childerCoordinators.firstIndex(where: { $0 === coordinator }) {
-            childerCoordinators.remove(at: index)
+        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+            childCoordinators.remove(at: index)
         }
     }
     
@@ -92,21 +107,21 @@ final class GraceLogAppCoordinator: Coordinator {
         
         let homeCoordinator = HomeCoordinator()
         homeCoordinator.parentCoordinator = self
-        childerCoordinators.append(homeCoordinator)
+        childCoordinators.append(homeCoordinator)
         
         let homeVC = homeCoordinator.startPush()
         homeVC.tabBarItem = homeItem
         
         let diaryCoordinator = DiaryCoordinator()
         diaryCoordinator.parentCoordinator = self
-        childerCoordinators.append(diaryCoordinator)
+        childCoordinators.append(diaryCoordinator)
         
         let diaryVC = diaryCoordinator.startPush()
         diaryVC.tabBarItem = diaryItem
         
         let searchCoordinator = SearchCoordinator()
         searchCoordinator.parentCoordinator = self
-        childerCoordinators.append(searchCoordinator)
+        childCoordinators.append(searchCoordinator)
         
         let searchVC = searchCoordinator.startPush()
         searchVC.tabBarItem = searchItem
@@ -114,7 +129,7 @@ final class GraceLogAppCoordinator: Coordinator {
         
         let myInfoCoordinator = MyInfoCoordinator()
         myInfoCoordinator.parentCoordinator = self
-        childerCoordinators.append(myInfoCoordinator)
+        childCoordinators.append(myInfoCoordinator)
         
         let myInfoVC = myInfoCoordinator.startPush()
         myInfoVC.tabBarItem = myInfoItem

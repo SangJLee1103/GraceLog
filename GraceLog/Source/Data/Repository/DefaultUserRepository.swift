@@ -22,7 +22,23 @@ final class DefaultUserRepository: UserRepository {
                     id: responseDTO.memberId,
                     name: responseDTO.name,
                     nickname: responseDTO.nickname,
-                    profileImage: responseDTO.profileImage
+                    profileImage: responseDTO.profileImage,
+                    email: responseDTO.email,
+                    message: responseDTO.message
+                )
+            }
+    }
+    
+    func updateUser(user: GraceLogUser) -> Single<GraceLogUser> {
+        return userService.updateUser(request: user.toRequestDTO())
+            .map { responseDTO in
+                return GraceLogUser(
+                    id: responseDTO.memberId,
+                    name: responseDTO.name,
+                    nickname: responseDTO.nickname,
+                    profileImage: responseDTO.profileImage,
+                    email: responseDTO.email,
+                    message: responseDTO.message
                 )
             }
     }

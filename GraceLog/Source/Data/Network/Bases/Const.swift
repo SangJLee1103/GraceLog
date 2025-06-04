@@ -7,4 +7,9 @@
 
 import Foundation
 
-let kakaoKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] as? String ?? ""
+struct Const {
+    static let kakaoKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] as? String ?? ""
+    static let baseURL = Bundle.main.infoDictionary?["BASE_URL"] as? String ?? ""
+    
+    private init() {}
+}

@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
-    var childerCoordinators: [Coordinator] = []
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
     init() {
@@ -22,6 +22,7 @@ final class HomeCoordinator: Coordinator {
     
     func startPush() -> UINavigationController {
         let homeVC = HomeViewController()
+        homeVC.coordinator = self
         homeVC.view.backgroundColor = .white
         navigationController.setViewControllers([homeVC], animated: false)
         return navigationController

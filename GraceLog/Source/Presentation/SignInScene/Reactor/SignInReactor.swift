@@ -9,7 +9,6 @@ import Foundation
 import ReactorKit
 import RxSwift
 import RxCocoa
-import Firebase
 import GoogleSignIn
 
 final class SignInReactor: Reactor {

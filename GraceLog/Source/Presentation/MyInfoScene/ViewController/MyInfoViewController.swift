@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 import RxDataSources
 import ReactorKit
 
-final class MyInfoViewController: UIViewController, View {
+final class MyInfoViewController: GraceLogBaseViewController, View {
     typealias Reactor = MyInfoViewReactor
     
     var disposeBag = DisposeBag()
@@ -26,7 +24,7 @@ final class MyInfoViewController: UIViewController, View {
             if let profileItem = item as? ProfileItem {
                 let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as! ProfileTableViewCell
                 cell.selectionStyle = .none
-                //                cell.configure(image: profileItem.imageUrl, name: profileItem.name, email: profileItem.email)
+                cell.updateUI(with: profileItem)
                 return cell
             } else if let myInfoItem = item as? MyInfoItem {
                 let section = dataSource[indexPath.section]
@@ -73,6 +71,10 @@ final class MyInfoViewController: UIViewController, View {
         tableView.register(MyInfoButtonTableViewCell.self, forCellReuseIdentifier: MyInfoButtonTableViewCell.identifier)
         
         tableView.delegate = self
+    }
+    
+    override func onUserProfileUpdated(_ user: GraceLogUser) {
+        reactor?.action.onNext(.refreshData)
     }
     
     func bind(reactor: MyInfoViewReactor) {

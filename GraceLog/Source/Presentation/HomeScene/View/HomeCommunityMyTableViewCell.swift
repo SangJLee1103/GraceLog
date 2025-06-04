@@ -158,7 +158,7 @@ final class HomeCommunityMyTableViewCell: UITableViewCell {
         commentButton.setTitle("\(comments)", for: .normal)
         
         cardImageView.image = UIImage(named: "diary2")
-        profileImgView.image = UIImage(named: "home_profile")
+        profileImgView.image = UIImage(named: "profile")
         
         usernameLabel.text = "나"
     }

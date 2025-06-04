@@ -28,6 +28,7 @@ final class HomeViewReactor: Reactor {
         case userButtonTapped
         case groupButtonTapped
         case selectCommunity(item: CommunityItem)
+        case updateUser(GraceLogUser)
     }
     
     enum Mutation {
@@ -153,6 +154,8 @@ extension HomeViewReactor {
             return .just(.setSegment(.group))
         case .selectCommunity(let model):
             return .just(.setCommunityIndex(model))
+        case .updateUser(let user):
+            return .just(.setUser(user))
         }
     }
     

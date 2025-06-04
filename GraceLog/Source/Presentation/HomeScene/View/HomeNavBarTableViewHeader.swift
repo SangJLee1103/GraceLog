@@ -47,7 +47,7 @@ final class HomeNavBarTableViewHeader: UIView {
         $0.backgroundColor = .systemGray2
         $0.layer.cornerRadius = 16
         $0.clipsToBounds = true
-        $0.setBackgroundImage(UIImage(named: "home_profile"), for: .normal)
+        $0.setBackgroundImage(UIImage(named: "profile"), for: .normal)
         $0.setDimensions(width: 32, height: 32)
     }
     
@@ -120,9 +120,9 @@ final class HomeNavBarTableViewHeader: UIView {
         userButton.setTitle(user.name, for: .normal)
         
         if let imageUrl = URL(string: user.profileImage) {
-            profileButton.sd_setBackgroundImage(with: imageUrl, for: .normal, placeholderImage: UIImage(named: "home_profile"))
+            profileButton.sd_setBackgroundImage(with: imageUrl, for: .normal, placeholderImage: UIImage(named: "profile"))
         } else {
-            profileButton.setBackgroundImage(UIImage(named: "home_profile"), for: .normal)
+            profileButton.setBackgroundImage(UIImage(named: "profile"), for: .normal)
         }
     }
     
