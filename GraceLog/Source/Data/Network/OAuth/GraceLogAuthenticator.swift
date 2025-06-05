@@ -45,16 +45,16 @@ class GraceLogAuthenticator: Authenticator {
             .validate()
             .responseDecodable(of: GraceLogResponseDTO<SignInResponseDTO>.self) { response in
                 switch response.result {
-                case .success(let value):
-                    if value.code == 200 {
+                case .success(let response):
+                    if response.code == 200,  let data = response.data {
                         let newCredential = GraceLogAuthenticationCredential(
-                            accessToken: value.data.accessToken,
-                            refreshToken: value.data.refreshToken,
+                            accessToken: data.accessToken,
+                            refreshToken: data.refreshToken,
                             expiredAt: Date(timeIntervalSinceNow: 60 * 120)
                         )
                         
-                        KeychainServiceImpl.shared.accessToken = value.data.accessToken
-                        KeychainServiceImpl.shared.refreshToken = value.data.refreshToken
+                        KeychainServiceImpl.shared.accessToken = data.accessToken
+                        KeychainServiceImpl.shared.refreshToken = data.refreshToken
                         
                         completion(.success(newCredential))
                     } else {
