@@ -9,27 +9,27 @@ import Foundation
 import Alamofire
 
 enum APIError: Error {
-    case serverError(code: Int, message: String)
+    case httpError(code: Int, message: String)
     case networkError(Error)
 }
 
 extension APIError: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .serverError(_, let message):
+        case .httpError(_, let message):
             return message
         case .networkError(let error):
             if let afError = error as? AFError {
-                return mapAFErrorToKorean(afError)
+                return getAFErrorMessageToKorean(afError)
             } else if let urlError = error as? URLError {
-                return mapURLErrorToKorean(urlError)
+                return getURLErrorMessageToKorean(urlError)
             } else {
                 return "네트워크 오류가 발생했습니다"
             }
         }
     }
     
-    private func mapAFErrorToKorean(_ afError: AFError) -> String {
+    private func getAFErrorMessageToKorean(_ afError: AFError) -> String {
         switch afError {
         case .responseValidationFailed:
             return "서버 응답이 올바르지 않습니다"
@@ -40,7 +40,7 @@ extension APIError: LocalizedError {
         }
     }
     
-    private func mapURLErrorToKorean(_ urlError: URLError) -> String {
+    private func getURLErrorMessageToKorean(_ urlError: URLError) -> String {
         switch urlError.code {
         case .notConnectedToInternet:
             return "인터넷 연결을 확인해주세요"

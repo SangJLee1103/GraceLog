@@ -19,7 +19,7 @@ struct AuthService {
                         if response.code == 200, let data = response.data {
                             single(.success(data))
                         }  else {
-                            let error = APIError.serverError(
+                            let error = APIError.httpError(
                                 code: response.code,
                                 message: response.message
                             )
