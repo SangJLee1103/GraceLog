@@ -142,6 +142,23 @@ final class HomeViewController: GraceLogBaseViewController, View {
         tableView.rx.setDelegate(self)
             .disposed(by: disposeBag)
         
+        tableView.rx.itemSelected
+            .withUnretained(self)
+            .subscribe(onNext: { owner, indexPath in
+                guard let reactor = owner.reactor else { return }
+                let sectionModel = reactor.currentState.sections[indexPath.section]
+                
+                if case let .diary(items) = sectionModel {
+                    if indexPath.row < items.count {
+                        let diaryItem = items[indexPath.row]
+                        let vc = DiaryDetailsViewController()
+                        vc.modalPresentationStyle = .fullScreen
+                        owner.present(vc, animated: true)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+        
         tableView.rx.modelSelected(Any.self)
             .subscribe(onNext: { item in
                 if let communityItem = item as? CommunityItem {

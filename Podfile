@@ -33,6 +33,7 @@ target 'GraceLog' do
 	pod 'RxDataSources'
 	pod 'ReactorKit'
         pod 'KeychainAccess'
+        pod 'FSCalendar'
 
   target 'GraceLogUseCaseTests' do
     inherit! :search_paths
