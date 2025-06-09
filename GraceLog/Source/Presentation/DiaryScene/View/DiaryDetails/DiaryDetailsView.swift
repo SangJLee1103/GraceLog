@@ -63,21 +63,36 @@ final class DiaryDetailsView: UIView {
     }
     
     private let likeButton = UIButton().then {
-        $0.setImage(UIImage(named: "diary_heart"), for: .normal)
-        $0.setTitle("24", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(named: "diary_heart")
+        config.title = "24"
+        config.baseForegroundColor = .white
+        config.imagePlacement = .top
+        config.imagePadding = 7
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+            return outgoing
+        }
+        $0.configuration = config
         $0.tintColor = .white
-        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
     }
     
     private let commentButton = UIButton().then {
-        $0.setImage(UIImage(named: "diary_message"), for: .normal)
-        $0.setTitle("9", for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.titleLabel?.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(named: "diary_message")
+        config.title = "9"
+        config.baseForegroundColor = .white
+        config.imagePlacement = .top
+        config.imagePadding = 7
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont(name: "Pretendard-SemiBold", size: 14)
+            return outgoing
+        }
+        $0.configuration = config
         $0.tintColor = .white
-        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
     }
     
     override init(frame: CGRect) {
@@ -134,8 +149,8 @@ final class DiaryDetailsView: UIView {
         contentView.addSubview(contentTextView)
         contentTextView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().offset(24)
-            $0.trailing.equalToSuperview().inset(24)
+            $0.leading.equalToSuperview().offset(31)
+            $0.trailing.equalToSuperview().inset(48)
         }
         
         contentView.addSubview(bottomStackView)
