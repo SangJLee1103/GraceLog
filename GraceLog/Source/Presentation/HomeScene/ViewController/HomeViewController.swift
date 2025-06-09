@@ -151,7 +151,7 @@ final class HomeViewController: GraceLogBaseViewController, View {
                 if case let .diary(items) = sectionModel {
                     if indexPath.row < items.count {
                         let diaryItem = items[indexPath.row]
-                        let vc = DiaryDetailsViewController()
+                        let vc = UINavigationController(rootViewController: DiaryDetailsViewController())
                         vc.modalPresentationStyle = .fullScreen
                         owner.present(vc, animated: true)
                     }

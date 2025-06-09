@@ -20,10 +20,7 @@ final class DiaryDetailsViewController: GraceLogBaseViewController {
         $0.appearance.weekdayFont = UIFont(name: "Pretendard-Regular", size: 20)
     }
     
-    private let diaryDetailsView = DiaryDetailsView().then {
-        $0.backgroundColor = .black
-        $0.layer.cornerRadius = 20
-    }
+    private let diaryDetailsView = DiaryDetailsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +29,15 @@ final class DiaryDetailsViewController: GraceLogBaseViewController {
     }
     
     private func configureUI() {
+        title = "나의 감사일기"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(actionClose))
+        
         view.backgroundColor = UIColor(hex: 0x161515)
         
         view.addSubview(calendarView)
         calendarView.snp.makeConstraints {
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.width.equalTo(60)
+            $0.height.equalTo(90)
         }
         
         view.addSubview(diaryDetailsView)
@@ -49,11 +49,14 @@ final class DiaryDetailsViewController: GraceLogBaseViewController {
         }
     }
     
+    @objc private func actionClose() {
+        dismiss(animated: true)
+    }
+    
     private func configureCalendarView() {
         calendarView.delegate = self
         calendarView.dataSource = self
     }
-    
 }
 
 extension DiaryDetailsViewController: FSCalendarDelegate, FSCalendarDataSource {

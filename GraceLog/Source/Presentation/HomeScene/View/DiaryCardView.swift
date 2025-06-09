@@ -18,7 +18,7 @@ final class DiaryCardView: UIView {
     
     private let contentView = UIView().then {
         $0.backgroundColor = .white
-        $0.layer.cornerRadius = 12
+        $0.layer.cornerRadius = 25
         $0.clipsToBounds = true
     }
     
