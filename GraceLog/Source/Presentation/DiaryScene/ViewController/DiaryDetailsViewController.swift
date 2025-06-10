@@ -9,6 +9,8 @@ import UIKit
 import FSCalendar
 
 final class DiaryDetailsViewController: GraceLogBaseViewController {
+    weak var coordinator: DiaryDetailsCoordinator?
+    
     private let calendarView = FSCalendar().then {
         $0.backgroundColor = .black
         $0.tintColor = .white
@@ -50,7 +52,7 @@ final class DiaryDetailsViewController: GraceLogBaseViewController {
     }
     
     @objc private func actionClose() {
-        dismiss(animated: true)
+        coordinator?.dismiss()
     }
     
     private func configureCalendarView() {
@@ -60,7 +62,7 @@ final class DiaryDetailsViewController: GraceLogBaseViewController {
 }
 
 extension DiaryDetailsViewController: FSCalendarDelegate, FSCalendarDataSource {
-//    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        
-//    }
+    //    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    //
+    //    }
 }

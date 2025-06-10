@@ -7,7 +7,12 @@
 
 import UIKit
 
+protocol DiaryDetailsCoordinatorDelegate: AnyObject {
+    func diaryDetailsCoordinatorDidFinish(_ coordinator: DiaryDetailsCoordinator)
+}
+
 final class DiaryDetailsCoordinator: Coordinator {
+    weak var delegate: DiaryDetailsCoordinatorDelegate?
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
@@ -17,14 +22,14 @@ final class DiaryDetailsCoordinator: Coordinator {
     }
     
     func start() {
-        // TODO
+        let diaryDetailsVC = DiaryDetailsViewController()
+        diaryDetailsVC.coordinator = self 
+        diaryDetailsVC.title = "나의 감사일기"
+        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.setViewControllers([diaryDetailsVC], animated: false)
     }
     
-    func startPush() -> UINavigationController {
-        let diaryDetailsVC = DiaryDetailsViewController()
-        diaryDetailsVC.view.backgroundColor = .white
-        diaryDetailsVC.title = "나의 감사일기"
-        navigationController.setViewControllers([diaryDetailsVC], animated: false)
-        return navigationController
+    func dismiss() {
+        delegate?.diaryDetailsCoordinatorDidFinish(self)
     }
 }

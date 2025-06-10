@@ -27,4 +27,28 @@ final class HomeCoordinator: Coordinator {
         navigationController.setViewControllers([homeVC], animated: false)
         return navigationController
     }
+    
+    func showDiaryDetails(diaryItem: MyDiaryItem) {
+        let diaryDetailsCoordinator = DiaryDetailsCoordinator()
+        diaryDetailsCoordinator.delegate = self
+        diaryDetailsCoordinator.parentCoordinator = self
+        childCoordinators.append(diaryDetailsCoordinator)
+        
+        diaryDetailsCoordinator.start()
+        navigationController.present(diaryDetailsCoordinator.navigationController, animated: true)
+    }
+}
+
+extension HomeCoordinator: DiaryDetailsCoordinatorDelegate {
+    func diaryDetailsCoordinatorDidFinish(_ coordinator: DiaryDetailsCoordinator) {
+        dismissDiaryDetails()
+    }
+    
+    func dismissDiaryDetails() {
+        if let diaryDetailsCoordinator = childCoordinators.first(where: { $0 is DiaryDetailsCoordinator }) {
+            childDidFinish(diaryDetailsCoordinator)
+        }
+        
+        navigationController.dismiss(animated: true)
+    }
 }

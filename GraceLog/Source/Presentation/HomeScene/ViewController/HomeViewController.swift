@@ -10,7 +10,7 @@ import RxDataSources
 import ReactorKit
 
 final class HomeViewController: GraceLogBaseViewController, View {
-    weak var coordinator: Coordinator?
+    weak var coordinator: HomeCoordinator?
     var disposeBag = DisposeBag()
     
     private let headerView = HomeNavBarTableViewHeader()
@@ -151,9 +151,7 @@ final class HomeViewController: GraceLogBaseViewController, View {
                 if case let .diary(items) = sectionModel {
                     if indexPath.row < items.count {
                         let diaryItem = items[indexPath.row]
-                        let vc = UINavigationController(rootViewController: DiaryDetailsViewController())
-                        vc.modalPresentationStyle = .fullScreen
-                        owner.present(vc, animated: true)
+                        owner.coordinator?.showDiaryDetails(diaryItem: diaryItem)
                     }
                 }
             })
