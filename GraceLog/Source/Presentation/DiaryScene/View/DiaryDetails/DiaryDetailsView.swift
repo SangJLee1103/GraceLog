@@ -18,11 +18,6 @@ final class DiaryDetailsView: UIView {
     
     private let gradientLayer = CAGradientLayer()
     
-    private let scrollView = UIScrollView().then {
-        $0.showsVerticalScrollIndicator = true
-        $0.showsHorizontalScrollIndicator = false
-    }
-    
     private let contentView = UIView()
     
     private let containerView = UIView().then {
@@ -33,7 +28,7 @@ final class DiaryDetailsView: UIView {
     private let categoryLabel = UILabel().then {
         $0.text = "오늘의 감사일기"
         $0.textColor = .white
-        $0.font = UIFont(name: "Pretendard-Regular", size: 16)
+        $0.font = UIFont(name: "Pretendard-Light", size: 16)
         $0.alpha = 0.8
     }
     
@@ -41,8 +36,9 @@ final class DiaryDetailsView: UIView {
         $0.text = "스터디 카페에\n새로운 손님이?"
         $0.textColor = .white
         $0.font = UIFont(name: "Pretendard-Bold", size: 28)
-        $0.numberOfLines = 0
+        $0.numberOfLines = 2
         $0.lineBreakMode = .byWordWrapping
+        $0.setLineHeight(multiple: 0.95)
     }
     
     private let contentTextView = UITextView().then {
@@ -50,16 +46,25 @@ final class DiaryDetailsView: UIView {
         $0.textColor = .white
         $0.font = UIFont(name: "Pretendard-Regular", size: 16)
         $0.isEditable = false
-        $0.isScrollEnabled = false
+        $0.isScrollEnabled = true
         $0.textContainer.lineFragmentPadding = 0
-        $0.textContainerInset = .zero
-        $0.text = "처음에는 한숨만 나오고 절망을 느꼈다. 내 의지와는 상관없이 공간을 우리가 맡게 되었기 때문이다. 한 번도 사업을 해보지 않은 입장에서 시작하자니 막막했다. 많은 분들이 말씀해주셔서 무작정 시작했다. 예상한 것처럼 한 명도 오지를 않았다. 그러려니 했는데.. 갑자기 손님 한 분이 문을 열고 들어오신다. 속으로 외쳤다. “하나님 감사합니다!” 우리 스터디카페의 첫 시작이었다. 계속해서 손님들이 오는 건 아니었다. 다른 곳처럼 공사를 시작해서 오픈 한 것도 아니"
+        $0.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 19)
+        $0.verticalScrollIndicatorInsets = .zero
+        
+        $0.text = "처음에는 한숨만 나오고 절망을 느꼈다. 내 의지와는 상관없이 공간을 우리가 맡게 되었기 때문이다. 한 번도 사업을 해보지 않은 입장에서 시작하자니 막막했다. 많은 분들이 말씀해주셔서 무작정 시작했다. 예상한 것처럼 한 명도 오지를 않았다. 그러려니 했는데.. 갑자기 손님 한 분이 문을 열고 들어오신다. 속으로 외쳤다. “하나님 감사합니다!” 우리 스터디카페의 첫 시작이었다. 계속해서 손님들이 오는 건 아니었다. 다른 곳처럼 공사를 시작해서 오픈 한 것도 아니\n\n처음에는 한숨만 나오고 절망을 느꼈다. 내 의지와는 상관없이 공간을 우리가 맡게 되었기 때문이다. 한 번도 사업을 해보지 않은 입장에서 시작하자니 막막했다. 많은 분들이 말씀해주셔서 무작정 시작했다. 예상한 것처럼 한 명도 오지를 않았다. 그러려니 했는데.. 갑자기 손님 한 분이 문을 열고 들어오신다. 속으로 외쳤다. “하나님 감사합니다!” 우리 스터디카페의 첫 시작이었다. 계속해서 손님들이 오는 건 아니었다. 다른 곳처럼 공사를 시작해서 오픈 한 것도 아니\n\n처음에는 한숨만 나오고 절망을 느꼈다. 내 의지와는 상관없이 공간을 우리가 맡게 되었기 때문이다. 한 번도 사업을 해보지 않은 입장에서 시작하자니 막막했다. 많은 분들이 말씀해주셔서 무작정 시작했다. 예상한 것처럼 한 명도 오지를 않았다. 그러려니 했는데.. 갑자기 손님 한 분이 문을 열고 들어오신다. 속으로 외쳤다. “하나님 감사합니다!” 우리 스터디카페의 첫 시작이었다. 계속해서 손님들이 오는 건 아니었다. 다른 곳처럼 공사를 시작해서 오픈 한 것도 아니"
+        
+        $0.setLineHeight(multiple: 1.26)
     }
     
     private let bottomStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.distribution = .fillEqually
         $0.spacing = 59
+    }
+    
+    private let moreImageView = UIImageView().then {
+        $0.image = UIImage(named: "diary_more")
+        $0.setDimensions(width: 24, height: 24)
     }
     
     private let likeButton = UIButton().then {
@@ -76,7 +81,6 @@ final class DiaryDetailsView: UIView {
         }
         $0.configuration = config
         $0.tintColor = .white
-        
     }
     
     private let commentButton = UIButton().then {
@@ -121,61 +125,49 @@ final class DiaryDetailsView: UIView {
         
         backgroundImageView.layer.addSublayer(gradientLayer)
         
-        addSubview(scrollView)
-        scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        scrollView.addSubview(contentView)
+        addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.width.equalToSuperview()
+            $0.width.height.equalToSuperview()
+        }
+        
+        contentView.addSubview(moreImageView)
+        moreImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(18)
+            $0.trailing.equalToSuperview().inset(17)
         }
         
         contentView.addSubview(categoryLabel)
         categoryLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(24)
-            $0.leading.equalToSuperview().offset(24)
-            $0.trailing.equalToSuperview().inset(24)
+            $0.top.equalToSuperview().offset(60)
+            $0.leading.equalToSuperview().offset(31)
+            $0.trailing.equalToSuperview().inset(48)
         }
         
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(categoryLabel.snp.bottom).offset(8)
-            $0.leading.equalToSuperview().offset(24)
-            $0.trailing.equalToSuperview().inset(24)
-        }
-        
-        contentView.addSubview(contentTextView)
-        contentTextView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(31)
             $0.trailing.equalToSuperview().inset(48)
         }
         
         contentView.addSubview(bottomStackView)
         bottomStackView.snp.makeConstraints {
-            $0.top.equalTo(contentTextView.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().offset(24)
-            $0.trailing.equalToSuperview().inset(24)
+            $0.centerX.equalToSuperview()
             $0.height.equalTo(47)
-            $0.bottom.equalToSuperview().inset(24)
+            $0.bottom.equalToSuperview().inset(29)
         }
         
-        bottomStackView.addSubview(likeButton)
-        likeButton.snp.makeConstraints {
-            $0.leading.equalToSuperview()
-            $0.centerY.equalToSuperview()
-            $0.width.equalTo(80)
-            $0.height.equalTo(40)
+        [likeButton, commentButton].forEach {
+            bottomStackView.addArrangedSubview($0)
         }
         
-        bottomStackView.addSubview(commentButton)
-        commentButton.snp.makeConstraints {
-            $0.leading.equalTo(likeButton.snp.trailing).offset(20)
-            $0.centerY.equalToSuperview()
-            $0.width.equalTo(80)
-            $0.height.equalTo(40)
+        contentView.addSubview(contentTextView)
+        contentTextView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(50)
+            $0.leading.equalToSuperview().offset(31)
+            $0.trailing.equalToSuperview().inset(28)
+            $0.bottom.equalTo(bottomStackView.snp.top).offset(-22)
         }
     }
     

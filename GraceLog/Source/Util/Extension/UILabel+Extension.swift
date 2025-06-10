@@ -24,4 +24,20 @@ extension UILabel {
         
         self.attributedText = attributedString
     }
+    
+    func setLineHeight(multiple: CGFloat) {
+        guard let text = self.text else { return }
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = multiple
+        paragraphStyle.alignment = self.textAlignment
+        
+        let attributedString = NSMutableAttributedString(string: text, attributes: [
+            .paragraphStyle: paragraphStyle,
+            .foregroundColor: self.textColor ?? .black,
+            .font: self.font ?? UIFont.systemFont(ofSize: 16)
+        ])
+        
+        self.attributedText = attributedString
+    }
 }
