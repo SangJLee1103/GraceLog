@@ -12,18 +12,17 @@ final class SearchCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
-    init() {
-        self.navigationController = .init()
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     func start() {
-        // TODO
-    }
-    
-    func startPush() -> UINavigationController {
         let searchVC = SearchViewController()
         searchVC.view.backgroundColor = .white
         navigationController.setViewControllers([searchVC], animated: false)
-        return navigationController
+    }
+    
+    func finish() {
+        
     }
 }

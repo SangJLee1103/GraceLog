@@ -21,6 +21,8 @@ final class ProfileEditCoordinator: Coordinator {
         self.pushProfileEditViewController()
     }
     
+    func finish() { }
+    
     func pushProfileEditViewController() {
         let useCase = DefaultMyInfoUseCase(
             userRepository: DefaultUserRepository(

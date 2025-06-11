@@ -20,6 +20,8 @@ final class SignInCoordinator: Coordinator {
         //
     }
     
+    func finish() { }
+    
     func createSignInViewController() -> UIViewController {
         let loginVC = SignInViewController()
         let reactor = SignInReactor(

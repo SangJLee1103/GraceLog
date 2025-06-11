@@ -38,6 +38,8 @@ final class GraceLogAppCoordinator: Coordinator {
         checkLoginStatus()
     }
     
+    func finish() { }
+    
     private func checkLoginStatus() {
         if !KeychainServiceImpl.shared.isLoggedIn() {
             showLoginFlow()
@@ -105,36 +107,37 @@ final class GraceLogAppCoordinator: Coordinator {
                                       image: UIImage(named: "tab_user"),
                                       selectedImage: UIImage(named: "tab_user_selected"))
         
-        let homeCoordinator = HomeCoordinator()
+        let homeNavController = UINavigationController()
+        let diaryNavController = UINavigationController()
+        let searchNavController = UINavigationController()
+        let myInfoNavController = UINavigationController()
+        
+        // 코디네이터 생성 및 시작
+        let homeCoordinator = HomeCoordinator(navigationController: homeNavController)
         homeCoordinator.parentCoordinator = self
-        childCoordinators.append(homeCoordinator)
+        addChildCoordinator(homeCoordinator)
+        homeCoordinator.start()
+        homeNavController.tabBarItem = homeItem
         
-        let homeVC = homeCoordinator.startPush()
-        homeVC.tabBarItem = homeItem
-        
-        let diaryCoordinator = DiaryCoordinator()
+        let diaryCoordinator = DiaryCoordinator(navigationController: diaryNavController)
         diaryCoordinator.parentCoordinator = self
-        childCoordinators.append(diaryCoordinator)
+        addChildCoordinator(diaryCoordinator)
+        diaryCoordinator.start()
+        diaryNavController.tabBarItem = diaryItem
         
-        let diaryVC = diaryCoordinator.startPush()
-        diaryVC.tabBarItem = diaryItem
-        
-        let searchCoordinator = SearchCoordinator()
+        let searchCoordinator = SearchCoordinator(navigationController: searchNavController)
         searchCoordinator.parentCoordinator = self
-        childCoordinators.append(searchCoordinator)
+        addChildCoordinator(searchCoordinator)
+        searchCoordinator.start()
+        searchNavController.tabBarItem = searchItem
         
-        let searchVC = searchCoordinator.startPush()
-        searchVC.tabBarItem = searchItem
-        
-        
-        let myInfoCoordinator = MyInfoCoordinator()
+        let myInfoCoordinator = MyInfoCoordinator(navigationController: myInfoNavController)
         myInfoCoordinator.parentCoordinator = self
-        childCoordinators.append(myInfoCoordinator)
+        addChildCoordinator(myInfoCoordinator)
+        myInfoCoordinator.start()
+        myInfoNavController.tabBarItem = myInfoItem
         
-        let myInfoVC = myInfoCoordinator.startPush()
-        myInfoVC.tabBarItem = myInfoItem
-        
-        tabBarController.viewControllers = [homeVC, diaryVC, searchVC, myInfoVC]
+        tabBarController.viewControllers = [homeNavController, diaryNavController, searchNavController, myInfoNavController]
         return tabBarController
     }
 }

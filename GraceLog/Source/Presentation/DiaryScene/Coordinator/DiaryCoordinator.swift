@@ -12,20 +12,19 @@ final class DiaryCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
-    init() {
-        self.navigationController = .init()
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     func start() {
-        // TODO
-    }
-    
-    func startPush() -> UINavigationController {
         let diaryVC = DiaryViewController()
         diaryVC.view.backgroundColor = .white
         diaryVC.title = "일기작성"
         diaryVC.reactor = DiaryViewReactor()
         navigationController.setViewControllers([diaryVC], animated: false)
-        return navigationController
+    }
+    
+    func finish() {
+        // TODO
     }
 }

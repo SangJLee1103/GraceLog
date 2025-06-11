@@ -12,20 +12,19 @@ final class HomeCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
-    init() {
-        self.navigationController = .init()
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
     func start() {
-        // TODO
-    }
-    
-    func startPush() -> UINavigationController {
         let homeVC = HomeViewController()
         homeVC.coordinator = self
         homeVC.view.backgroundColor = .white
         navigationController.setViewControllers([homeVC], animated: false)
-        return navigationController
+    }
+    
+    func finish() {
+        // TODO
     }
     
     func showDiaryDetails(diaryItem: MyDiaryItem) {
