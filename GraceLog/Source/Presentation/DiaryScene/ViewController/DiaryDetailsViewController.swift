@@ -27,6 +27,7 @@ final class DiaryDetailsViewController: GraceLogBaseViewController {
         config.baseForegroundColor = .white
         config.imagePlacement = .trailing
         config.imagePadding = 7
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var outgoing = incoming
             outgoing.font = UIFont(name: "Pretendard-Bold", size: 24)
@@ -34,6 +35,7 @@ final class DiaryDetailsViewController: GraceLogBaseViewController {
         }
         $0.configuration = config
         $0.tintColor = .white
+        $0.contentHorizontalAlignment = .leading
     }
     
     private let calendarView = FSCalendar().then {

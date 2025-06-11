@@ -164,7 +164,7 @@ final class DiaryDetailsView: UIView {
         
         contentView.addSubview(contentTextView)
         contentTextView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(50)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(35)
             $0.leading.equalToSuperview().offset(31)
             $0.trailing.equalToSuperview().inset(28)
             $0.bottom.equalTo(bottomStackView.snp.top).offset(-22)
@@ -173,15 +173,12 @@ final class DiaryDetailsView: UIView {
     
     private func setupGradient() {
         gradientLayer.colors = [
-            UIColor(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor,
             UIColor(red: 0, green: 0, blue: 0, alpha: 0.9).cgColor
         ]
         gradientLayer.locations = [0, 1]
-        gradientLayer.startPoint = CGPoint(x: 0.25, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 0.75, y: 0.5)
-        gradientLayer.transform = CATransform3DMakeAffineTransform(
-            CGAffineTransform(a: 0, b: 1, c: -1, d: 0, tx: 1, ty: 0)
-        )
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
     }
     
     private func updateGradientFrame() {
