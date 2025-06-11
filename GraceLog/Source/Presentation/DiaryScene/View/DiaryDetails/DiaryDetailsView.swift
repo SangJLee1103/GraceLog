@@ -128,7 +128,7 @@ final class DiaryDetailsView: UIView {
         addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.width.height.equalToSuperview()
+            $0.width.equalToSuperview()
         }
         
         contentView.addSubview(moreImageView)

@@ -25,11 +25,13 @@ final class DiaryDetailsCoordinator: Coordinator {
         let diaryDetailsVC = DiaryDetailsViewController()
         diaryDetailsVC.coordinator = self 
         diaryDetailsVC.title = "나의 감사일기"
+        NavigationBarUtil.setupMyDiaryAppearance()
         navigationController.modalPresentationStyle = .fullScreen
         navigationController.setViewControllers([diaryDetailsVC], animated: false)
     }
     
-    func dismiss() {
+    func finish() {
+        NavigationBarUtil.setupDefaultAppearance()
         delegate?.diaryDetailsCoordinatorDidFinish(self)
     }
 }
