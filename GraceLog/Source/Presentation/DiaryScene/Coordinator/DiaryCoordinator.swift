@@ -18,6 +18,7 @@ final class DiaryCoordinator: Coordinator {
     
     func start() {
         let diaryVC = DiaryViewController()
+        diaryVC.coordinator = self
         diaryVC.view.backgroundColor = .white
         diaryVC.title = "일기작성"
         diaryVC.reactor = DiaryViewReactor()
@@ -26,5 +27,11 @@ final class DiaryCoordinator: Coordinator {
     
     func finish() {
         // TODO
+    }
+    
+    func showAdditionalSettings() {
+        let additionalSettingsVC = DiaryAdditionalSettingsViewController()
+        additionalSettingsVC.title = "추가 설정"
+        navigationController.pushViewController(additionalSettingsVC, animated: true)
     }
 }

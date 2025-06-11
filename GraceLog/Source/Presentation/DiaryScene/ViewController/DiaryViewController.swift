@@ -16,6 +16,7 @@ import YPImagePicker
 
 final class DiaryViewController: UIViewController, View {
     typealias Reactor = DiaryViewReactor
+    weak var coordinator: DiaryCoordinator?
     
     var disposeBag = DisposeBag()
     
@@ -261,6 +262,20 @@ extension DiaryViewController: UITableViewDelegate {
             return 26
         default:
             return .leastNonzeroMagnitude
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let sectionModel = dataSource[indexPath.section]
+        let item = sectionModel.items[indexPath.row]
+        
+        switch item {
+        case .settings:
+            coordinator?.showAdditionalSettings()
+        default:
+            break
         }
     }
 }
